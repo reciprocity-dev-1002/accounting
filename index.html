@@ -143,19 +143,19 @@
 
 <div class="filters">
   <span class="filter-label">Month</span>
-  <button class="filter-btn active" onclick="filterMonth('All')">All</button>
-  <button class="filter-btn" onclick="filterMonth('April 2026')">April</button>
-  <button class="filter-btn" onclick="filterMonth('May 2026')">May</button>
-  <button class="filter-btn" onclick="filterMonth('June 2026')">June</button>
-  <button class="filter-btn" onclick="filterMonth('July 2026')">July</button>
-  <button class="filter-btn" onclick="filterMonth('August 2026')">August</button>
-  <button class="filter-btn" onclick="filterMonth('September 2026')">September</button>
+  <button class="filter-btn active" data-filter="month" data-value="All">All</button>
+  <button class="filter-btn" data-filter="month" data-value="April 2026">April</button>
+  <button class="filter-btn" data-filter="month" data-value="May 2026">May</button>
+  <button class="filter-btn" data-filter="month" data-value="June 2026">June</button>
+  <button class="filter-btn" data-filter="month" data-value="July 2026">July</button>
+  <button class="filter-btn" data-filter="month" data-value="August 2026">August</button>
+  <button class="filter-btn" data-filter="month" data-value="September 2026">September</button>
   <div class="divider"></div>
   <span class="filter-label">Status</span>
-  <button class="filter-btn active" onclick="filterStatus('All')">All</button>
-  <button class="filter-btn" onclick="filterStatus('not-started')">Not Started</button>
-  <button class="filter-btn" onclick="filterStatus('in-progress')">In Progress</button>
-  <button class="filter-btn" onclick="filterStatus('published')">Published</button>
+  <button class="filter-btn active" data-filter="status" data-value="All">All</button>
+  <button class="filter-btn" data-filter="status" data-value="not-started">Not Started</button>
+  <button class="filter-btn" data-filter="status" data-value="in-progress">In Progress</button>
+  <button class="filter-btn" data-filter="status" data-value="published">Published</button>
 </div>
 
 <main id="main"></main>
@@ -225,21 +225,17 @@ function updateStats() {
   document.getElementById('progress-bar').style.width = (pub / 24 * 100) + '%';
 }
 
-function filterMonth(m) {
-  activeMonth = m;
-  document.querySelectorAll('.filters .filter-btn').forEach(b => {
-    b.classList.toggle('active', b.textContent.trim() === m || (m === 'All' && b.textContent.trim() === 'All' && b.onclick.toString().includes("'All'")));
-  });
-  applyFilters();
-}
-function filterStatus(s) {
-  activeStatus = s;
-  applyFilters();
-}
 function applyFilters() {
+  // Update button active states
+  document.querySelectorAll('.filter-btn[data-filter="month"]').forEach(b => {
+    b.classList.toggle('active', b.dataset.value === activeMonth);
+  });
+  document.querySelectorAll('.filter-btn[data-filter="status"]').forEach(b => {
+    b.classList.toggle('active', b.dataset.value === activeStatus);
+  });
+  // Show/hide content
   document.querySelectorAll('.month-section').forEach(sec => {
-    const m = sec.dataset.month;
-    const monthMatch = activeMonth === 'All' || m === activeMonth;
+    const monthMatch = activeMonth === 'All' || sec.dataset.month === activeMonth;
     const rows = sec.querySelectorAll('tr[data-status]');
     let visible = 0;
     rows.forEach(r => {
@@ -248,17 +244,6 @@ function applyFilters() {
       if (statusMatch) visible++;
     });
     sec.classList.toggle('hidden', !monthMatch || visible === 0);
-  });
-  // Fix filter buttons
-  document.querySelectorAll('.filters .filter-btn').forEach(b => {
-    const t = b.textContent.trim();
-    if (['All','April','May','June','July','August','September'].includes(t)) {
-      const full = t === 'All' ? 'All' : t + ' 2026';
-      b.classList.toggle('active', full === activeMonth || (t === 'All' && activeMonth === 'All'));
-    } else {
-      const map = {'Not Started':'not-started','In Progress':'in-progress','Published':'published'};
-      b.classList.toggle('active', (map[t] || t.toLowerCase().replace(' ','-')) === activeStatus || (t === 'All' && activeStatus === 'All'));
-    }
   });
 }
 
@@ -320,9 +305,13 @@ function changeStatus(id, sel) {
   applyFilters();
 }
 
-// Filter button click fix — reattach clean handlers
-document.querySelectorAll('.filters .filter-btn').forEach(b => {
-  b.onclick = null;
+// Attach filter handlers via data attributes
+document.querySelectorAll('.filter-btn').forEach(b => {
+  b.addEventListener('click', () => {
+    if (b.dataset.filter === 'month') activeMonth = b.dataset.value;
+    if (b.dataset.filter === 'status') activeStatus = b.dataset.value;
+    applyFilters();
+  });
 });
 
 render();
