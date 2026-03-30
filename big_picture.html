@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Big Picture — Reciprocity Accounting</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f3ee;
+    color: #1a1a18;
+    padding: 32px;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #faf9f6;
+    border: 0.5px solid #d3d1c7;
+    border-radius: 8px;
+    padding: 40px;
+  }
+
+  .page-title {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #1a1a18;
+    margin-bottom: 6px;
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+    text-align: center;
+    color: #888780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .divider {
+    height: 0.5px;
+    background: #c8a96e;
+    margin-bottom: 28px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 10px;
+    margin-top: 22px;
+  }
+
+  .row {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .row-1 { grid-template-columns: 1fr; }
+  .row-2 { grid-template-columns: 1fr 1fr; }
+  .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .row-2-1 { grid-template-columns: 1fr 1.2fr; }
+
+  .cell {
+    background: #f1efe8;
+    border: 0.5px solid #c8c6bc;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .cell-teal {
+    background: #e8f6f1;
+    border: 0.5px solid #9fe1cb;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .cell-purple {
+    background: #eeedfe;
+    border: 0.5px solid #afa9ec;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .cell-gold {
+    background: #fdf6e8;
+    border: 1px solid #c8a96e;
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+
+  .cell-dark {
+    background: #1a1a18;
+    border: 0.5px solid #1a1a18;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .cell-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 5px;
+  }
+
+  .cell-teal .cell-label { color: #0f6e56; }
+  .cell-purple .cell-label { color: #534ab7; }
+  .cell-gold .cell-label { color: #854f0b; }
+  .cell-dark .cell-label { color: #9fe1cb; }
+
+  .cell-value {
+    font-size: 13px;
+    font-weight: 400;
+    color: #2c2c2a;
+    line-height: 1.5;
+  }
+
+  .cell-teal .cell-value { color: #085041; }
+  .cell-purple .cell-value { color: #26215c; }
+  .cell-gold .cell-value { color: #412402; }
+  .cell-dark .cell-value { color: #f1efe8; }
+
+  .cell-value strong {
+    font-weight: 500;
+  }
+
+  .positioning-text {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.7;
+    color: #412402;
+  }
+
+  .positioning-text em {
+    font-style: normal;
+    font-weight: 500;
+    color: #854f0b;
+  }
+
+  .pillars-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .pillar {
+    background: #1a1a18;
+    border-radius: 6px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .pillar-number {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c8a96e;
+    margin-bottom: 6px;
+  }
+
+  .pillar-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #faf9f6;
+    margin-bottom: 4px;
+  }
+
+  .pillar-desc {
+    font-size: 11px;
+    color: #888780;
+    line-height: 1.4;
+  }
+
+  .vision-bar {
+    background: #1a1a18;
+    border-radius: 6px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 10px;
+  }
+
+  .vision-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c8a96e;
+  }
+
+  .vision-text {
+    font-size: 13px;
+    color: #faf9f6;
+    font-weight: 400;
+  }
+
+  .footer {
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 0.5px solid #d3d1c7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-size: 10px;
+    color: #888780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .footer-right {
+    font-size: 10px;
+    color: #c8a96e;
+    letter-spacing: 0.04em;
+    font-style: italic;
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page {
+      border: none;
+      border-radius: 0;
+      padding: 32px 40px;
+      max-width: 100%;
+      background: white;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="page-title">The Big Picture</div>
+  <div class="page-subtitle">Reciprocity Accounting LLC &nbsp;&middot;&nbsp; Strategic Framework &nbsp;&middot;&nbsp; 2026</div>
+  <div class="divider"></div>
+
+  <!-- Row 1: Foundation -->
+  <div class="section-label">Foundation</div>
+  <div class="row row-1">
+    <div class="cell">
+      <div class="cell-label">Fundamental entity</div>
+      <div class="cell-value">Reciprocity Accounting LLC — specialty dental accounting firm</div>
+    </div>
+  </div>
+  <div class="row row-2">
+    <div class="cell">
+      <div class="cell-label">Category</div>
+      <div class="cell-value">Dental financial clarity</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Core competency</div>
+      <div class="cell-value">Guaranteed monthly close, dental-specific</div>
+    </div>
+  </div>
+  <div class="row row-1">
+    <div class="cell">
+      <div class="cell-label">Goal</div>
+      <div class="cell-value"><strong>2026:</strong> 10 clients, 2 referral partners &nbsp;&nbsp;&middot;&nbsp;&nbsp; <strong>2027:</strong> 20–25 clients, 3–5 referral partners</div>
+    </div>
+  </div>
+
+  <!-- Segmentation -->
+  <div class="section-label">Segmentation</div>
+  <div class="row row-3">
+    <div class="cell-teal">
+      <div class="cell-label">Geographic</div>
+      <div class="cell-value">Ohio (to start)<br>US independent practices</div>
+    </div>
+    <div class="cell-teal">
+      <div class="cell-label">Demographic</div>
+      <div class="cell-value">1–3 providers<br>$700K–$2M annual collections</div>
+    </div>
+    <div class="cell-teal">
+      <div class="cell-label">Psychographic</div>
+      <div class="cell-value">Identifies as business owner<br>Delegates willingly<br>Exit or growth aware</div>
+    </div>
+  </div>
+  <div class="row row-1">
+    <div class="cell-teal">
+      <div class="cell-label">Behavioral</div>
+      <div class="cell-value">Already using workarounds for visibility &nbsp;&middot;&nbsp; Overhead anxiety present &nbsp;&middot;&nbsp; No monthly insight from current CPA &nbsp;&middot;&nbsp; Delegates payroll and HR</div>
+    </div>
+  </div>
+
+  <!-- Target -->
+  <div class="section-label">Target</div>
+  <div class="row row-2">
+    <div class="cell-purple">
+      <div class="cell-label">Target A — recent acquirer</div>
+      <div class="cell-value">0–24 months into ownership<br>~50–80 qualifying transitions/yr in Ohio<br>Broker referral only · fast conversion<br>Acute pain, right moment</div>
+    </div>
+    <div class="cell-purple">
+      <div class="cell-label">Target B — established owner</div>
+      <div class="cell-value">3–10 years in, growth or exit aware<br>~600–800 in Ohio<br>Consultant referral · outbound · content<br>Pain is real, conversion is slower</div>
+    </div>
+  </div>
+
+  <!-- Source of Volume -->
+  <div class="section-label">Source of volume</div>
+  <div class="row row-2">
+    <div class="cell">
+      <div class="cell-label">Primary — stimulate demand</div>
+      <div class="cell-value">No real accounting system exists. The dentist doesn't know what they're missing. The category must be created before the brand can be chosen.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Secondary — earn share</div>
+      <div class="cell-value">Pull clients away from generalist CPAs doing year-end cash-basis books with no monthly visibility or dental-specific insight.</div>
+    </div>
+  </div>
+
+  <!-- Select Positioning -->
+  <div class="section-label">Select positioning</div>
+  <div class="row row-2">
+    <div class="cell">
+      <div class="cell-label">Current belief</div>
+      <div class="cell-value">"Accounting is compliance and my CPA handles it."</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Desired belief</div>
+      <div class="cell-value">"Accounting is a monthly operating system for my practice."</div>
+    </div>
+  </div>
+  <div class="row row-2">
+    <div class="cell">
+      <div class="cell-label">Currently do</div>
+      <div class="cell-value">Review financials quarterly · react to cash flow · rely on year-end tax prep · use workarounds for daily visibility</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Desired do</div>
+      <div class="cell-value">Review dashboard monthly · adjust operations proactively · use numbers to guide decisions with confidence</div>
+    </div>
+  </div>
+
+  <!-- Positioning Statement -->
+  <div class="row row-1" style="margin-top:10px;">
+    <div class="cell-gold">
+      <div class="cell-label">Positioning statement</div>
+      <p class="positioning-text">
+        For independent dental practice owners who run their business as seriously as they practice dentistry, <em>Reciprocity Accounting</em> is the only dental-specific accounting firm that delivers monthly financials built on <em>production, not deposits</em> — closed by the 10th so you can actually run the business — unlike general CPAs who treat your books as a year-end compliance task.
+      </p>
+    </div>
+  </div>
+
+  <!-- Value Pillars -->
+  <div class="section-label">Value pillars</div>
+  <div class="pillars-row">
+    <div class="pillar">
+      <div class="pillar-number">Pillar 01</div>
+      <div class="pillar-name">Timely Financials</div>
+      <div class="pillar-desc">Closed and delivered by the 10th of every month. Guaranteed.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-number">Pillar 02</div>
+      <div class="pillar-name">Connected Systems</div>
+      <div class="pillar-desc">Cloud-based and fully integrated. No spreadsheets, no disconnected tools, no PDF archaeology.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-number">Pillar 03</div>
+      <div class="pillar-name">Clear Performance Insights</div>
+      <div class="pillar-desc">So you run the business as confidently as you practice dentistry.</div>
+    </div>
+  </div>
+
+  <!-- Vision -->
+  <div class="vision-bar">
+    <div class="vision-label">10-year vision</div>
+    <div class="vision-text">350 practices closed on time, every month.</div>
+    <div class="vision-label">Guarantee</div>
+    <div class="vision-text">Books closed by the 10th. <span style="color:#c8a96e;">Guaranteed.</span></div>
+  </div>
+
+  <!-- EOS Foundation -->
+  <div class="section-label" style="margin-top:28px;">The Reciprocity Philosophy</div>
+  <div class="row row-1">
+    <div class="cell">
+      <div class="cell-value" style="line-height:1.7;">
+        We named the firm Reciprocity because the model only works when both sides contribute. Practice owners provide timely access, clear communication, and honest answers. We provide closed financials, clear reporting, and a monthly rhythm you can count on. That exchange is the foundation of everything we do.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-label">Core Values</div>
+  <div class="row row-2">
+    <div class="cell">
+      <div class="cell-label">Honor the Exchange</div>
+      <div class="cell-value">We hold up our end and expect the same from our clients. When both sides follow through, the work stays on schedule and the numbers mean something.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Be Consistently Reliable</div>
+      <div class="cell-value">Our clients plan around our deliverables. We treat every deadline like it matters — because for a practice owner making real decisions, it does.</div>
+    </div>
+  </div>
+  <div class="row row-2">
+    <div class="cell">
+      <div class="cell-label">Choose Clarity Over Complexity</div>
+      <div class="cell-value">We don't send reports that require an accounting degree to read. Every deliverable is built to help an owner understand what happened and decide what to do next.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Practice Kindness Through Candor</div>
+      <div class="cell-value">If something looks off in the numbers, we say so early and directly. We'd rather have an honest conversation now than a difficult one later.</div>
+    </div>
+  </div>
+
+  <div class="section-label">Three Uniques</div>
+  <div class="row row-3">
+    <div class="cell-dark">
+      <div class="cell-label">01 — Closed by the 10th. Guaranteed.</div>
+      <div class="cell-value">Your financials are closed and delivered by the 10th of every month. If we miss it, your monthly fee is waived. It's in the engagement agreement, not just the marketing.</div>
+    </div>
+    <div class="cell-dark">
+      <div class="cell-label">02 — A 5-Minute Monthly Review Video</div>
+      <div class="cell-value">Every month you get a short video walking through what changed, what's trending, and what to pay attention to. No jargon, no 40-page report — just the information you need to make decisions.</div>
+    </div>
+    <div class="cell-dark">
+      <div class="cell-label">03 — Built Exclusively for Dental Practices</div>
+      <div class="cell-value">We don't serve restaurants, law firms, or general small businesses. Every workflow, benchmark, and report is designed around how dental practices actually operate.</div>
+    </div>
+  </div>
+
+  <div class="section-label">Proven Process</div>
+  <div class="row row-3">
+    <div class="cell">
+      <div class="cell-label">Step 1 — Get Set Up</div>
+      <div class="cell-value">We collect everything we need to start: access to your accounting software, bank and credit card connections, payroll reports, and a production export from your practice management system. By the end of onboarding, we have a complete picture of your practice's finances and a clear schedule for what happens every month going forward.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Step 2 — Close and Deliver</div>
+      <div class="cell-value">Each month, our team closes your accounting by the 10th. You receive clean financials and a short review video that explains what changed, what's on track, and what needs your attention.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Step 3 — Review, Decide, Repeat</div>
+      <div class="cell-value">You use the reporting to make informed decisions about your practice — staffing, spending, growth, compensation. We answer questions as they come up. The cycle repeats every month with the same structure and the same standard.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">Reciprocity Accounting LLC &nbsp;&middot;&nbsp; Confidential &nbsp;&middot;&nbsp; 2026</div>
+    <div class="footer-right">Accounting built for dental practices. Books closed by the 10th. Guaranteed.</div>
+  </div>
+
+</div>
+</body>
+</html>
