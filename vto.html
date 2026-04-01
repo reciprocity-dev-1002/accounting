@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vision / Traction Organizer — Reciprocity Accounting</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512px.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f5f3ee;
+    color: #1a1a18;
+    padding: 32px;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #faf9f6;
+    border: 0.5px solid #d3d1c7;
+    border-radius: 8px;
+    padding: 40px;
+  }
+
+  .page-title {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #1a1a18;
+    margin-bottom: 6px;
+  }
+
+  .page-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-align: center;
+    color: #888780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .divider {
+    height: 0.5px;
+    background: #c8a96e;
+    margin-bottom: 28px;
+  }
+
+  /* ── VISION SIDE ── */
+  .vto-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #c8a96e;
+    margin-bottom: 20px;
+    margin-top: 32px;
+  }
+
+  .vto-label:first-of-type {
+    margin-top: 0;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 10px;
+    margin-top: 22px;
+  }
+
+  .row {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .row-1 { grid-template-columns: 1fr; }
+  .row-2 { grid-template-columns: 1fr 1fr; }
+  .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .cell {
+    background: #f1efe8;
+    border: 0.5px solid #c8c6bc;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .cell-gold {
+    background: #fdf6e8;
+    border: 1px solid #c8a96e;
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+
+  .cell-dark {
+    background: #1a1a18;
+    border: 0.5px solid #1a1a18;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .cell-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 5px;
+  }
+
+  .cell-gold .cell-label { color: #854f0b; }
+  .cell-dark .cell-label { color: #c8a96e; }
+
+  .cell-value {
+    font-size: 13px;
+    font-weight: 300;
+    color: #2c2c2a;
+    line-height: 1.6;
+  }
+
+  .cell-gold .cell-value { color: #412402; }
+  .cell-dark .cell-value { color: #f1efe8; }
+
+  .cell-value strong {
+    font-weight: 400;
+  }
+
+  /* ── VISION BAR ── */
+  .vision-bar {
+    background: #1a1a18;
+    border-radius: 6px;
+    padding: 20px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+  }
+
+  .vision-bar-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .vision-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c8a96e;
+  }
+
+  .vision-text {
+    font-size: 14px;
+    color: #faf9f6;
+    font-weight: 300;
+  }
+
+  /* ── PILLARS ── */
+  .pillars-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .pillar {
+    background: #1a1a18;
+    border-radius: 6px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .pillar-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c8a96e;
+    margin-bottom: 6px;
+  }
+
+  .pillar-name {
+    font-size: 13px;
+    font-weight: 400;
+    color: #faf9f6;
+    margin-bottom: 4px;
+  }
+
+  .pillar-desc {
+    font-size: 11px;
+    font-weight: 300;
+    color: #888780;
+    line-height: 1.4;
+  }
+
+  /* ── PROCESS STEPS ── */
+  .process-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .step {
+    background: #f1efe8;
+    border: 0.5px solid #c8c6bc;
+    border-radius: 6px;
+    padding: 16px;
+    position: relative;
+  }
+
+  .step-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c8a96e;
+    margin-bottom: 6px;
+  }
+
+  .step-name {
+    font-size: 13px;
+    font-weight: 400;
+    color: #1a1a18;
+    margin-bottom: 6px;
+  }
+
+  .step-desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: #888780;
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 0.5px solid #d3d1c7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #888780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .footer-right {
+    font-size: 10px;
+    color: #c8a96e;
+    letter-spacing: 0.04em;
+    font-style: italic;
+  }
+
+  @media (max-width: 720px) {
+    body { padding: 16px; }
+    .page { padding: 24px; }
+    .row-2, .row-3, .pillars-row, .process-row { grid-template-columns: 1fr; }
+    .vision-bar { flex-direction: column; align-items: flex-start; }
+  }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page {
+      border: none;
+      border-radius: 0;
+      padding: 32px 40px;
+      max-width: 100%;
+      background: white;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="page-title">Vision / Traction Organizer</div>
+  <div class="page-subtitle">Reciprocity Accounting LLC &middot; EOS Framework &middot; 2026</div>
+  <div class="divider"></div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- VISION                                   -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="vto-label">Vision</div>
+
+  <!-- Core Values -->
+  <div class="section-label">Core Values</div>
+  <div class="row row-2">
+    <div class="cell">
+      <div class="cell-label">Honor the Exchange</div>
+      <div class="cell-value">We hold up our end and expect the same from our clients. When both sides follow through, the work stays on schedule and the numbers mean something.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Be Consistently Reliable</div>
+      <div class="cell-value">Our clients plan around our deliverables. We treat every deadline like it matters — because for a practice owner making real decisions, it does.</div>
+    </div>
+  </div>
+  <div class="row row-2">
+    <div class="cell">
+      <div class="cell-label">Choose Clarity Over Complexity</div>
+      <div class="cell-value">We don't send reports that require an accounting degree to read. Every deliverable is built to help an owner understand what happened and decide what to do next.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Practice Kindness Through Candor</div>
+      <div class="cell-value">If something looks off in the numbers, we say so early and directly. We'd rather have an honest conversation now than a difficult one later.</div>
+    </div>
+  </div>
+
+  <!-- Core Focus -->
+  <div class="section-label">Core Focus</div>
+  <div class="row row-2">
+    <div class="cell-gold">
+      <div class="cell-label">Purpose</div>
+      <div class="cell-value">To make timely financial insight usable for dental practice owners.</div>
+    </div>
+    <div class="cell-gold">
+      <div class="cell-label">Niche</div>
+      <div class="cell-value">Dental-specific monthly accounting — guaranteed close by the 10th.</div>
+    </div>
+  </div>
+
+  <!-- 10-Year Target -->
+  <div class="section-label">10-Year Target</div>
+  <div class="vision-bar">
+    <div class="vision-bar-item">
+      <div class="vision-label">Target</div>
+      <div class="vision-text">350 practices closed on time, every month.</div>
+    </div>
+  </div>
+
+  <!-- Marketing Strategy -->
+  <div class="section-label">Marketing Strategy</div>
+  <div class="row row-1">
+    <div class="cell">
+      <div class="cell-label">Target Market</div>
+      <div class="cell-value">Independent dental practice owners (1–3 providers, $700K–$2M collections) who identify as business owners, delegate willingly, and are growth- or exit-aware.</div>
+    </div>
+  </div>
+
+  <!-- Three Uniques -->
+  <div class="section-label" style="margin-top:16px;">Three Uniques</div>
+  <div class="pillars-row">
+    <div class="pillar">
+      <div class="pillar-number">01</div>
+      <div class="pillar-name">Closed by the 10th. Guaranteed.</div>
+      <div class="pillar-desc">Your financials are closed and delivered by the 10th of every month. If we miss it, your monthly fee is waived.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-number">02</div>
+      <div class="pillar-name">5-Minute Monthly Review Video</div>
+      <div class="pillar-desc">A short video each month walking through what changed, what's trending, and what to pay attention to.</div>
+    </div>
+    <div class="pillar">
+      <div class="pillar-number">03</div>
+      <div class="pillar-name">Built Exclusively for Dental</div>
+      <div class="pillar-desc">Every workflow, benchmark, and report is designed around how dental practices actually operate.</div>
+    </div>
+  </div>
+
+  <!-- Proven Process -->
+  <div class="section-label">Proven Process</div>
+  <div class="process-row">
+    <div class="step">
+      <div class="step-number">Step 01</div>
+      <div class="step-name">Get Set Up</div>
+      <div class="step-desc">We collect everything we need to start: accounting software access, bank and credit card connections, payroll reports, and a production export from your PMS. By the end of onboarding, we have a complete picture and a clear monthly schedule.</div>
+    </div>
+    <div class="step">
+      <div class="step-number">Step 02</div>
+      <div class="step-name">Close and Deliver</div>
+      <div class="step-desc">Each month, our team closes your accounting by the 10th. You receive clean financials and a short review video explaining what changed, what's on track, and what needs attention.</div>
+    </div>
+    <div class="step">
+      <div class="step-number">Step 03</div>
+      <div class="step-name">Review, Decide, Repeat</div>
+      <div class="step-desc">You use the reporting to make informed decisions — staffing, spending, growth, compensation. We answer questions as they come up. The cycle repeats every month.</div>
+    </div>
+  </div>
+
+  <!-- Guarantee -->
+  <div class="section-label">The Guarantee</div>
+  <div class="vision-bar">
+    <div class="vision-bar-item">
+      <div class="vision-label">Guarantee</div>
+      <div class="vision-text">Books closed by the 10th. Every month. <span style="color:#c8a96e;">Guaranteed.</span></div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════ -->
+  <!-- TRACTION                                 -->
+  <!-- ════════════════════════════════════════ -->
+  <div class="vto-label" style="margin-top:40px;">Traction</div>
+
+  <!-- 3-Year Picture -->
+  <div class="section-label">3-Year Picture (2029)</div>
+  <div class="row row-3">
+    <div class="cell">
+      <div class="cell-label">Revenue</div>
+      <div class="cell-value">TBD</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Clients</div>
+      <div class="cell-value">TBD</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Key Measurables</div>
+      <div class="cell-value">TBD</div>
+    </div>
+  </div>
+
+  <!-- 1-Year Plan -->
+  <div class="section-label">1-Year Plan (2026)</div>
+  <div class="row row-3">
+    <div class="cell-gold">
+      <div class="cell-label">Revenue Goal</div>
+      <div class="cell-value">TBD</div>
+    </div>
+    <div class="cell-gold">
+      <div class="cell-label">Client Goal</div>
+      <div class="cell-value">10 clients, 2 referral partners</div>
+    </div>
+    <div class="cell-gold">
+      <div class="cell-label">Key Measurables</div>
+      <div class="cell-value">TBD</div>
+    </div>
+  </div>
+
+  <!-- Rocks -->
+  <div class="section-label">Rocks (Current Quarter)</div>
+  <div class="row row-1">
+    <div class="cell">
+      <div class="cell-label">Q2 2026</div>
+      <div class="cell-value">TBD — define quarterly rocks during next L10 planning session.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">Reciprocity Accounting LLC &middot; Confidential &middot; 2026</div>
+    <div class="footer-right">Books closed by the 10th. Guaranteed.</div>
+  </div>
+
+</div>
+</body>
+</html>
