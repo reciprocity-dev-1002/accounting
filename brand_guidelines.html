@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Guidelines — Reciprocity Accounting</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512px.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=DM+Mono:wght@400&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #f5f3ee;
+    color: #1a1a1a;
+    min-height: 100vh;
+  }
+
+  /* ── BACK NAV ── */
+  .back-nav {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 40px 0;
+  }
+
+  .back-nav a {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888780;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .back-nav a:hover { color: #1a1a1a; }
+
+  /* ── PAGE CONTAINER ── */
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 40px 64px;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 64px;
+    border: 0.5px solid #d3d1c7;
+  }
+
+  .cover-dark {
+    background: #0f0f0f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+  }
+
+  .cover-logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .cover-logo-mark {
+    width: 48px;
+    height: 48px;
+    position: relative;
+  }
+
+  /* SVG mark built from CSS */
+  .mark-bl {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 30px; height: 30px;
+    border-left: 3.5px solid #f5f2ee;
+    border-bottom: 3.5px solid #f5f2ee;
+  }
+
+  .mark-tr {
+    position: absolute;
+    top: 0; right: 0;
+    width: 22px; height: 22px;
+    border-right: 3.5px solid #f5f2ee;
+    border-top: 3.5px solid #f5f2ee;
+  }
+
+  .mark-dot {
+    position: absolute;
+    bottom: 12px; left: 12px;
+    width: 7px; height: 7px;
+    background: #c8a96e;
+  }
+
+  .cover-logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .cover-logo-text .name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 200;
+    font-size: 22px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #f5f2ee;
+  }
+
+  .cover-logo-text .sub {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #f5f2ee;
+    opacity: 0.7;
+  }
+
+  .cover-light {
+    background: #faf9f6;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 48px;
+  }
+
+  .cover-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 16px;
+  }
+
+  .cover-title {
+    font-weight: 200;
+    font-size: 36px;
+    letter-spacing: 0.02em;
+    color: #1a1a1a;
+    line-height: 1.15;
+  }
+
+  .cover-rule {
+    width: 60px;
+    height: 1px;
+    background: #c8a96e;
+    margin-top: 20px;
+  }
+
+  /* ── SECTION ── */
+  .section {
+    margin-bottom: 64px;
+  }
+
+  .section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 8px;
+  }
+
+  .section-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: #c8a96e;
+  }
+
+  .section-cat {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888780;
+  }
+
+  .section-title {
+    font-weight: 200;
+    font-size: 32px;
+    letter-spacing: 0.02em;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+  }
+
+  .section-rule {
+    width: 48px;
+    height: 1px;
+    background: #c8a96e;
+    margin-bottom: 32px;
+  }
+
+  .section-divider {
+    height: 0.5px;
+    background: #d3d1c7;
+    margin: 40px 0;
+  }
+
+  /* ── SUBSECTION ── */
+  .sub-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 12px;
+    margin-top: 32px;
+  }
+
+  .sub-label:first-child { margin-top: 0; }
+
+  /* ── PURPOSE BLOCK ── */
+  .purpose-block {
+    border-left: 3px solid #c8a96e;
+    padding-left: 20px;
+    margin-bottom: 32px;
+  }
+
+  .purpose-main {
+    font-weight: 400;
+    font-size: 18px;
+    color: #1a1a1a;
+    line-height: 1.5;
+    margin-bottom: 4px;
+  }
+
+  .purpose-sub {
+    font-weight: 300;
+    font-size: 14px;
+    color: #888780;
+    line-height: 1.5;
+  }
+
+  /* ── BELIEF SHIFT ── */
+  .belief-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .belief-card {
+    border: 1px solid #d3d1c7;
+    border-radius: 6px;
+    padding: 20px;
+    background: #faf9f6;
+  }
+
+  .belief-card.gold {
+    border-color: #c8a96e;
+  }
+
+  .belief-card-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 10px;
+  }
+
+  .belief-card.gold .belief-card-label {
+    color: #854f0b;
+  }
+
+  .belief-card-title {
+    font-weight: 400;
+    font-size: 15px;
+    color: #1a1a1a;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .belief-card-list {
+    font-weight: 300;
+    font-size: 13px;
+    color: #888780;
+    line-height: 1.6;
+  }
+
+  /* ── PILLARS ── */
+  .pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+
+  .pillar-card {
+    border: 1px solid #c8a96e;
+    border-radius: 6px;
+    padding: 20px;
+    background: #faf9f6;
+  }
+
+  .pillar-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: #c8a96e;
+    margin-bottom: 8px;
+  }
+
+  .pillar-name {
+    font-weight: 400;
+    font-size: 14px;
+    color: #1a1a1a;
+    margin-bottom: 6px;
+  }
+
+  .pillar-desc {
+    font-weight: 300;
+    font-size: 12px;
+    color: #888780;
+    line-height: 1.5;
+  }
+
+  /* ── GUARANTEE ── */
+  .guarantee {
+    font-weight: 300;
+    font-size: 16px;
+    color: #1a1a1a;
+    line-height: 1.6;
+    margin-top: 32px;
+  }
+
+  /* ── LOGO SECTION ── */
+  .logo-display {
+    background: #1a1a1a;
+    border-radius: 6px;
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .logo-display .cover-logo-mark { width: 40px; height: 40px; }
+  .logo-display .mark-bl { width: 26px; height: 26px; border-width: 3px; }
+  .logo-display .mark-tr { width: 18px; height: 18px; border-width: 3px; }
+  .logo-display .mark-dot { bottom: 10px; left: 10px; width: 6px; height: 6px; }
+
+  .logo-variant-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 8px;
+  }
+
+  .logo-display-light {
+    background: #faf9f6;
+    border: 0.5px solid #d3d1c7;
+    border-radius: 6px;
+    padding: 32px 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+
+  .logo-display-light .name { color: #1a1a1a; }
+  .logo-display-light .sub { color: #1a1a1a; opacity: 0.5; }
+  .logo-display-light .mark-bl { border-color: #1a1a1a; }
+  .logo-display-light .mark-tr { border-color: #1a1a1a; }
+
+  /* ── MARK AT SCALE ── */
+  .mark-scale-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 32px;
+    margin: 24px 0;
+    flex-wrap: wrap;
+  }
+
+  .mark-scale-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mark-scale-item .cover-logo-mark {
+    /* sizes set inline */
+  }
+
+  .mark-scale-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #888780;
+  }
+
+  /* ── MARK LOGIC ── */
+  .logic-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .logic-list li {
+    font-weight: 300;
+    font-size: 14px;
+    color: #1a1a1a;
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 6px;
+  }
+
+  .logic-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 4px;
+    height: 4px;
+    background: #c8a96e;
+  }
+
+  .clear-space-note {
+    font-weight: 300;
+    font-size: 13px;
+    color: #888780;
+    line-height: 1.5;
+    margin-top: 16px;
+  }
+
+  /* ── COLOR PALETTE ── */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .swatch {
+    padding: 20px 14px;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .swatch-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .swatch-hex {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    opacity: 0.7;
+  }
+
+  .swatch-use {
+    font-size: 11px;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-top: auto;
+  }
+
+  .color-note {
+    font-weight: 300;
+    font-size: 13px;
+    color: #888780;
+    line-height: 1.5;
+    font-style: italic;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  .type-display {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 32px;
+  }
+
+  .type-block-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 12px;
+  }
+
+  .type-specimen-sans {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 200;
+    font-size: 48px;
+    color: #1a1a1a;
+    letter-spacing: 0.06em;
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+
+  .type-specimen-detail {
+    font-weight: 300;
+    font-size: 13px;
+    color: #888780;
+    line-height: 1.5;
+  }
+
+  .type-specimen-mono {
+    font-family: 'DM Mono', monospace;
+    font-weight: 400;
+    font-size: 20px;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+  }
+
+  .type-specimen-body {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+  }
+
+  /* ── TYPE HIERARCHY TABLE ── */
+  .type-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .type-table th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888780;
+    text-align: left;
+    padding: 8px 0;
+    border-bottom: 0.5px solid #d3d1c7;
+  }
+
+  .type-table td {
+    font-size: 13px;
+    font-weight: 300;
+    color: #1a1a1a;
+    padding: 10px 0;
+    border-bottom: 0.5px solid #e8e6e0;
+  }
+
+  .type-table td:first-child {
+    font-weight: 400;
+  }
+
+  /* ── TONE & VOICE ── */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 32px;
+  }
+
+  .voice-trait-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .voice-trait-list li {
+    font-weight: 300;
+    font-size: 15px;
+    color: #1a1a1a;
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+
+  .voice-trait-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 9px;
+    width: 4px;
+    height: 4px;
+    background: #c8a96e;
+  }
+
+  .voice-trait-list.muted li {
+    color: #888780;
+  }
+
+  .voice-trait-list.muted li::before {
+    background: #d3d1c7;
+  }
+
+  .lang-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .lang-table td {
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 300;
+    vertical-align: middle;
+  }
+
+  .lang-table tr { border-bottom: 0.5px solid #e8e6e0; }
+
+  .lang-badge {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    min-width: 48px;
+    text-align: center;
+  }
+
+  .lang-badge.avoid {
+    background: #f1efe8;
+    color: #888780;
+  }
+
+  .lang-badge.use {
+    background: #1a1a1a;
+    color: #f5f2ee;
+  }
+
+  .lang-text {
+    color: #1a1a1a;
+  }
+
+  .lang-table tr:has(.lang-badge.use) .lang-text {
+    font-weight: 400;
+  }
+
+  /* ── SQUARESPACE PALETTE ── */
+  .sq-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+
+  .sq-swatch {
+    padding: 16px 12px;
+    min-height: 90px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sq-slot {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+    margin-bottom: 4px;
+  }
+
+  .sq-name {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+
+  .sq-hex {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    opacity: 0.7;
+    margin-bottom: auto;
+  }
+
+  .sq-use {
+    font-size: 10px;
+    font-weight: 300;
+    opacity: 0.8;
+    margin-top: 12px;
+  }
+
+  .sq-note {
+    font-weight: 300;
+    font-size: 12px;
+    color: #888780;
+    line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px 40px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 0.5px solid #d3d1c7;
+  }
+
+  .footer-left {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: #888780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .footer-right {
+    font-size: 10px;
+    color: #1a1a1a;
+    letter-spacing: 0.04em;
+    font-style: italic;
+  }
+
+  .footer-right .gold { color: #c8a96e; }
+
+  @media (max-width: 720px) {
+    .page { padding: 24px; }
+    .cover { grid-template-columns: 1fr; }
+    .belief-grid, .pillars-grid, .type-display, .voice-grid { grid-template-columns: 1fr; }
+    .palette-grid { grid-template-columns: repeat(3, 1fr); }
+    .sq-grid { grid-template-columns: repeat(3, 1fr); }
+    .mark-scale-row { gap: 20px; }
+    .cover-title { font-size: 28px; }
+    .section-title { font-size: 26px; }
+  }
+
+  @media print {
+    body { background: white; }
+    .back-nav { display: none; }
+    .cover { break-inside: avoid; }
+    .section { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="back-nav">
+  <a href="index.html">&larr; Back to Hub</a>
+</div>
+
+<div class="page">
+
+  <!-- ═══════════════════════════ COVER ═══════════════════════════ -->
+  <div class="cover">
+    <div class="cover-dark">
+      <div class="cover-logo">
+        <div class="cover-logo-mark">
+          <div class="mark-bl"></div>
+          <div class="mark-tr"></div>
+          <div class="mark-dot"></div>
+        </div>
+        <div class="cover-logo-text">
+          <span class="name">Reciprocity</span>
+          <span class="sub">Accounting</span>
+        </div>
+      </div>
+    </div>
+    <div class="cover-light">
+      <div class="cover-meta">Brand Identity Guide &mdash; V2 &mdash; February 2026</div>
+      <div class="cover-title">Reciprocity<br>Accounting</div>
+      <div class="cover-rule"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════ 01 BRAND FOUNDATION ═══════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">01</span>
+      <span class="section-cat">Brand Foundation</span>
+    </div>
+    <h2 class="section-title">Brand Foundation</h2>
+    <div class="section-rule"></div>
+
+    <div class="sub-label">Purpose</div>
+    <div class="purpose-block">
+      <div class="purpose-main">To make timely financial insight usable for owners.</div>
+      <div class="purpose-sub">Financial information is only valuable if it is timely.</div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="sub-label">Core Belief Shift</div>
+    <div class="belief-grid">
+      <div class="belief-card">
+        <div class="belief-card-label">Current Belief</div>
+        <div class="belief-card-title">"Accounting is compliance and my CPA handles it."</div>
+        <div class="belief-card-list">
+          Review financials quarterly.<br>
+          React to cash flow.<br>
+          Rely on year-end tax prep.
+        </div>
+      </div>
+      <div class="belief-card gold">
+        <div class="belief-card-label">Desired Belief</div>
+        <div class="belief-card-title">"Accounting is a monthly operating system."</div>
+        <div class="belief-card-list">
+          Review dashboard monthly.<br>
+          Adjust operations proactively.<br>
+          Use numbers to guide decisions.
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="sub-label">Value Pillars</div>
+    <div class="pillars-grid">
+      <div class="pillar-card">
+        <div class="pillar-num">01</div>
+        <div class="pillar-name">Timely Financials</div>
+        <div class="pillar-desc">Closed and delivered by the 10th of each month.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">02</div>
+        <div class="pillar-name">Modern, Connected Systems</div>
+        <div class="pillar-desc">Cloud-based, integrated with a central dashboard.</div>
+      </div>
+      <div class="pillar-card">
+        <div class="pillar-num">03</div>
+        <div class="pillar-name">Clear Performance Insight</div>
+        <div class="pillar-desc">Run the business as confidently as you practice.</div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="sub-label">The Guarantee</div>
+    <div class="guarantee">Books closed by the 10th. Every month. Guaranteed.</div>
+  </div>
+
+  <!-- ═══════════════════════════ 02 LOGO SYSTEM ═══════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">02</span>
+      <span class="section-cat">Logo System</span>
+    </div>
+    <h2 class="section-title">Logo System</h2>
+    <div class="section-rule"></div>
+
+    <div class="logo-variant-label">Primary Horizontal &mdash; Dark</div>
+    <div class="logo-display">
+      <div class="cover-logo-mark">
+        <div class="mark-bl"></div>
+        <div class="mark-tr"></div>
+        <div class="mark-dot"></div>
+      </div>
+      <div class="cover-logo-text">
+        <span class="name" style="font-size:18px;">Reciprocity</span>
+        <span class="sub" style="font-size:9px;">Accounting</span>
+      </div>
+    </div>
+
+    <div class="logo-variant-label">Primary Horizontal &mdash; Light</div>
+    <div class="logo-display-light">
+      <div class="cover-logo-mark">
+        <div class="mark-bl"></div>
+        <div class="mark-tr"></div>
+        <div class="mark-dot"></div>
+      </div>
+      <div class="cover-logo-text">
+        <span class="name" style="font-size:18px; color:#1a1a1a;">Reciprocity</span>
+        <span class="sub" style="font-size:9px; color:#1a1a1a;">Accounting</span>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="sub-label">Mark at Scale &mdash; Standalone Use</div>
+    <div class="mark-scale-row">
+      <div class="mark-scale-item">
+        <div class="cover-logo-mark" style="width:56px;height:56px;">
+          <div class="mark-bl" style="width:36px;height:36px;border-width:4px;"></div>
+          <div class="mark-tr" style="width:26px;height:26px;border-width:4px;"></div>
+          <div class="mark-dot" style="bottom:14px;left:14px;width:8px;height:8px;"></div>
+        </div>
+        <span class="mark-scale-label">56pt</span>
+      </div>
+      <div class="mark-scale-item">
+        <div class="cover-logo-mark" style="width:42px;height:42px;">
+          <div class="mark-bl" style="width:27px;height:27px;border-width:3.5px;"></div>
+          <div class="mark-tr" style="width:20px;height:20px;border-width:3.5px;"></div>
+          <div class="mark-dot" style="bottom:11px;left:11px;width:6px;height:6px;"></div>
+        </div>
+        <span class="mark-scale-label">42pt</span>
+      </div>
+      <div class="mark-scale-item">
+        <div class="cover-logo-mark" style="width:30px;height:30px;">
+          <div class="mark-bl" style="width:20px;height:20px;border-width:3px;"></div>
+          <div class="mark-tr" style="width:14px;height:14px;border-width:3px;"></div>
+          <div class="mark-dot" style="bottom:8px;left:8px;width:5px;height:5px;"></div>
+        </div>
+        <span class="mark-scale-label">30pt</span>
+      </div>
+      <div class="mark-scale-item">
+        <div class="cover-logo-mark" style="width:20px;height:20px;">
+          <div class="mark-bl" style="width:13px;height:13px;border-width:2.5px;"></div>
+          <div class="mark-tr" style="width:10px;height:10px;border-width:2.5px;"></div>
+          <div class="mark-dot" style="bottom:5px;left:5px;width:4px;height:4px;"></div>
+        </div>
+        <span class="mark-scale-label">20pt</span>
+      </div>
+      <div class="mark-scale-item">
+        <div class="cover-logo-mark" style="width:16px;height:16px;">
+          <div class="mark-bl" style="width:10px;height:10px;border-width:2px;"></div>
+          <div class="mark-tr" style="width:8px;height:8px;border-width:2px;"></div>
+          <div class="mark-dot" style="bottom:4px;left:4px;width:3px;height:3px;"></div>
+        </div>
+        <span class="mark-scale-label">Favicon</span>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="sub-label">Mark Logic</div>
+    <ul class="logic-list">
+      <li>Two interlocking L-shapes that together complete a square. Neither is whole alone.</li>
+      <li>Bottom-left L = foundation (firm process). Top-right L = outcome (owner growth).</li>
+      <li>Mark reads bottom-left to top-right &mdash; numbers going up.</li>
+      <li>Gold square at center = the exchange point. Where reciprocity happens.</li>
+    </ul>
+
+    <div class="sub-label">Clear Space</div>
+    <div class="clear-space-note">Minimum clear space = the width of the gold exchange square on all four sides of the mark.</div>
+  </div>
+
+  <!-- ═══════════════════════════ 03 COLOR & TYPOGRAPHY ═══════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">03</span>
+      <span class="section-cat">Color &amp; Typography</span>
+    </div>
+    <h2 class="section-title">Color Palette</h2>
+    <div class="section-rule"></div>
+
+    <div class="palette-grid">
+      <div class="swatch" style="background:#1a1a1a; color:#f5f2ee;">
+        <div>
+          <div class="swatch-name">Ink</div>
+          <div class="swatch-hex">#1A1A1A</div>
+        </div>
+        <div class="swatch-use">Primary / Text</div>
+      </div>
+      <div class="swatch" style="background:#f5f2ee; color:#1a1a1a;">
+        <div>
+          <div class="swatch-name">Warm White</div>
+          <div class="swatch-hex">#F5F2EE</div>
+        </div>
+        <div class="swatch-use">Background</div>
+      </div>
+      <div class="swatch" style="background:#c8a96e; color:#1a1a1a;">
+        <div>
+          <div class="swatch-name">Warm Gold</div>
+          <div class="swatch-hex">#C8A96E</div>
+        </div>
+        <div class="swatch-use">Accent &mdash; sparingly</div>
+      </div>
+      <div class="swatch" style="background:#888888; color:#f5f2ee;">
+        <div>
+          <div class="swatch-name">Mid Grey</div>
+          <div class="swatch-hex">#888888</div>
+        </div>
+        <div class="swatch-use">Secondary text</div>
+      </div>
+      <div class="swatch" style="background:#0f0f0f; color:#f5f2ee;">
+        <div>
+          <div class="swatch-name">Deep Black</div>
+          <div class="swatch-hex">#0F0F0F</div>
+        </div>
+        <div class="swatch-use">Dark sections</div>
+      </div>
+      <div class="swatch" style="background:#e0d8cc; color:#1a1a1a;">
+        <div>
+          <div class="swatch-name">Rule</div>
+          <div class="swatch-hex">#E0D8CC</div>
+        </div>
+        <div class="swatch-use">Dividers</div>
+      </div>
+    </div>
+
+    <div class="color-note">Gold is used only for the exchange point in the mark and one restrained accent per page. Not for headlines or fills.</div>
+
+    <div class="section-divider"></div>
+
+    <h2 class="section-title" style="margin-top:0;">Typography</h2>
+    <div class="section-rule"></div>
+
+    <div class="type-display">
+      <div>
+        <div class="type-block-title">Display / Wordmark</div>
+        <div class="type-specimen-sans">DM Sans</div>
+        <div class="type-specimen-detail">
+          Weight 200. Letter-spacing +6–8px.<br>
+          Serious without coldness. Modern, not startup.
+        </div>
+      </div>
+      <div>
+        <div class="type-block-title">Body / Labels</div>
+        <div class="type-specimen-body">DM Sans 300 for body copy</div>
+        <div class="type-specimen-mono">DM Mono for labels + data</div>
+        <div class="type-specimen-detail">
+          Monospace signals precision.<br>
+          The 10th-of-month promise lives in data.
+        </div>
+      </div>
+    </div>
+
+    <div class="sub-label">Type Hierarchy</div>
+    <table class="type-table">
+      <thead>
+        <tr><th>Role</th><th>Font</th><th>Size</th><th>Use</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Headline</td><td>DM Sans 200</td><td>32–40px</td><td>Section titles, hero statements</td></tr>
+        <tr><td>Subhead</td><td>DM Sans 300</td><td>18–22px</td><td>Section labels, card titles</td></tr>
+        <tr><td>Body</td><td>DM Sans 300</td><td>14–16px</td><td>Body copy, descriptions</td></tr>
+        <tr><td>Label</td><td>DM Mono 400</td><td>10–12px</td><td>Data labels, field names, dates</td></tr>
+        <tr><td>Caption</td><td>DM Sans 300</td><td>11–12px</td><td>Supporting text, footnotes</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ═══════════════════════════ 04 TONE & VOICE ═══════════════════════════ -->
+  <div class="section">
+    <div class="section-header">
+      <span class="section-number">04</span>
+      <span class="section-cat">Voice &amp; Usage</span>
+    </div>
+    <h2 class="section-title">Tone &amp; Voice</h2>
+    <div class="section-rule"></div>
+
+    <div class="voice-grid">
+      <div>
+        <div class="sub-label" style="margin-top:0;">Brand Is</div>
+        <ul class="voice-trait-list">
+          <li>Serious</li>
+          <li>Structured</li>
+          <li>Calm</li>
+          <li>Confident</li>
+          <li>Premium</li>
+        </ul>
+      </div>
+      <div>
+        <div class="sub-label" style="margin-top:0;">Brand Is Not</div>
+        <ul class="voice-trait-list muted">
+          <li>Playful</li>
+          <li>Tech startup</li>
+          <li>Corporate CPA</li>
+          <li>Trendy accounting</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sub-label">Language Examples</div>
+    <table class="lang-table">
+      <tr><td><span class="lang-badge avoid">Avoid</span></td><td class="lang-text">Full-service accounting firm</td></tr>
+      <tr><td><span class="lang-badge avoid">Avoid</span></td><td class="lang-text">We're different from other CPAs</td></tr>
+      <tr><td><span class="lang-badge avoid">Avoid</span></td><td class="lang-text">Our team is passionate about...</td></tr>
+      <tr><td><span class="lang-badge use">Use</span></td><td class="lang-text">Books closed by the 10th. Every month.</td></tr>
+      <tr><td><span class="lang-badge use">Use</span></td><td class="lang-text">Monthly financial insight, structured for action.</td></tr>
+      <tr><td><span class="lang-badge use">Use</span></td><td class="lang-text">The 10th is not a goal. It is the standard.</td></tr>
+      <tr><td><span class="lang-badge use">Use</span></td><td class="lang-text">Your numbers. Clear. On time.</td></tr>
+    </table>
+
+    <div class="section-divider"></div>
+
+    <h2 class="section-title" style="margin-top:0;">Squarespace Palette Setup</h2>
+    <div class="section-rule"></div>
+
+    <div class="sq-grid">
+      <div class="sq-swatch" style="background:#f5f2ee; color:#1a1a1a;">
+        <div class="sq-slot">01</div>
+        <div class="sq-name">Warm White</div>
+        <div class="sq-hex">#F5F2EE</div>
+        <div class="sq-use">Default light background</div>
+      </div>
+      <div class="sq-swatch" style="background:#1a1a1a; color:#f5f2ee;">
+        <div class="sq-slot">02</div>
+        <div class="sq-name">Ink</div>
+        <div class="sq-hex">#1A1A1A</div>
+        <div class="sq-use">Primary text</div>
+      </div>
+      <div class="sq-swatch" style="background:#c8a96e; color:#1a1a1a;">
+        <div class="sq-slot">03</div>
+        <div class="sq-name">Warm Gold</div>
+        <div class="sq-hex">#C8A96E</div>
+        <div class="sq-use">Accent / CTA</div>
+      </div>
+      <div class="sq-swatch" style="background:#888888; color:#f5f2ee;">
+        <div class="sq-slot">04</div>
+        <div class="sq-name">Mid Grey</div>
+        <div class="sq-hex">#888888</div>
+        <div class="sq-use">Dark sections</div>
+      </div>
+      <div class="sq-swatch" style="background:#0f0f0f; color:#f5f2ee;">
+        <div class="sq-slot">05</div>
+        <div class="sq-name">Deep Black</div>
+        <div class="sq-hex">#0F0F0F</div>
+        <div class="sq-use">Darkest sections</div>
+      </div>
+    </div>
+
+    <div class="sq-note">Slot 01 must be the lightest color. Dark in slot 01 causes all sections to default dark.</div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-left">Reciprocity Accounting LLC &middot; Confidential &middot; 2026</div>
+  <div class="footer-right">Accounting built for dental practices. Books closed by the 10th. <span class="gold">Guaranteed.</span></div>
+</div>
+
+</body>
+</html>
