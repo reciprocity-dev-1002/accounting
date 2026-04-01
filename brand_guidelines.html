@@ -14,15 +14,14 @@
   body {
     font-family: 'DM Sans', sans-serif;
     background: #f5f3ee;
-    color: #1a1a1a;
-    min-height: 100vh;
+    color: #1a1a18;
+    padding: 32px;
   }
 
   /* ── BACK NAV ── */
   .back-nav {
     max-width: 960px;
-    margin: 0 auto;
-    padding: 24px 40px 0;
+    margin: 0 auto 16px;
   }
 
   .back-nav a {
@@ -35,1096 +34,524 @@
     transition: color 0.2s;
   }
 
-  .back-nav a:hover { color: #1a1a1a; }
+  .back-nav a:hover { color: #1a1a18; }
 
-  /* ── PAGE CONTAINER ── */
   .page {
     max-width: 960px;
     margin: 0 auto;
-    padding: 32px 40px 64px;
-  }
-
-  /* ── COVER ── */
-  .cover {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    min-height: 400px;
-    border-radius: 8px;
-    overflow: hidden;
-    margin-bottom: 64px;
-    border: 0.5px solid #d3d1c7;
-  }
-
-  .cover-dark {
-    background: #0f0f0f;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 48px;
-  }
-
-  .cover-logo {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-
-  .cover-logo-mark {
-    width: 48px;
-    height: 48px;
-    position: relative;
-  }
-
-  /* SVG mark built from CSS */
-  .mark-bl {
-    position: absolute;
-    bottom: 0; left: 0;
-    width: 30px; height: 30px;
-    border-left: 3.5px solid #f5f2ee;
-    border-bottom: 3.5px solid #f5f2ee;
-  }
-
-  .mark-tr {
-    position: absolute;
-    top: 0; right: 0;
-    width: 22px; height: 22px;
-    border-right: 3.5px solid #f5f2ee;
-    border-top: 3.5px solid #f5f2ee;
-  }
-
-  .mark-dot {
-    position: absolute;
-    bottom: 12px; left: 12px;
-    width: 7px; height: 7px;
-    background: #c8a96e;
-  }
-
-  .cover-logo-text {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
-
-  .cover-logo-text .name {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 200;
-    font-size: 22px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #f5f2ee;
-  }
-
-  .cover-logo-text .sub {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #f5f2ee;
-    opacity: 0.7;
-  }
-
-  .cover-light {
     background: #faf9f6;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 48px;
+    border: 0.5px solid #d3d1c7;
+    border-radius: 8px;
+    padding: 40px;
   }
 
-  .cover-meta {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
+  .page-title {
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-align: center;
     text-transform: uppercase;
-    color: #888780;
-    margin-bottom: 16px;
-  }
-
-  .cover-title {
-    font-weight: 200;
-    font-size: 36px;
-    letter-spacing: 0.02em;
-    color: #1a1a1a;
-    line-height: 1.15;
-  }
-
-  .cover-rule {
-    width: 60px;
-    height: 1px;
-    background: #c8a96e;
-    margin-top: 20px;
-  }
-
-  /* ── SECTION ── */
-  .section {
-    margin-bottom: 64px;
-  }
-
-  .section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: 8px;
-  }
-
-  .section-number {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: #c8a96e;
-  }
-
-  .section-cat {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #888780;
-  }
-
-  .section-title {
-    font-weight: 200;
-    font-size: 32px;
-    letter-spacing: 0.02em;
-    color: #1a1a1a;
+    color: #1a1a18;
     margin-bottom: 6px;
   }
 
-  .section-rule {
-    width: 48px;
-    height: 1px;
-    background: #c8a96e;
-    margin-bottom: 32px;
+  .page-subtitle {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    text-align: center;
+    color: #888780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
   }
 
-  .section-divider {
-    height: 0.5px;
-    background: #d3d1c7;
-    margin: 40px 0;
-  }
+  .divider { height: 0.5px; background: #c8a96e; margin-bottom: 32px; }
+  .divider-section { height: 0.5px; background: #d3d1c7; margin: 40px 0; }
 
-  /* ── SUBSECTION ── */
-  .sub-label {
+  /* ── SECTION HEADINGS ── */
+  .section-number {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
-    font-weight: 400;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #888780;
-    margin-bottom: 12px;
-    margin-top: 32px;
+    color: #c8a96e;
+    margin-bottom: 6px;
   }
 
-  .sub-label:first-child { margin-top: 0; }
-
-  /* ── PURPOSE BLOCK ── */
-  .purpose-block {
-    border-left: 3px solid #c8a96e;
-    padding-left: 20px;
-    margin-bottom: 32px;
-  }
-
-  .purpose-main {
-    font-weight: 400;
-    font-size: 18px;
-    color: #1a1a1a;
-    line-height: 1.5;
-    margin-bottom: 4px;
-  }
-
-  .purpose-sub {
+  .section-heading {
+    font-size: 24px;
     font-weight: 300;
-    font-size: 14px;
-    color: #888780;
-    line-height: 1.5;
+    color: #1a1a18;
+    letter-spacing: 0.02em;
+    margin-bottom: 28px;
   }
 
-  /* ── BELIEF SHIFT ── */
-  .belief-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
-
-  .belief-card {
-    border: 1px solid #d3d1c7;
-    border-radius: 6px;
-    padding: 20px;
-    background: #faf9f6;
-  }
-
-  .belief-card.gold {
-    border-color: #c8a96e;
-  }
-
-  .belief-card-label {
+  .sub-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #888780;
     margin-bottom: 10px;
+    margin-top: 24px;
   }
 
-  .belief-card.gold .belief-card-label {
-    color: #854f0b;
+  /* ── ROWS & CELLS ── */
+  .row { display: grid; gap: 10px; margin-bottom: 10px; }
+  .row-1 { grid-template-columns: 1fr; }
+  .row-2 { grid-template-columns: 1fr 1fr; }
+  .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  .cell {
+    background: #f1efe8;
+    border: 0.5px solid #c8c6bc;
+    border-radius: 6px;
+    padding: 14px 16px;
   }
 
-  .belief-card-title {
-    font-weight: 400;
-    font-size: 15px;
-    color: #1a1a1a;
-    line-height: 1.4;
-    margin-bottom: 12px;
-  }
-
-  .belief-card-list {
-    font-weight: 300;
-    font-size: 13px;
-    color: #888780;
-    line-height: 1.6;
-  }
-
-  /* ── PILLARS ── */
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 12px;
-  }
-
-  .pillar-card {
+  .cell-gold {
+    background: #fdf6e8;
     border: 1px solid #c8a96e;
     border-radius: 6px;
-    padding: 20px;
-    background: #faf9f6;
+    padding: 16px 18px;
   }
 
-  .pillar-num {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: #c8a96e;
-    margin-bottom: 8px;
-  }
-
-  .pillar-name {
-    font-weight: 400;
-    font-size: 14px;
-    color: #1a1a1a;
-    margin-bottom: 6px;
-  }
-
-  .pillar-desc {
-    font-weight: 300;
-    font-size: 12px;
-    color: #888780;
-    line-height: 1.5;
-  }
-
-  /* ── GUARANTEE ── */
-  .guarantee {
-    font-weight: 300;
-    font-size: 16px;
-    color: #1a1a1a;
-    line-height: 1.6;
-    margin-top: 32px;
-  }
-
-  /* ── LOGO SECTION ── */
-  .logo-display {
-    background: #1a1a1a;
+  .cell-dark {
+    background: #1a1a18;
     border-radius: 6px;
-    padding: 32px 40px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 16px;
+    padding: 16px 18px;
   }
 
-  .logo-display .cover-logo-mark { width: 40px; height: 40px; }
-  .logo-display .mark-bl { width: 26px; height: 26px; border-width: 3px; }
-  .logo-display .mark-tr { width: 18px; height: 18px; border-width: 3px; }
-  .logo-display .mark-dot { bottom: 10px; left: 10px; width: 6px; height: 6px; }
-
-  .logo-variant-label {
+  .cell-label {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: #888780;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
   }
 
-  .logo-display-light {
-    background: #faf9f6;
-    border: 0.5px solid #d3d1c7;
-    border-radius: 6px;
-    padding: 32px 40px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 16px;
-  }
+  .cell-gold .cell-label { color: #854f0b; }
+  .cell-dark .cell-label { color: #c8a96e; }
 
-  .logo-display-light .name { color: #1a1a1a; }
-  .logo-display-light .sub { color: #1a1a1a; opacity: 0.5; }
-  .logo-display-light .mark-bl { border-color: #1a1a1a; }
-  .logo-display-light .mark-tr { border-color: #1a1a1a; }
-
-  /* ── MARK AT SCALE ── */
-  .mark-scale-row {
-    display: flex;
-    align-items: flex-end;
-    gap: 32px;
-    margin: 24px 0;
-    flex-wrap: wrap;
-  }
-
-  .mark-scale-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .mark-scale-item .cover-logo-mark {
-    /* sizes set inline */
-  }
-
-  .mark-scale-label {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: #888780;
-  }
-
-  /* ── MARK LOGIC ── */
-  .logic-list {
-    list-style: none;
-    padding: 0;
-  }
-
-  .logic-list li {
-    font-weight: 300;
-    font-size: 14px;
-    color: #1a1a1a;
-    line-height: 1.6;
-    padding-left: 16px;
-    position: relative;
-    margin-bottom: 6px;
-  }
-
-  .logic-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 8px;
-    width: 4px;
-    height: 4px;
-    background: #c8a96e;
-  }
-
-  .clear-space-note {
-    font-weight: 300;
+  .cell-value {
     font-size: 13px;
-    color: #888780;
-    line-height: 1.5;
-    margin-top: 16px;
+    font-weight: 300;
+    color: #2c2c2a;
+    line-height: 1.6;
   }
 
-  /* ── COLOR PALETTE ── */
-  .palette-grid {
+  .cell-gold .cell-value { color: #412402; }
+  .cell-dark .cell-value { color: #f1efe8; }
+
+  /* ── PURPOSE ── */
+  .purpose-block {
+    border-left: 3px solid #c8a96e;
+    padding-left: 18px;
+    margin-bottom: 10px;
+  }
+
+  .purpose-main { font-size: 16px; font-weight: 400; color: #1a1a18; line-height: 1.5; margin-bottom: 4px; }
+  .purpose-sub { font-size: 13px; font-weight: 300; color: #888780; line-height: 1.5; }
+
+  /* ── SWATCHES ── */
+  .swatch-row {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    gap: 0;
-    border-radius: 6px;
-    overflow: hidden;
-    margin-bottom: 16px;
+    gap: 10px;
+    margin-bottom: 10px;
   }
 
   .swatch {
-    padding: 20px 14px;
-    min-height: 120px;
+    border-radius: 6px;
+    padding: 14px 12px;
+    min-height: 100px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
-  .swatch-name {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 2px;
-  }
+  .swatch-name { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 2px; }
+  .swatch-hex { font-family: 'DM Mono', monospace; font-size: 10px; }
+  .swatch-use { font-size: 11px; font-weight: 300; margin-top: auto; padding-top: 8px; }
 
-  .swatch-hex {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    opacity: 0.7;
-  }
-
-  .swatch-use {
-    font-size: 11px;
-    font-weight: 300;
-    opacity: 0.8;
-    margin-top: auto;
-  }
-
-  .color-note {
-    font-weight: 300;
-    font-size: 13px;
-    color: #888780;
-    line-height: 1.5;
-    font-style: italic;
-  }
-
-  /* ── TYPOGRAPHY ── */
-  .type-display {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 32px;
-  }
-
-  .type-block-title {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: #888780;
-    margin-bottom: 12px;
-  }
-
-  .type-specimen-sans {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 200;
-    font-size: 48px;
-    color: #1a1a1a;
-    letter-spacing: 0.06em;
-    line-height: 1.1;
-    margin-bottom: 8px;
-  }
-
-  .type-specimen-detail {
-    font-weight: 300;
-    font-size: 13px;
-    color: #888780;
-    line-height: 1.5;
-  }
-
-  .type-specimen-mono {
-    font-family: 'DM Mono', monospace;
-    font-weight: 400;
-    font-size: 20px;
-    color: #1a1a1a;
-    margin-bottom: 8px;
-  }
-
-  .type-specimen-body {
-    font-family: 'DM Sans', sans-serif;
-    font-weight: 300;
-    font-size: 20px;
-    color: #1a1a1a;
-    margin-bottom: 8px;
-  }
-
-  /* ── TYPE HIERARCHY TABLE ── */
-  .type-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
+  /* ── TYPE TABLE ── */
+  .type-table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
 
   .type-table th {
     font-family: 'DM Mono', monospace;
     font-size: 10px;
-    font-weight: 400;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: #888780;
     text-align: left;
-    padding: 8px 0;
+    padding: 8px 12px;
     border-bottom: 0.5px solid #d3d1c7;
   }
 
   .type-table td {
     font-size: 13px;
     font-weight: 300;
-    color: #1a1a1a;
-    padding: 10px 0;
-    border-bottom: 0.5px solid #e8e6e0;
+    color: #2c2c2a;
+    padding: 10px 12px;
+    border-bottom: 0.5px solid #e8e6df;
   }
 
-  .type-table td:first-child {
-    font-weight: 400;
+  /* ── LOGO DISPLAY ── */
+  .logo-display {
+    background: #1a1a18;
+    border-radius: 6px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    min-height: 100px;
   }
 
-  /* ── TONE & VOICE ── */
-  .voice-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-bottom: 32px;
+  .logo-display-light {
+    background: #faf9f6;
+    border: 0.5px solid #d3d1c7;
+    border-radius: 6px;
+    padding: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+    min-height: 100px;
   }
 
-  .voice-trait-list {
-    list-style: none;
-    padding: 0;
-  }
+  .logo-text { font-family: 'DM Sans', sans-serif; font-weight: 200; font-size: 28px; letter-spacing: 0.14em; text-transform: uppercase; color: #f5f2ee; }
+  .logo-text-sub { font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase; color: #f5f2ee; margin-top: -2px; }
+  .logo-text-dark { color: #1a1a18; }
+  .logo-text-sub-dark { color: #1a1a18; }
 
-  .voice-trait-list li {
-    font-weight: 300;
-    font-size: 15px;
-    color: #1a1a1a;
-    line-height: 1.6;
-    padding-left: 16px;
-    position: relative;
-    margin-bottom: 4px;
-  }
+  /* ── MARK SIZES ── */
+  .mark-row { display: flex; align-items: flex-end; gap: 28px; margin-bottom: 10px; flex-wrap: wrap; }
+  .mark-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .mark-box { border: 0.5px solid #d3d1c7; border-radius: 4px; display: flex; align-items: center; justify-content: center; padding: 8px; }
+  .mark-size { font-family: 'DM Mono', monospace; font-size: 10px; color: #888780; }
 
-  .voice-trait-list li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 9px;
-    width: 4px;
-    height: 4px;
-    background: #c8a96e;
-  }
+  /* ── MARK LOGIC ── */
+  .logic-list { list-style: none; padding: 0; }
+  .logic-list li { font-size: 13px; font-weight: 300; color: #2c2c2a; line-height: 1.6; padding-left: 16px; position: relative; margin-bottom: 4px; }
+  .logic-list li::before { content: ''; position: absolute; left: 0; top: 8px; width: 4px; height: 4px; background: #c8a96e; }
 
-  .voice-trait-list.muted li {
-    color: #888780;
-  }
+  /* ── VOICE ── */
+  .voice-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 10px; }
+  .voice-list { list-style: none; padding: 0; }
+  .voice-list li { font-size: 14px; font-weight: 300; color: #2c2c2a; line-height: 1.6; padding-left: 16px; position: relative; margin-bottom: 4px; }
+  .voice-list.is li::before { content: ''; position: absolute; left: 0; top: 8px; width: 4px; height: 4px; background: #c8a96e; }
+  .voice-list.not li::before { content: ''; position: absolute; left: 0; top: 8px; width: 4px; height: 4px; background: #d3d1c7; }
+  .voice-list.not li { color: #888780; }
 
-  .voice-trait-list.muted li::before {
-    background: #d3d1c7;
-  }
-
-  .lang-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  .lang-table td {
-    padding: 10px 16px;
-    font-size: 13px;
-    font-weight: 300;
-    vertical-align: middle;
-  }
-
-  .lang-table tr { border-bottom: 0.5px solid #e8e6e0; }
-
-  .lang-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    font-weight: 400;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding: 3px 8px;
-    border-radius: 3px;
-    display: inline-block;
-    min-width: 48px;
-    text-align: center;
-  }
-
-  .lang-badge.avoid {
-    background: #f1efe8;
-    color: #888780;
-  }
-
-  .lang-badge.use {
-    background: #1a1a1a;
-    color: #f5f2ee;
-  }
-
-  .lang-text {
-    color: #1a1a1a;
-  }
-
-  .lang-table tr:has(.lang-badge.use) .lang-text {
-    font-weight: 400;
-  }
+  /* ── LANGUAGE EXAMPLES ── */
+  .lang-row { display: flex; align-items: stretch; margin-bottom: 6px; }
+  .lang-tag { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 12px; min-width: 64px; display: flex; align-items: center; border-radius: 4px 0 0 4px; }
+  .lang-tag-avoid { background: #f1efe8; color: #888780; }
+  .lang-tag-use { background: #1a1a18; color: #c8a96e; }
+  .lang-text { font-size: 13px; font-weight: 300; padding: 10px 14px; display: flex; align-items: center; border-radius: 0 4px 4px 0; flex: 1; }
+  .lang-text-avoid { background: #f9f7f2; color: #888780; border: 0.5px solid #e8e6df; border-left: none; }
+  .lang-text-use { background: #1a1a18; color: #f5f2ee; }
 
   /* ── SQUARESPACE PALETTE ── */
-  .sq-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 0;
-    border-radius: 6px;
-    overflow: hidden;
-    margin-bottom: 12px;
-  }
-
-  .sq-swatch {
-    padding: 16px 12px;
-    min-height: 90px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .sq-slot {
-    font-family: 'DM Mono', monospace;
-    font-size: 9px;
-    letter-spacing: 0.08em;
-    opacity: 0.6;
-    margin-bottom: 4px;
-  }
-
-  .sq-name {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 2px;
-  }
-
-  .sq-hex {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    opacity: 0.7;
-    margin-bottom: auto;
-  }
-
-  .sq-use {
-    font-size: 10px;
-    font-weight: 300;
-    opacity: 0.8;
-    margin-top: 12px;
-  }
-
-  .sq-note {
-    font-weight: 300;
-    font-size: 12px;
-    color: #888780;
-    line-height: 1.5;
-  }
+  .sq-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 10px; }
+  .sq-slot { border-radius: 6px; padding: 12px; min-height: 80px; display: flex; flex-direction: column; justify-content: space-between; }
+  .sq-slot-num { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; }
+  .sq-slot-name { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 2px; }
+  .sq-slot-hex { font-family: 'DM Mono', monospace; font-size: 10px; }
+  .sq-slot-use { font-size: 11px; font-weight: 300; margin-top: auto; padding-top: 6px; }
 
   /* ── FOOTER ── */
-  .footer {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 20px 40px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 0.5px solid #d3d1c7;
-  }
-
-  .footer-left {
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    color: #888780;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .footer-right {
-    font-size: 10px;
-    color: #1a1a1a;
-    letter-spacing: 0.04em;
-    font-style: italic;
-  }
-
+  .footer { margin-top: 28px; padding-top: 16px; border-top: 0.5px solid #d3d1c7; display: flex; justify-content: space-between; align-items: center; }
+  .footer-left { font-family: 'DM Mono', monospace; font-size: 10px; color: #888780; letter-spacing: 0.06em; text-transform: uppercase; }
+  .footer-right { font-size: 10px; color: #1a1a18; letter-spacing: 0.04em; font-style: italic; }
   .footer-right .gold { color: #c8a96e; }
 
+  .note { font-family: 'DM Mono', monospace; font-size: 11px; color: #888780; line-height: 1.5; margin-top: 10px; }
+
   @media (max-width: 720px) {
+    body { padding: 16px; }
     .page { padding: 24px; }
-    .cover { grid-template-columns: 1fr; }
-    .belief-grid, .pillars-grid, .type-display, .voice-grid { grid-template-columns: 1fr; }
-    .palette-grid { grid-template-columns: repeat(3, 1fr); }
-    .sq-grid { grid-template-columns: repeat(3, 1fr); }
-    .mark-scale-row { gap: 20px; }
-    .cover-title { font-size: 28px; }
-    .section-title { font-size: 26px; }
+    .swatch-row { grid-template-columns: repeat(3, 1fr); }
+    .sq-row { grid-template-columns: repeat(3, 1fr); }
+    .voice-grid { grid-template-columns: 1fr; }
+    .row-2, .row-3 { grid-template-columns: 1fr; }
   }
 
   @media print {
-    body { background: white; }
+    body { background: white; padding: 0; }
+    .page { border: none; border-radius: 0; padding: 32px 40px; max-width: 100%; background: white; }
     .back-nav { display: none; }
-    .cover { break-inside: avoid; }
-    .section { break-inside: avoid; }
   }
 </style>
 </head>
 <body>
 
-<div class="back-nav">
-  <a href="index.html">&larr; Back to Hub</a>
-</div>
+<div class="back-nav"><a href="index.html">&larr; Back to Hub</a></div>
 
 <div class="page">
 
-  <!-- ═══════════════════════════ COVER ═══════════════════════════ -->
-  <div class="cover">
-    <div class="cover-dark">
-      <div class="cover-logo">
-        <div class="cover-logo-mark">
-          <div class="mark-bl"></div>
-          <div class="mark-tr"></div>
-          <div class="mark-dot"></div>
-        </div>
-        <div class="cover-logo-text">
-          <span class="name">Reciprocity</span>
-          <span class="sub">Accounting</span>
-        </div>
-      </div>
+  <div class="page-title">Brand Guidelines</div>
+  <div class="page-subtitle">Reciprocity Accounting &middot; Identity Guide &middot; V2 &middot; February 2026</div>
+  <div class="divider"></div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 01 — BRAND FOUNDATION                   -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-number">01</div>
+  <div class="section-heading">Brand Foundation</div>
+
+  <div class="sub-label">Purpose</div>
+  <div class="purpose-block">
+    <div class="purpose-main">To make timely financial insight usable for owners.</div>
+    <div class="purpose-sub">Financial information is only valuable if it is timely.</div>
+  </div>
+
+  <div class="sub-label">Core Belief Shift</div>
+  <div class="row row-2">
+    <div class="cell">
+      <div class="cell-label">Current Belief</div>
+      <div class="cell-value"><strong style="font-weight:400;">"Accounting is compliance and my CPA handles it."</strong><br><br>Review financials quarterly.<br>React to cash flow.<br>Rely on year-end tax prep.</div>
     </div>
-    <div class="cover-light">
-      <div class="cover-meta">Brand Identity Guide &mdash; V2 &mdash; February 2026</div>
-      <div class="cover-title">Reciprocity<br>Accounting</div>
-      <div class="cover-rule"></div>
+    <div class="cell-gold">
+      <div class="cell-label">Desired Belief</div>
+      <div class="cell-value"><strong style="font-weight:400;">"Accounting is a monthly operating system."</strong><br><br>Review dashboard monthly.<br>Adjust operations proactively.<br>Use numbers to guide decisions.</div>
     </div>
   </div>
 
-  <!-- ═══════════════════════════ 01 BRAND FOUNDATION ═══════════════════════════ -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-number">01</span>
-      <span class="section-cat">Brand Foundation</span>
+  <div class="sub-label">Value Pillars</div>
+  <div class="row row-3">
+    <div class="cell-gold">
+      <div class="cell-label">01 — Timely Financials</div>
+      <div class="cell-value">Closed and delivered by the 10th of every month. Guaranteed.</div>
     </div>
-    <h2 class="section-title">Brand Foundation</h2>
-    <div class="section-rule"></div>
-
-    <div class="sub-label">Purpose</div>
-    <div class="purpose-block">
-      <div class="purpose-main">To make timely financial insight usable for owners.</div>
-      <div class="purpose-sub">Financial information is only valuable if it is timely.</div>
+    <div class="cell-gold">
+      <div class="cell-label">02 — Connected Systems</div>
+      <div class="cell-value">Cloud-based and fully integrated. No spreadsheets, no disconnected tools, no PDF archaeology.</div>
     </div>
-
-    <div class="section-divider"></div>
-
-    <div class="sub-label">Core Belief Shift</div>
-    <div class="belief-grid">
-      <div class="belief-card">
-        <div class="belief-card-label">Current Belief</div>
-        <div class="belief-card-title">"Accounting is compliance and my CPA handles it."</div>
-        <div class="belief-card-list">
-          Review financials quarterly.<br>
-          React to cash flow.<br>
-          Rely on year-end tax prep.
-        </div>
-      </div>
-      <div class="belief-card gold">
-        <div class="belief-card-label">Desired Belief</div>
-        <div class="belief-card-title">"Accounting is a monthly operating system."</div>
-        <div class="belief-card-list">
-          Review dashboard monthly.<br>
-          Adjust operations proactively.<br>
-          Use numbers to guide decisions.
-        </div>
-      </div>
+    <div class="cell-gold">
+      <div class="cell-label">03 — Clear Performance Insights</div>
+      <div class="cell-value">So you run the business as confidently as you practice dentistry.</div>
     </div>
-
-    <div class="section-divider"></div>
-
-    <div class="sub-label">Value Pillars</div>
-    <div class="pillars-grid">
-      <div class="pillar-card">
-        <div class="pillar-num">01</div>
-        <div class="pillar-name">Timely Financials</div>
-        <div class="pillar-desc">Closed and delivered by the 10th of each month.</div>
-      </div>
-      <div class="pillar-card">
-        <div class="pillar-num">02</div>
-        <div class="pillar-name">Modern, Connected Systems</div>
-        <div class="pillar-desc">Cloud-based, integrated with a central dashboard.</div>
-      </div>
-      <div class="pillar-card">
-        <div class="pillar-num">03</div>
-        <div class="pillar-name">Clear Performance Insight</div>
-        <div class="pillar-desc">Run the business as confidently as you practice.</div>
-      </div>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <div class="sub-label">The Guarantee</div>
-    <div class="guarantee">Books closed by the 10th. Every month. Guaranteed.</div>
   </div>
 
-  <!-- ═══════════════════════════ 02 LOGO SYSTEM ═══════════════════════════ -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-number">02</span>
-      <span class="section-cat">Logo System</span>
-    </div>
-    <h2 class="section-title">Logo System</h2>
-    <div class="section-rule"></div>
-
-    <div class="logo-variant-label">Primary Horizontal &mdash; Dark</div>
-    <div class="logo-display">
-      <div class="cover-logo-mark">
-        <div class="mark-bl"></div>
-        <div class="mark-tr"></div>
-        <div class="mark-dot"></div>
-      </div>
-      <div class="cover-logo-text">
-        <span class="name" style="font-size:18px;">Reciprocity</span>
-        <span class="sub" style="font-size:9px;">Accounting</span>
-      </div>
-    </div>
-
-    <div class="logo-variant-label">Primary Horizontal &mdash; Light</div>
-    <div class="logo-display-light">
-      <div class="cover-logo-mark">
-        <div class="mark-bl"></div>
-        <div class="mark-tr"></div>
-        <div class="mark-dot"></div>
-      </div>
-      <div class="cover-logo-text">
-        <span class="name" style="font-size:18px; color:#1a1a1a;">Reciprocity</span>
-        <span class="sub" style="font-size:9px; color:#1a1a1a;">Accounting</span>
-      </div>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <div class="sub-label">Mark at Scale &mdash; Standalone Use</div>
-    <div class="mark-scale-row">
-      <div class="mark-scale-item">
-        <div class="cover-logo-mark" style="width:56px;height:56px;">
-          <div class="mark-bl" style="width:36px;height:36px;border-width:4px;"></div>
-          <div class="mark-tr" style="width:26px;height:26px;border-width:4px;"></div>
-          <div class="mark-dot" style="bottom:14px;left:14px;width:8px;height:8px;"></div>
-        </div>
-        <span class="mark-scale-label">56pt</span>
-      </div>
-      <div class="mark-scale-item">
-        <div class="cover-logo-mark" style="width:42px;height:42px;">
-          <div class="mark-bl" style="width:27px;height:27px;border-width:3.5px;"></div>
-          <div class="mark-tr" style="width:20px;height:20px;border-width:3.5px;"></div>
-          <div class="mark-dot" style="bottom:11px;left:11px;width:6px;height:6px;"></div>
-        </div>
-        <span class="mark-scale-label">42pt</span>
-      </div>
-      <div class="mark-scale-item">
-        <div class="cover-logo-mark" style="width:30px;height:30px;">
-          <div class="mark-bl" style="width:20px;height:20px;border-width:3px;"></div>
-          <div class="mark-tr" style="width:14px;height:14px;border-width:3px;"></div>
-          <div class="mark-dot" style="bottom:8px;left:8px;width:5px;height:5px;"></div>
-        </div>
-        <span class="mark-scale-label">30pt</span>
-      </div>
-      <div class="mark-scale-item">
-        <div class="cover-logo-mark" style="width:20px;height:20px;">
-          <div class="mark-bl" style="width:13px;height:13px;border-width:2.5px;"></div>
-          <div class="mark-tr" style="width:10px;height:10px;border-width:2.5px;"></div>
-          <div class="mark-dot" style="bottom:5px;left:5px;width:4px;height:4px;"></div>
-        </div>
-        <span class="mark-scale-label">20pt</span>
-      </div>
-      <div class="mark-scale-item">
-        <div class="cover-logo-mark" style="width:16px;height:16px;">
-          <div class="mark-bl" style="width:10px;height:10px;border-width:2px;"></div>
-          <div class="mark-tr" style="width:8px;height:8px;border-width:2px;"></div>
-          <div class="mark-dot" style="bottom:4px;left:4px;width:3px;height:3px;"></div>
-        </div>
-        <span class="mark-scale-label">Favicon</span>
-      </div>
-    </div>
-
-    <div class="section-divider"></div>
-
-    <div class="sub-label">Mark Logic</div>
-    <ul class="logic-list">
-      <li>Two interlocking L-shapes that together complete a square. Neither is whole alone.</li>
-      <li>Bottom-left L = foundation (firm process). Top-right L = outcome (owner growth).</li>
-      <li>Mark reads bottom-left to top-right &mdash; numbers going up.</li>
-      <li>Gold square at center = the exchange point. Where reciprocity happens.</li>
-    </ul>
-
-    <div class="sub-label">Clear Space</div>
-    <div class="clear-space-note">Minimum clear space = the width of the gold exchange square on all four sides of the mark.</div>
+  <div class="sub-label">The Guarantee</div>
+  <div class="cell-dark" style="margin-bottom:10px;">
+    <div class="cell-value" style="font-size:15px;">Books closed by the 10th. Every month. <span style="color:#c8a96e;">Guaranteed.</span></div>
   </div>
 
-  <!-- ═══════════════════════════ 03 COLOR & TYPOGRAPHY ═══════════════════════════ -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-number">03</span>
-      <span class="section-cat">Color &amp; Typography</span>
+  <div class="divider-section"></div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 02 — LOGO SYSTEM                        -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-number">02</div>
+  <div class="section-heading">Logo System</div>
+
+  <div class="sub-label">Primary Horizontal — Dark</div>
+  <div class="logo-display">
+    <div style="text-align:left;">
+      <div class="logo-text">Reciprocity</div>
+      <div class="logo-text-sub">Accounting</div>
     </div>
-    <h2 class="section-title">Color Palette</h2>
-    <div class="section-rule"></div>
-
-    <div class="palette-grid">
-      <div class="swatch" style="background:#1a1a1a; color:#f5f2ee;">
-        <div>
-          <div class="swatch-name">Ink</div>
-          <div class="swatch-hex">#1A1A1A</div>
-        </div>
-        <div class="swatch-use">Primary / Text</div>
-      </div>
-      <div class="swatch" style="background:#f5f2ee; color:#1a1a1a;">
-        <div>
-          <div class="swatch-name">Warm White</div>
-          <div class="swatch-hex">#F5F2EE</div>
-        </div>
-        <div class="swatch-use">Background</div>
-      </div>
-      <div class="swatch" style="background:#c8a96e; color:#1a1a1a;">
-        <div>
-          <div class="swatch-name">Warm Gold</div>
-          <div class="swatch-hex">#C8A96E</div>
-        </div>
-        <div class="swatch-use">Accent &mdash; sparingly</div>
-      </div>
-      <div class="swatch" style="background:#888888; color:#f5f2ee;">
-        <div>
-          <div class="swatch-name">Mid Grey</div>
-          <div class="swatch-hex">#888888</div>
-        </div>
-        <div class="swatch-use">Secondary text</div>
-      </div>
-      <div class="swatch" style="background:#0f0f0f; color:#f5f2ee;">
-        <div>
-          <div class="swatch-name">Deep Black</div>
-          <div class="swatch-hex">#0F0F0F</div>
-        </div>
-        <div class="swatch-use">Dark sections</div>
-      </div>
-      <div class="swatch" style="background:#e0d8cc; color:#1a1a1a;">
-        <div>
-          <div class="swatch-name">Rule</div>
-          <div class="swatch-hex">#E0D8CC</div>
-        </div>
-        <div class="swatch-use">Dividers</div>
-      </div>
-    </div>
-
-    <div class="color-note">Gold is used only for the exchange point in the mark and one restrained accent per page. Not for headlines or fills.</div>
-
-    <div class="section-divider"></div>
-
-    <h2 class="section-title" style="margin-top:0;">Typography</h2>
-    <div class="section-rule"></div>
-
-    <div class="type-display">
-      <div>
-        <div class="type-block-title">Display / Wordmark</div>
-        <div class="type-specimen-sans">DM Sans</div>
-        <div class="type-specimen-detail">
-          Weight 200. Letter-spacing +6–8px.<br>
-          Serious without coldness. Modern, not startup.
-        </div>
-      </div>
-      <div>
-        <div class="type-block-title">Body / Labels</div>
-        <div class="type-specimen-body">DM Sans 300 for body copy</div>
-        <div class="type-specimen-mono">DM Mono for labels + data</div>
-        <div class="type-specimen-detail">
-          Monospace signals precision.<br>
-          The 10th-of-month promise lives in data.
-        </div>
-      </div>
-    </div>
-
-    <div class="sub-label">Type Hierarchy</div>
-    <table class="type-table">
-      <thead>
-        <tr><th>Role</th><th>Font</th><th>Size</th><th>Use</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Headline</td><td>DM Sans 200</td><td>32–40px</td><td>Section titles, hero statements</td></tr>
-        <tr><td>Subhead</td><td>DM Sans 300</td><td>18–22px</td><td>Section labels, card titles</td></tr>
-        <tr><td>Body</td><td>DM Sans 300</td><td>14–16px</td><td>Body copy, descriptions</td></tr>
-        <tr><td>Label</td><td>DM Mono 400</td><td>10–12px</td><td>Data labels, field names, dates</td></tr>
-        <tr><td>Caption</td><td>DM Sans 300</td><td>11–12px</td><td>Supporting text, footnotes</td></tr>
-      </tbody>
-    </table>
   </div>
 
-  <!-- ═══════════════════════════ 04 TONE & VOICE ═══════════════════════════ -->
-  <div class="section">
-    <div class="section-header">
-      <span class="section-number">04</span>
-      <span class="section-cat">Voice &amp; Usage</span>
+  <div class="sub-label">Primary Horizontal — Light</div>
+  <div class="logo-display-light">
+    <div style="text-align:left;">
+      <div class="logo-text logo-text-dark">Reciprocity</div>
+      <div class="logo-text-sub logo-text-sub-dark">Accounting</div>
     </div>
-    <h2 class="section-title">Tone &amp; Voice</h2>
-    <div class="section-rule"></div>
+  </div>
 
-    <div class="voice-grid">
-      <div>
-        <div class="sub-label" style="margin-top:0;">Brand Is</div>
-        <ul class="voice-trait-list">
-          <li>Serious</li>
-          <li>Structured</li>
-          <li>Calm</li>
-          <li>Confident</li>
-          <li>Premium</li>
-        </ul>
+  <div class="sub-label">Mark at Scale — Standalone Use</div>
+  <div class="mark-row">
+    <div class="mark-item">
+      <div class="mark-box" style="width:56px; height:56px;">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none"><rect x="0" y="16" width="20" height="3" fill="#1a1a18"/><rect x="0" y="16" width="3" height="20" fill="#1a1a18"/><rect x="16" y="0" width="20" height="3" fill="#1a1a18"/><rect x="33" y="0" width="3" height="20" fill="#1a1a18"/><rect x="15.5" y="15.5" width="5" height="5" fill="#c8a96e"/></svg>
       </div>
-      <div>
-        <div class="sub-label" style="margin-top:0;">Brand Is Not</div>
-        <ul class="voice-trait-list muted">
-          <li>Playful</li>
-          <li>Tech startup</li>
-          <li>Corporate CPA</li>
-          <li>Trendy accounting</li>
-        </ul>
-      </div>
+      <div class="mark-size">56pt</div>
     </div>
-
-    <div class="sub-label">Language Examples</div>
-    <table class="lang-table">
-      <tr><td><span class="lang-badge avoid">Avoid</span></td><td class="lang-text">Full-service accounting firm</td></tr>
-      <tr><td><span class="lang-badge avoid">Avoid</span></td><td class="lang-text">We're different from other CPAs</td></tr>
-      <tr><td><span class="lang-badge avoid">Avoid</span></td><td class="lang-text">Our team is passionate about...</td></tr>
-      <tr><td><span class="lang-badge use">Use</span></td><td class="lang-text">Books closed by the 10th. Every month.</td></tr>
-      <tr><td><span class="lang-badge use">Use</span></td><td class="lang-text">Monthly financial insight, structured for action.</td></tr>
-      <tr><td><span class="lang-badge use">Use</span></td><td class="lang-text">The 10th is not a goal. It is the standard.</td></tr>
-      <tr><td><span class="lang-badge use">Use</span></td><td class="lang-text">Your numbers. Clear. On time.</td></tr>
-    </table>
-
-    <div class="section-divider"></div>
-
-    <h2 class="section-title" style="margin-top:0;">Squarespace Palette Setup</h2>
-    <div class="section-rule"></div>
-
-    <div class="sq-grid">
-      <div class="sq-swatch" style="background:#f5f2ee; color:#1a1a1a;">
-        <div class="sq-slot">01</div>
-        <div class="sq-name">Warm White</div>
-        <div class="sq-hex">#F5F2EE</div>
-        <div class="sq-use">Default light background</div>
+    <div class="mark-item">
+      <div class="mark-box" style="width:42px; height:42px;">
+        <svg width="28" height="28" viewBox="0 0 36 36" fill="none"><rect x="0" y="14" width="22" height="3" fill="#1a1a18"/><rect x="0" y="14" width="3" height="22" fill="#1a1a18"/><rect x="14" y="0" width="22" height="3" fill="#1a1a18"/><rect x="33" y="0" width="3" height="22" fill="#1a1a18"/><rect x="15" y="15" width="5" height="5" fill="#c8a96e"/></svg>
       </div>
-      <div class="sq-swatch" style="background:#1a1a1a; color:#f5f2ee;">
-        <div class="sq-slot">02</div>
-        <div class="sq-name">Ink</div>
-        <div class="sq-hex">#1A1A1A</div>
-        <div class="sq-use">Primary text</div>
-      </div>
-      <div class="sq-swatch" style="background:#c8a96e; color:#1a1a1a;">
-        <div class="sq-slot">03</div>
-        <div class="sq-name">Warm Gold</div>
-        <div class="sq-hex">#C8A96E</div>
-        <div class="sq-use">Accent / CTA</div>
-      </div>
-      <div class="sq-swatch" style="background:#888888; color:#f5f2ee;">
-        <div class="sq-slot">04</div>
-        <div class="sq-name">Mid Grey</div>
-        <div class="sq-hex">#888888</div>
-        <div class="sq-use">Dark sections</div>
-      </div>
-      <div class="sq-swatch" style="background:#0f0f0f; color:#f5f2ee;">
-        <div class="sq-slot">05</div>
-        <div class="sq-name">Deep Black</div>
-        <div class="sq-hex">#0F0F0F</div>
-        <div class="sq-use">Darkest sections</div>
-      </div>
+      <div class="mark-size">42pt</div>
     </div>
+    <div class="mark-item">
+      <div class="mark-box" style="width:30px; height:30px;">
+        <svg width="20" height="20" viewBox="0 0 36 36" fill="none"><rect x="0" y="14" width="22" height="3" fill="#1a1a18"/><rect x="0" y="14" width="3" height="22" fill="#1a1a18"/><rect x="14" y="0" width="22" height="3" fill="#1a1a18"/><rect x="33" y="0" width="3" height="22" fill="#1a1a18"/><rect x="15" y="15" width="5" height="5" fill="#c8a96e"/></svg>
+      </div>
+      <div class="mark-size">30pt</div>
+    </div>
+    <div class="mark-item">
+      <div class="mark-box" style="width:20px; height:20px;">
+        <svg width="14" height="14" viewBox="0 0 36 36" fill="none"><rect x="0" y="14" width="22" height="3" fill="#1a1a18"/><rect x="0" y="14" width="3" height="22" fill="#1a1a18"/><rect x="14" y="0" width="22" height="3" fill="#1a1a18"/><rect x="33" y="0" width="3" height="22" fill="#1a1a18"/><rect x="15" y="15" width="5" height="5" fill="#c8a96e"/></svg>
+      </div>
+      <div class="mark-size">20pt</div>
+    </div>
+    <div class="mark-item">
+      <div class="mark-box" style="width:16px; height:16px;">
+        <svg width="12" height="12" viewBox="0 0 36 36" fill="none"><rect x="0" y="14" width="22" height="3" fill="#1a1a18"/><rect x="0" y="14" width="3" height="22" fill="#1a1a18"/><rect x="14" y="0" width="22" height="3" fill="#1a1a18"/><rect x="33" y="0" width="3" height="22" fill="#1a1a18"/><rect x="15" y="15" width="5" height="5" fill="#c8a96e"/></svg>
+      </div>
+      <div class="mark-size">Favicon</div>
+    </div>
+  </div>
 
-    <div class="sq-note">Slot 01 must be the lightest color. Dark in slot 01 causes all sections to default dark.</div>
+  <div class="sub-label">Mark Logic</div>
+  <ul class="logic-list">
+    <li>Two interlocking L-shapes that together complete a square. Neither is whole alone.</li>
+    <li>Bottom-left L = foundation (firm process). Top-right L = outcome (owner growth).</li>
+    <li>Mark reads bottom-left to top-right — numbers going up.</li>
+    <li>Gold square at center = the exchange point. Where reciprocity happens.</li>
+  </ul>
+
+  <div class="sub-label" style="margin-top:20px;">Clear Space</div>
+  <div class="cell" style="margin-bottom:10px;">
+    <div class="cell-value">Minimum clear space = the width of the gold exchange square on all four sides of the mark.</div>
+  </div>
+
+  <div class="divider-section"></div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 03 — COLOR & TYPOGRAPHY                 -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-number">03</div>
+  <div class="section-heading">Color &amp; Typography</div>
+
+  <div class="sub-label">Color Palette</div>
+  <div class="swatch-row">
+    <div class="swatch" style="background:#1a1a1a; color:#f5f2ee;">
+      <div><div class="swatch-name">Ink</div><div class="swatch-hex">#1A1A1A</div></div>
+      <div class="swatch-use">Primary / Text</div>
+    </div>
+    <div class="swatch" style="background:#f5f2ee; color:#1a1a1a; border:0.5px solid #d3d1c7;">
+      <div><div class="swatch-name">Warm White</div><div class="swatch-hex">#F5F2EE</div></div>
+      <div class="swatch-use">Background</div>
+    </div>
+    <div class="swatch" style="background:#c8a96e; color:#1a1a1a;">
+      <div><div class="swatch-name">Warm Gold</div><div class="swatch-hex">#C8A96E</div></div>
+      <div class="swatch-use">Accent — sparingly</div>
+    </div>
+    <div class="swatch" style="background:#888888; color:#f5f2ee;">
+      <div><div class="swatch-name">Mid Grey</div><div class="swatch-hex">#888888</div></div>
+      <div class="swatch-use">Secondary text</div>
+    </div>
+    <div class="swatch" style="background:#0f0f0f; color:#f5f2ee;">
+      <div><div class="swatch-name">Deep Black</div><div class="swatch-hex">#0F0F0F</div></div>
+      <div class="swatch-use">Dark sections</div>
+    </div>
+    <div class="swatch" style="background:#e0d8cc; color:#1a1a1a; border:0.5px solid #c8c6bc;">
+      <div><div class="swatch-name">Rule</div><div class="swatch-hex">#E0D8CC</div></div>
+      <div class="swatch-use">Dividers</div>
+    </div>
+  </div>
+  <div class="note">Gold is used only for the exchange point in the mark and one restrained accent per page. Not for headlines or fills.</div>
+
+  <div class="sub-label" style="margin-top:28px;">Typography</div>
+  <div class="row row-2">
+    <div class="cell">
+      <div class="cell-label">Display / Wordmark</div>
+      <div class="cell-value" style="font-size:22px; font-weight:200; letter-spacing:0.06em; margin-top:6px;">DM Sans</div>
+      <div class="cell-value" style="margin-top:6px;">Weight 200. Letter-spacing +6–8px.<br>Serious without coldness. Modern, not startup.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Body / Labels</div>
+      <div class="cell-value" style="font-size:18px; font-weight:300; margin-top:6px;">DM Sans 300 for body copy</div>
+      <div class="cell-value" style="font-family:'DM Mono',monospace; font-size:13px; margin-top:8px;">DM Mono for labels + data</div>
+      <div class="cell-value" style="margin-top:6px;">Monospace signals precision.<br>The 10th-of-month promise lives in data.</div>
+    </div>
+  </div>
+
+  <div class="sub-label" style="margin-top:20px;">Type Hierarchy</div>
+  <table class="type-table">
+    <thead><tr><th>Role</th><th>Font</th><th>Size</th><th>Use</th></tr></thead>
+    <tbody>
+      <tr><td>Headline</td><td>DM Sans 200</td><td>32–40px</td><td>Section titles, hero statements</td></tr>
+      <tr><td>Subhead</td><td>DM Sans 300</td><td>18–22px</td><td>Section labels, card titles</td></tr>
+      <tr><td>Body</td><td>DM Sans 300</td><td>14–16px</td><td>Body copy, descriptions</td></tr>
+      <tr><td>Label</td><td>DM Mono 400</td><td>10–12px</td><td>Data labels, field names, dates</td></tr>
+      <tr><td>Caption</td><td>DM Sans 300</td><td>11–12px</td><td>Supporting text, footnotes</td></tr>
+    </tbody>
+  </table>
+
+  <div class="divider-section"></div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 04 — TONE & VOICE                       -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-number">04</div>
+  <div class="section-heading">Tone &amp; Voice</div>
+
+  <div class="voice-grid">
+    <div>
+      <div class="sub-label" style="margin-top:0;">Brand Is</div>
+      <ul class="voice-list is">
+        <li>Serious</li>
+        <li>Structured</li>
+        <li>Calm</li>
+        <li>Confident</li>
+        <li>Premium</li>
+      </ul>
+    </div>
+    <div>
+      <div class="sub-label" style="margin-top:0;">Brand Is Not</div>
+      <ul class="voice-list not">
+        <li>Playful</li>
+        <li>Tech startup</li>
+        <li>Corporate CPA</li>
+        <li>Trendy accounting</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sub-label">Language Examples</div>
+  <div class="lang-row"><div class="lang-tag lang-tag-avoid">Avoid</div><div class="lang-text lang-text-avoid">Full-service accounting firm</div></div>
+  <div class="lang-row"><div class="lang-tag lang-tag-avoid">Avoid</div><div class="lang-text lang-text-avoid">We're different from other CPAs</div></div>
+  <div class="lang-row"><div class="lang-tag lang-tag-avoid">Avoid</div><div class="lang-text lang-text-avoid">Our team is passionate about...</div></div>
+  <div class="lang-row" style="margin-top:10px;"><div class="lang-tag lang-tag-use">Use</div><div class="lang-text lang-text-use">Books closed by the 10th. Every month.</div></div>
+  <div class="lang-row"><div class="lang-tag lang-tag-use">Use</div><div class="lang-text lang-text-use">Monthly financial insight, structured for action.</div></div>
+  <div class="lang-row"><div class="lang-tag lang-tag-use">Use</div><div class="lang-text lang-text-use">The 10th is not a goal. It is the standard.</div></div>
+  <div class="lang-row"><div class="lang-tag lang-tag-use">Use</div><div class="lang-text lang-text-use">Your numbers. Clear. On time.</div></div>
+
+  <div class="divider-section"></div>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!-- 05 — SQUARESPACE PALETTE SETUP          -->
+  <!-- ═══════════════════════════════════════ -->
+  <div class="section-number">05</div>
+  <div class="section-heading">Squarespace Palette Setup</div>
+
+  <div class="sq-row">
+    <div class="sq-slot" style="background:#f5f2ee; color:#1a1a1a; border:0.5px solid #d3d1c7;">
+      <div><div class="sq-slot-num">01</div><div class="sq-slot-name">Warm White</div><div class="sq-slot-hex">#F5F2EE</div></div>
+      <div class="sq-slot-use">Default light background</div>
+    </div>
+    <div class="sq-slot" style="background:#1a1a1a; color:#f5f2ee;">
+      <div><div class="sq-slot-num">02</div><div class="sq-slot-name">Ink</div><div class="sq-slot-hex">#1A1A1A</div></div>
+      <div class="sq-slot-use">Primary text</div>
+    </div>
+    <div class="sq-slot" style="background:#c8a96e; color:#1a1a1a;">
+      <div><div class="sq-slot-num">03</div><div class="sq-slot-name">Warm Gold</div><div class="sq-slot-hex">#C8A96E</div></div>
+      <div class="sq-slot-use">Accent / CTA</div>
+    </div>
+    <div class="sq-slot" style="background:#888888; color:#f5f2ee;">
+      <div><div class="sq-slot-num">04</div><div class="sq-slot-name">Mid Grey</div><div class="sq-slot-hex">#888888</div></div>
+      <div class="sq-slot-use">Dark sections</div>
+    </div>
+    <div class="sq-slot" style="background:#0f0f0f; color:#f5f2ee;">
+      <div><div class="sq-slot-num">05</div><div class="sq-slot-name">Deep Black</div><div class="sq-slot-hex">#0F0F0F</div></div>
+      <div class="sq-slot-use">Darkest sections</div>
+    </div>
+  </div>
+  <div class="note">Important: Slot 01 must be the lightest color. Dark in slot 01 causes all sections to default dark.</div>
+
+  <div class="footer">
+    <div class="footer-left">Reciprocity Accounting LLC &middot; Confidential &middot; 2026</div>
+    <div class="footer-right">Accounting built for dental practices. Books closed by the 10th. <span class="gold">Guaranteed.</span></div>
   </div>
 
 </div>
-
-<div class="footer">
-  <div class="footer-left">Reciprocity Accounting LLC &middot; Confidential &middot; 2026</div>
-  <div class="footer-right">Accounting built for dental practices. Books closed by the 10th. <span class="gold">Guaranteed.</span></div>
-</div>
-
 </body>
 </html>
