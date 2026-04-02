@@ -122,6 +122,24 @@
   .cell-gold .cell-label { color: #854f0b; }
   .cell-dark .cell-label { color: #9fe1cb; }
 
+  .cell-blue {
+    background: #eff6ff;
+    border: 0.5px solid #93c5fd;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .cell-blue .cell-label { color: #1e40af; }
+  .cell-blue .cell-value { color: #1e3a5f; }
+
+  .cell-red {
+    background: #fef2f2;
+    border: 0.5px solid #fca5a5;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+  .cell-red .cell-label { color: #991b1b; }
+  .cell-red .cell-value { color: #7f1d1d; }
+
   .cell-value {
     font-size: 13px;
     font-weight: 400;
@@ -289,21 +307,21 @@
   <!-- Segmentation -->
   <div class="section-label">Segmentation</div>
   <div class="row row-3">
-    <div class="cell-teal">
+    <div class="cell-blue">
       <div class="cell-label">Geographic</div>
       <div class="cell-value">Ohio (to start)<br>US independent practices</div>
     </div>
-    <div class="cell-teal">
+    <div class="cell-blue">
       <div class="cell-label">Demographic</div>
       <div class="cell-value">1–3 providers<br>$700K–$2M annual collections</div>
     </div>
-    <div class="cell-teal">
+    <div class="cell-blue">
       <div class="cell-label">Psychographic</div>
       <div class="cell-value">Identifies as business owner<br>Delegates willingly<br>Exit or growth aware</div>
     </div>
   </div>
   <div class="row row-1">
-    <div class="cell-teal">
+    <div class="cell-blue">
       <div class="cell-label">Behavioral</div>
       <div class="cell-value">Already using workarounds for visibility &nbsp;&middot;&nbsp; Overhead anxiety present &nbsp;&middot;&nbsp; No monthly insight from current CPA &nbsp;&middot;&nbsp; Delegates payroll and HR</div>
     </div>
@@ -324,35 +342,65 @@
 
   <!-- Source of Volume -->
   <div class="section-label">Source of volume</div>
-  <div class="row row-2">
-    <div class="cell">
-      <div class="cell-label">Primary — stimulate demand</div>
-      <div class="cell-value">No real accounting system exists. The dentist doesn't know what they're missing. The category must be created before the brand can be chosen.</div>
+  <div style="display:grid; grid-template-columns: 190px 1fr; gap: 10px; margin-bottom: 10px;">
+
+    <!-- Inline 3×2 diagram -->
+    <div style="background:#f1efe8; border:0.5px solid #c8c6bc; border-radius:6px; padding:12px;">
+      <div style="font-size:9px; font-weight:600; letter-spacing:0.09em; text-transform:uppercase; color:#888780; margin-bottom:10px;">Framework Selection</div>
+      <table style="width:100%; border-collapse:separate; border-spacing:3px; font-size:9px;">
+        <thead>
+          <tr>
+            <td style="width:38%;"></td>
+            <th style="text-align:center; font-weight:500; color:#888780; padding:2px 4px; font-size:8.5px; letter-spacing:0.05em;">Acq.</th>
+            <th style="text-align:center; font-weight:500; color:#888780; padding:2px 4px; font-size:8.5px; letter-spacing:0.05em;">Ret.</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-size:8.5px; color:#b5b3a8; padding:3px 4px 3px 0; line-height:1.3;">Stimulate<br>Demand</td>
+            <td style="background:#ebe9e1; border:0.5px solid #c8c6bc; border-radius:3px; padding:5px;"></td>
+            <td style="background:#ebe9e1; border:0.5px solid #c8c6bc; border-radius:3px; padding:5px;"></td>
+          </tr>
+          <tr>
+            <td style="font-size:8.5px; color:#0f6e56; font-weight:700; padding:3px 4px 3px 0; line-height:1.3;">Earn<br>Share ✓</td>
+            <td style="background:#d4f0e7; border:1.5px solid #0f6e56; border-radius:3px; padding:5px;"></td>
+            <td style="background:#d4f0e7; border:1.5px solid #0f6e56; border-radius:3px; padding:5px;"></td>
+          </tr>
+          <tr>
+            <td style="font-size:8.5px; color:#b5b3a8; padding:3px 4px 3px 0; line-height:1.3;">Steal<br>Share</td>
+            <td style="background:#ebe9e1; border:0.5px solid #c8c6bc; border-radius:3px; padding:5px;"></td>
+            <td style="background:#ebe9e1; border:0.5px solid #c8c6bc; border-radius:3px; padding:5px;"></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+
+    <!-- Single Earn Share explanation -->
     <div class="cell">
-      <div class="cell-label">Secondary — earn share</div>
-      <div class="cell-value">Pull clients away from generalist CPAs doing year-end cash-basis books with no monthly visibility or dental-specific insight.</div>
+      <div class="cell-label">Earn share</div>
+      <div class="cell-value">Every dental practice already has a CPA. They're existing category users — but not dental-specific accounting clients. Our volume comes from converting them: away from generalist CPAs doing year-end cash-basis books with no monthly visibility, and toward a firm that closes the books every month and explains what the numbers mean.</div>
     </div>
+
   </div>
 
   <!-- Select Positioning -->
   <div class="section-label">Select positioning</div>
   <div class="row row-2">
-    <div class="cell">
+    <div class="cell-red">
       <div class="cell-label">Current belief</div>
       <div class="cell-value">"Accounting is compliance and my CPA handles it."</div>
     </div>
-    <div class="cell">
+    <div class="cell-teal">
       <div class="cell-label">Desired belief</div>
       <div class="cell-value">"Accounting is a monthly operating system for my practice."</div>
     </div>
   </div>
   <div class="row row-2">
-    <div class="cell">
+    <div class="cell-red">
       <div class="cell-label">Currently do</div>
       <div class="cell-value">Review financials quarterly · react to cash flow · rely on year-end tax prep · use workarounds for daily visibility</div>
     </div>
-    <div class="cell">
+    <div class="cell-teal">
       <div class="cell-label">Desired do</div>
       <div class="cell-value">Review dashboard monthly · adjust operations proactively · use numbers to guide decisions with confidence</div>
     </div>
