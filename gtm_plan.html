@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Go-To-Market Plan — Reciprocity Accounting</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512px.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f3ee;
+    color: #1a1a18;
+    padding: 32px;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #faf9f6;
+    border: 0.5px solid #d3d1c7;
+    border-radius: 8px;
+    padding: 40px;
+  }
+
+  .page-title {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #1a1a18;
+    margin-bottom: 6px;
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+    text-align: center;
+    color: #888780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .divider {
+    height: 0.5px;
+    background: #c8a96e;
+    margin-bottom: 28px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 10px;
+    margin-top: 22px;
+  }
+
+  .row {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .row-1 { grid-template-columns: 1fr; }
+  .row-2 { grid-template-columns: 1fr 1fr; }
+  .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .row-2-1 { grid-template-columns: 1.4fr 1fr; }
+
+  .cell {
+    background: #f1efe8;
+    border: 0.5px solid #c8c6bc;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .cell-gold {
+    background: #fdf6e8;
+    border: 1px solid #c8a96e;
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+
+  .cell-dark {
+    background: #1a1a18;
+    border: 0.5px solid #1a1a18;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .cell-teal {
+    background: #e8f6f1;
+    border: 0.5px solid #9fe1cb;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .cell-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 5px;
+  }
+
+  .cell-gold .cell-label { color: #854f0b; }
+  .cell-dark .cell-label { color: #9fe1cb; }
+  .cell-teal .cell-label { color: #0f6e56; }
+
+  .cell-value {
+    font-size: 13px;
+    font-weight: 400;
+    color: #2c2c2a;
+    line-height: 1.5;
+  }
+
+  .cell-gold .cell-value { color: #412402; }
+  .cell-dark .cell-value { color: #f1efe8; }
+  .cell-teal .cell-value { color: #085041; }
+
+  .cell-value strong { font-weight: 500; }
+
+  /* Channel priority cards */
+  .channel-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .channel-card {
+    background: #1a1a18;
+    border-radius: 6px;
+    padding: 16px;
+    text-align: center;
+  }
+
+  .channel-number {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c8a96e;
+    margin-bottom: 6px;
+  }
+
+  .channel-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #faf9f6;
+    margin-bottom: 4px;
+  }
+
+  .channel-desc {
+    font-size: 11px;
+    color: #888780;
+    line-height: 1.4;
+  }
+
+  /* Partner type cards */
+  .partner-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .partner-card {
+    background: #f1efe8;
+    border: 0.5px solid #c8c6bc;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .partner-type {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 5px;
+  }
+
+  .partner-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a18;
+    margin-bottom: 6px;
+  }
+
+  .partner-fit {
+    font-size: 12px;
+    color: #555552;
+    line-height: 1.5;
+  }
+
+  /* Goal bar */
+  .goal-bar {
+    background: #1a1a18;
+    border-radius: 6px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+  }
+
+  .goal-year {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c8a96e;
+    white-space: nowrap;
+  }
+
+  .goal-text {
+    font-size: 13px;
+    color: #faf9f6;
+    font-weight: 400;
+  }
+
+  .goal-text span {
+    color: #c8a96e;
+    font-weight: 500;
+  }
+
+  /* 10yr target */
+  .vision-bar {
+    background: #1a1a18;
+    border-radius: 6px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 10px;
+  }
+
+  .vision-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c8a96e;
+  }
+
+  .vision-text {
+    font-size: 13px;
+    color: #faf9f6;
+    font-weight: 400;
+  }
+
+  .footer {
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 0.5px solid #d3d1c7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-size: 10px;
+    color: #888780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .footer-right {
+    font-size: 10px;
+    color: #1a1a18;
+    letter-spacing: 0.04em;
+    font-style: italic;
+  }
+
+  .footer-right .gold { color: #c8a96e; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page {
+      border: none;
+      border-radius: 0;
+      padding: 32px 40px;
+      max-width: 100%;
+      background: white;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div style="max-width:960px;margin:0 auto;padding:24px 40px 0;">
+  <a href="index.html" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#888780;text-decoration:none;">&larr; Back to Hub</a>
+</div>
+
+<div class="page">
+
+  <div class="page-title">Go-To-Market Plan</div>
+  <div class="page-subtitle">Reciprocity Accounting LLC &nbsp;&middot;&nbsp; Sales &amp; Growth Strategy &nbsp;&middot;&nbsp; 2026</div>
+  <div class="divider"></div>
+
+  <!-- Goals -->
+  <div class="section-label">Goals</div>
+  <div class="goal-bar">
+    <div class="goal-year">2026</div>
+    <div class="goal-text"><span>10 clients</span> + <span>2 referral partners</span> — Ohio market, proof of model</div>
+  </div>
+  <div class="goal-bar">
+    <div class="goal-year">2027</div>
+    <div class="goal-text"><span>20–25 clients</span> + <span>3–5 referral partners</span> — expand partner network, begin national reach</div>
+  </div>
+  <div class="vision-bar">
+    <div class="vision-label">10-Year Target</div>
+    <div class="vision-text">350 practices closed on time, every month</div>
+  </div>
+
+  <!-- Target Profile -->
+  <div class="section-label">Target Profile</div>
+  <div class="row row-1">
+    <div class="cell-gold">
+      <div class="cell-label">Who we're selling to</div>
+      <div class="cell-value" style="font-size:14px;line-height:1.7;">
+        Independent dental practice owner — <strong>1–3 providers, $700K–$2M annual collections</strong>. Ohio-first, expanding nationally. Currently using a generalist CPA with no monthly close and no dental benchmarks. Running workarounds to get financial visibility. Business-owner identity. Willing to delegate. Growth or exit aware.
+      </div>
+    </div>
+  </div>
+  <div class="row row-3">
+    <div class="cell">
+      <div class="cell-label">Geography</div>
+      <div class="cell-value">Ohio (initial focus) → US independent practices</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Practice size</div>
+      <div class="cell-value">1–3 providers &nbsp;·&nbsp; $700K–$2M collections</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Current pain</div>
+      <div class="cell-value">No monthly close. No dental benchmarks. Overhead anxiety. Reactive cash management.</div>
+    </div>
+  </div>
+
+  <!-- Channel Strategy -->
+  <div class="section-label">Channel Strategy</div>
+  <div class="channel-row">
+    <div class="channel-card">
+      <div class="channel-number">Priority 01</div>
+      <div class="channel-name">Referral Partners</div>
+      <div class="channel-desc">Highest leverage. Warm intro at the moment of a major financial decision. Shortest path to conversion.</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-number">Priority 02</div>
+      <div class="channel-name">Cold Outbound</div>
+      <div class="channel-desc">Cold email via HubSpot. Parallel track targeting established owners. Slower conversion cycle.</div>
+    </div>
+    <div class="channel-card">
+      <div class="channel-number">Priority 03</div>
+      <div class="channel-name">Content &amp; Community</div>
+      <div class="channel-desc">Blog + LinkedIn for partner outreach. Dental owner communities for long-cycle awareness. Builds inbound over time.</div>
+    </div>
+  </div>
+
+  <!-- Referral Partner Categories -->
+  <div class="section-label">Referral Partner Categories</div>
+  <div class="partner-row">
+    <div class="partner-card">
+      <div class="partner-type">Category 01</div>
+      <div class="partner-name">Dental Transition Brokers</div>
+      <div class="partner-fit">Already in the room when a dentist is buying a practice. Best referral moment: pre-close due diligence and post-close setup.</div>
+    </div>
+    <div class="partner-card">
+      <div class="partner-type">Category 02</div>
+      <div class="partner-name">Dental Attorneys</div>
+      <div class="partner-fit">Handle the legal side of acquisitions and entity setup. Natural co-referral: dentist needs legal structure and clean books at the same time.</div>
+    </div>
+    <div class="partner-card">
+      <div class="partner-type">Category 03</div>
+      <div class="partner-name">Dental Masterminds &amp; Consultants</div>
+      <div class="partner-fit">Work with established owners on growth and operations. Refer when their clients need financial infrastructure, not just year-end compliance.</div>
+    </div>
+  </div>
+
+  <!-- Anchor Entry Point -->
+  <div class="section-label">Anchor Entry Point for Referral Partners</div>
+  <div class="row row-2-1">
+    <div class="cell-gold">
+      <div class="cell-label">Practice acquisition due diligence</div>
+      <div class="cell-value">
+        Flat-fee ancillary offering. When a dentist is buying a practice, they need someone to review the books and tell them what they're actually buying — before they sign. Brokers and attorneys are already handling the transaction. This is a natural, low-friction referral that creates an ongoing client relationship.
+      </div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Why it works</div>
+      <div class="cell-value">
+        Acute pain. Real deadline. The dentist is already spending money on advisors. The referral partner looks like a value-add — not a sales pitch. Converts to ongoing monthly bookkeeping.
+      </div>
+    </div>
+  </div>
+
+  <!-- Sales Approach -->
+  <div class="section-label">Sales Approach</div>
+  <div class="row row-3">
+    <div class="cell-teal">
+      <div class="cell-label">Methodology</div>
+      <div class="cell-value">Integrity Selling. Explore implications. Test commitment. Give exit ramps. No pressure. No rebuttals.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Qualification</div>
+      <div class="cell-value">Qualify out non-fits early. A bad client costs more than a missed sale. Ohio-based, right practice size, willing to delegate.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Discovery</div>
+      <div class="cell-value">Calendly for scheduling. Focus on their current financial pain and what monthly clarity would change operationally.</div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">Reciprocity Accounting LLC &nbsp;&middot;&nbsp; Internal Use Only</div>
+    <div class="footer-right">Books closed by the 10th. Every month. <span class="gold">Guaranteed.</span></div>
+  </div>
+
+</div>
+</body>
+</html>
