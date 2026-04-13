@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outbound Campaign Plan — Reciprocity Accounting</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512px.png">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f3ee;
+    color: #1a1a18;
+    padding: 32px;
+  }
+
+  .page {
+    max-width: 960px;
+    margin: 0 auto;
+    background: #faf9f6;
+    border: 0.5px solid #d3d1c7;
+    border-radius: 8px;
+    padding: 40px;
+  }
+
+  .page-title {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #1a1a18;
+    margin-bottom: 6px;
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+    text-align: center;
+    color: #888780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .divider {
+    height: 0.5px;
+    background: #c8a96e;
+    margin-bottom: 28px;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 10px;
+    margin-top: 22px;
+  }
+
+  .row {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .row-1 { grid-template-columns: 1fr; }
+  .row-2 { grid-template-columns: 1fr 1fr; }
+  .row-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .row-2-1 { grid-template-columns: 1.4fr 1fr; }
+
+  .cell {
+    background: #f1efe8;
+    border: 0.5px solid #c8c6bc;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .cell-gold {
+    background: #fdf6e8;
+    border: 1px solid #c8a96e;
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+
+  .cell-dark {
+    background: #1a1a18;
+    border: 0.5px solid #1a1a18;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .cell-teal {
+    background: #e8f6f1;
+    border: 0.5px solid #9fe1cb;
+    border-radius: 6px;
+    padding: 14px 16px;
+  }
+
+  .cell-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 5px;
+  }
+
+  .cell-gold .cell-label { color: #854f0b; }
+  .cell-dark .cell-label { color: #9fe1cb; }
+  .cell-teal .cell-label { color: #0f6e56; }
+
+  .cell-value {
+    font-size: 13px;
+    font-weight: 400;
+    color: #2c2c2a;
+    line-height: 1.6;
+  }
+
+  .cell-gold .cell-value { color: #412402; }
+  .cell-dark .cell-value { color: #f1efe8; }
+  .cell-teal .cell-value { color: #085041; }
+
+  .cell-value strong { font-weight: 500; }
+
+  /* Goal / vision bars */
+  .goal-bar {
+    background: #1a1a18;
+    border-radius: 6px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+  }
+
+  .goal-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c8a96e;
+    white-space: nowrap;
+  }
+
+  .goal-text {
+    font-size: 13px;
+    color: #faf9f6;
+    font-weight: 400;
+  }
+
+  .goal-text span {
+    color: #c8a96e;
+    font-weight: 500;
+  }
+
+  /* Narrative paragraph */
+  .para {
+    background: #faf9f6;
+    padding: 4px 2px 6px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: #2c2c2a;
+  }
+
+  .para strong { font-weight: 500; color: #1a1a18; }
+
+  /* Funnel table */
+  .funnel-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 6px;
+  }
+
+  .funnel-table th {
+    background: #1a1a18;
+    color: #c8a96e;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+  }
+
+  .funnel-table td {
+    background: #f1efe8;
+    border-top: 0.5px solid #d3d1c7;
+    font-size: 13px;
+    color: #2c2c2a;
+    padding: 10px 14px;
+  }
+
+  .funnel-table td.num {
+    font-weight: 500;
+    color: #1a1a18;
+    text-align: right;
+  }
+
+  .funnel-table tr:last-child td {
+    background: #fdf6e8;
+    color: #412402;
+    font-weight: 500;
+  }
+
+  /* State table */
+  .state-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 8px;
+  }
+
+  .state-table th {
+    background: #1a1a18;
+    color: #c8a96e;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    text-align: left;
+  }
+
+  .state-table td {
+    background: #f1efe8;
+    border-top: 0.5px solid #d3d1c7;
+    font-size: 13px;
+    color: #2c2c2a;
+    padding: 10px 14px;
+  }
+
+  .state-table td.num { text-align: right; font-weight: 500; color: #1a1a18; }
+
+  /* Step / checklist */
+  .step-row {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+    align-items: start;
+    background: #f1efe8;
+    border: 0.5px solid #c8c6bc;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 8px;
+  }
+
+  .step-num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #c8a96e;
+    text-transform: uppercase;
+    padding-top: 2px;
+  }
+
+  .step-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: #1a1a18;
+    margin-bottom: 4px;
+  }
+
+  .step-desc {
+    font-size: 12px;
+    color: #555552;
+    line-height: 1.55;
+  }
+
+  /* Sequence cards */
+  .seq-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .seq-card {
+    background: #1a1a18;
+    border-radius: 6px;
+    padding: 16px;
+  }
+
+  .seq-day {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #c8a96e;
+    margin-bottom: 6px;
+  }
+
+  .seq-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: #faf9f6;
+    margin-bottom: 6px;
+  }
+
+  .seq-desc {
+    font-size: 11px;
+    color: #888780;
+    line-height: 1.5;
+  }
+
+  /* Option cards (budget) */
+  .opt-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  .opt-card {
+    background: #f1efe8;
+    border: 0.5px solid #c8c6bc;
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+
+  .opt-card.recommended {
+    background: #fdf6e8;
+    border: 1px solid #c8a96e;
+  }
+
+  .opt-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888780;
+    margin-bottom: 5px;
+  }
+
+  .opt-card.recommended .opt-label { color: #854f0b; }
+
+  .opt-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1a18;
+    margin-bottom: 6px;
+  }
+
+  .opt-card.recommended .opt-title { color: #412402; }
+
+  .opt-total {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a18;
+    margin-bottom: 10px;
+  }
+
+  .opt-card.recommended .opt-total { color: #854f0b; }
+
+  .opt-list {
+    font-size: 12px;
+    color: #555552;
+    line-height: 1.7;
+    list-style: none;
+  }
+
+  .opt-card.recommended .opt-list { color: #412402; }
+
+  .opt-list li { display: flex; justify-content: space-between; gap: 12px; }
+  .opt-list li span:last-child { color: #888780; font-variant-numeric: tabular-nums; }
+  .opt-card.recommended .opt-list li span:last-child { color: #854f0b; }
+
+  /* Reviewer questions */
+  .q-row {
+    background: #f1efe8;
+    border-left: 3px solid #c8a96e;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #2c2c2a;
+    line-height: 1.6;
+  }
+
+  .q-row strong { font-weight: 500; color: #1a1a18; }
+
+  .footer {
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 0.5px solid #d3d1c7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-size: 10px;
+    color: #888780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .footer-right {
+    font-size: 10px;
+    color: #1a1a18;
+    letter-spacing: 0.04em;
+    font-style: italic;
+  }
+
+  .footer-right .gold { color: #c8a96e; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .page {
+      border: none;
+      border-radius: 0;
+      padding: 32px 40px;
+      max-width: 100%;
+      background: white;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .row-2, .row-3, .row-2-1, .seq-row, .opt-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div style="max-width:960px;margin:0 auto;padding:24px 40px 0;">
+  <a href="index.html" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#888780;text-decoration:none;">&larr; Back to Hub</a>
+</div>
+
+<div class="page">
+
+  <div class="page-title">Outbound Campaign Plan</div>
+  <div class="page-subtitle">Reciprocity Accounting LLC &nbsp;&middot;&nbsp; 3-State Pilot &nbsp;&middot;&nbsp; OH &middot; UT &middot; OK &nbsp;&middot;&nbsp; 2026</div>
+  <div class="divider"></div>
+
+  <!-- 1. Goal & Timeline -->
+  <div class="section-label">01 &nbsp;·&nbsp; Goal &amp; Timeline</div>
+  <div class="goal-bar">
+    <div class="goal-label">Pilot Goal</div>
+    <div class="goal-text"><span>1&ndash;3 new clients</span> from cold outbound over <span>60&ndash;90 days</span> &mdash; launch by May 1, review July 1</div>
+  </div>
+  <div class="goal-bar">
+    <div class="goal-label">April Target</div>
+    <div class="goal-text"><span>2 clients</span> &mdash; sourced from <span>Mike&rsquo;s 2&ndash;4 warm referrals</span>, not cold outbound (runway too short to close cold in 17 days)</div>
+  </div>
+  <div class="goal-bar">
+    <div class="goal-label">2026 Target</div>
+    <div class="goal-text"><span>10 clients total</span> &mdash; outbound + referrals combined, proof of model</div>
+  </div>
+
+  <!-- 2. Why Cold Outbound -->
+  <div class="section-label">02 &nbsp;·&nbsp; Why Cold Outbound</div>
+  <div class="row row-1">
+    <div class="cell">
+      <div class="cell-value para">
+        Referral partners are the highest-leverage channel and always will be. But referrals take time to compound &mdash; brokers, attorneys, and consultants need to know us, trust us, and have a reason to mention us. Cold outbound runs in parallel: it reaches established owner-operators directly, without waiting for a partner to introduce us, and it produces market intelligence (what lands, what doesn&rsquo;t) that sharpens every other channel. The goal is not volume &mdash; it&rsquo;s <strong>booked discovery calls with owners who fit the target profile exactly</strong>.
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Who We're Targeting -->
+  <div class="section-label">03 &nbsp;·&nbsp; Who We&rsquo;re Targeting</div>
+  <div class="row row-1">
+    <div class="cell-gold">
+      <div class="cell-label">Target profile</div>
+      <div class="cell-value" style="font-size:14px;line-height:1.7;">
+        Independent dental practice owner &mdash; <strong>1&ndash;3 providers, $700K&ndash;$2M annual collections</strong>. Currently served by a generalist CPA with no monthly close, no dental benchmarks, and no practice visibility. Growth or exit aware. Delegates willingly.
+      </div>
+    </div>
+  </div>
+  <div class="row row-3">
+    <div class="cell">
+      <div class="cell-label">Include</div>
+      <div class="cell-value">Owner-operators, 5+ years established, general or specialty (ortho, pedo, oral surg)</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Exclude</div>
+      <div class="cell-value">DSO-owned, corporate-affiliated, new graduates, startups, practices with in-house bookkeeping</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">Tagging</div>
+      <div class="cell-value">HubSpot custom property &ldquo;Outbound Cohort&rdquo; = state + batch (e.g. OH-01, UT-01, OK-01)</div>
+    </div>
+  </div>
+
+  <!-- 4. Why These Three States -->
+  <div class="section-label">04 &nbsp;·&nbsp; Why These Three States</div>
+  <div class="row row-1">
+    <div class="cell">
+      <div class="cell-value para">
+        State selection balanced <strong>independent-owner density</strong> (solo practice % and low DSO penetration) with <strong>personal credibility</strong> (Greg&rsquo;s ability to say something true in the opening line). Ohio is home base. Utah and Oklahoma rank #1 and #2 nationally for solo-practice concentration and have founder ties that make the first line of every email honest.
+      </div>
+    </div>
+  </div>
+  <table class="state-table">
+    <thead>
+      <tr>
+        <th>State</th>
+        <th class="num">Dentists</th>
+        <th class="num">Solo %</th>
+        <th class="num">DSO %</th>
+        <th>Credibility hook</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Ohio</strong></td>
+        <td class="num">5,836</td>
+        <td class="num">46.4%</td>
+        <td class="num">10%</td>
+        <td>Home base &mdash; Cincinnati / ODA</td>
+      </tr>
+      <tr>
+        <td><strong>Utah</strong></td>
+        <td class="num">2,042</td>
+        <td class="num">60.6%</td>
+        <td class="num">10%</td>
+        <td>Family in-state; highest solo % in US</td>
+      </tr>
+      <tr>
+        <td><strong>Oklahoma</strong></td>
+        <td class="num">1,995</td>
+        <td class="num">59.2%</td>
+        <td class="num">17%</td>
+        <td>Friends in-state; 2nd highest solo %</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="font-size:11px;color:#888780;margin-bottom:10px;">Source: ADA Health Policy Institute, Becker&rsquo;s Dental Review (2023&ndash;2024 data).</div>
+
+  <!-- 5. Funnel Math -->
+  <div class="section-label">05 &nbsp;·&nbsp; The Funnel Math</div>
+  <div class="row row-1">
+    <div class="cell">
+      <div class="cell-value para">
+        Conservative B2B cold email benchmarks for owner-operator services in the $1,500&ndash;$2,500/mo price band. Sales cycle is 2&ndash;6 weeks from first touch to signed engagement &mdash; which is why April closes come from Mike&rsquo;s warm referrals, not the cold list.
+      </div>
+    </div>
+  </div>
+  <table class="funnel-table">
+    <thead>
+      <tr>
+        <th>Stage</th>
+        <th class="num">Conversion</th>
+        <th class="num">From 1,000 contacts</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Sent</td><td class="num">&mdash;</td><td class="num">1,000</td></tr>
+      <tr><td>Opened</td><td class="num">25&ndash;35%</td><td class="num">250&ndash;350</td></tr>
+      <tr><td>Replied</td><td class="num">3&ndash;5%</td><td class="num">30&ndash;50</td></tr>
+      <tr><td>Discovery calls</td><td class="num">15&ndash;25% of replies</td><td class="num">5&ndash;12</td></tr>
+      <tr><td>Closed new clients</td><td class="num">15&ndash;25% of calls</td><td class="num">1&ndash;3</td></tr>
+    </tbody>
+  </table>
+  <div style="font-size:11px;color:#888780;margin-bottom:10px;">1,000 contacts = 1&ndash;3 cold clients over 60&ndash;90 days. To sustain 2 cold clients/month at steady state, list volume scales to ~1,500&ndash;2,000 new contacts per 60-day cycle.</div>
+
+  <!-- 6. List Build Approach -->
+  <div class="section-label">06 &nbsp;·&nbsp; List Build Approach</div>
+  <div class="row row-1">
+    <div class="cell">
+      <div class="cell-value para">
+        Target output: <strong>~1,000 enriched contacts, 333 per state</strong>, owner-identified, verified email, imported to HubSpot and tagged by cohort. Five-step build:
+      </div>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">01</div>
+    <div>
+      <div class="step-title">Pull NPI universe (OH + UT + OK)</div>
+      <div class="step-desc">NPPES Registry bulk export, filter by taxonomy code 1223G0001X (General Dentistry) + relevant specialty codes. Expected output: ~9,800 records. Free.</div>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">02</div>
+    <div>
+      <div class="step-title">Filter out DSO-affiliated practices</div>
+      <div class="step-desc">Clay AI research pass on each practice website to classify as DSO vs independent. Drops ~10&ndash;20% of universe.</div>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">03</div>
+    <div>
+      <div class="step-title">Enrich with owner name + email (Clay waterfall)</div>
+      <div class="step-desc">Clay runs Apollo &rarr; Hunter &rarr; ZoomInfo &rarr; Clearbit in sequence, pays per match. Identifies owner-operator name + business email.</div>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">04</div>
+    <div>
+      <div class="step-title">Verify with NeverBounce</div>
+      <div class="step-desc">Email deliverability scrub before HubSpot import. Protects sender reputation. ~$10 per 1,000 records.</div>
+    </div>
+  </div>
+  <div class="step-row">
+    <div class="step-num">05</div>
+    <div>
+      <div class="step-title">Import to HubSpot &amp; tag cohort</div>
+      <div class="step-desc">Custom property &ldquo;Outbound Cohort&rdquo; = OH-01 / UT-01 / OK-01. Designate as marketing contacts (counts against 1,000-contact Starter tier).</div>
+    </div>
+  </div>
+
+  <!-- 7. Outreach Sequence -->
+  <div class="section-label">07 &nbsp;·&nbsp; Outreach Sequence</div>
+  <div class="row row-1">
+    <div class="cell">
+      <div class="cell-value para">
+        Three-touch email cadence. Each touch has distinct purpose and copy &mdash; no repeat messages. Sent Tuesday&ndash;Thursday, 7:30&ndash;9:00am or 11:00am&ndash;12:30pm. State-specific subject lines for local relevance.
+      </div>
+    </div>
+  </div>
+  <div class="seq-row">
+    <div class="seq-card">
+      <div class="seq-day">Day 0 &nbsp;&middot;&nbsp; Intro</div>
+      <div class="seq-name">Specific pain + state reference</div>
+      <div class="seq-desc">Open with a specific observation about dental practice financials (insurance lag, cash vs accrual, overhead benchmarks). Reference state/metro for local signal. One-line CTA to a 20-minute call.</div>
+    </div>
+    <div class="seq-card">
+      <div class="seq-day">Day 4 &nbsp;&middot;&nbsp; Value</div>
+      <div class="seq-name">Link to useful resource</div>
+      <div class="seq-desc">Share a blog post or benchmark reference. Useful even if they never reply. Reinforces &ldquo;we&rsquo;re not generic&rdquo; positioning. Soft CTA.</div>
+    </div>
+    <div class="seq-card">
+      <div class="seq-day">Day 9 &nbsp;&middot;&nbsp; Break-up</div>
+      <div class="seq-name">Respectful exit</div>
+      <div class="seq-desc">&ldquo;Sounds like not the right time &mdash; I&rsquo;ll stop reaching out.&rdquo; Counterintuitively high reply rates. Leaves a positive impression even from a no.</div>
+    </div>
+  </div>
+
+  <!-- 8. Budget -->
+  <div class="section-label">08 &nbsp;·&nbsp; Budget</div>
+  <div class="opt-row">
+    <div class="opt-card recommended">
+      <div class="opt-label">Option A &nbsp;&middot;&nbsp; Recommended</div>
+      <div class="opt-title">Clay-based build</div>
+      <div class="opt-total">~$380 one-time + ~$20/mo</div>
+      <ul class="opt-list">
+        <li><span>Clay Explorer (1 month)</span><span>$349</span></li>
+        <li><span>NeverBounce verification</span><span>$10</span></li>
+        <li><span>HubSpot Marketing Starter</span><span>$20/mo</span></li>
+        <li><span>Postcard run (optional)</span><span>$250&ndash;400</span></li>
+      </ul>
+      <div style="font-size:11px;color:#854f0b;margin-top:10px;line-height:1.5;">One tool for DSO classification, owner identification, and email enrichment waterfall. Downgrade Clay to Starter ($149) after initial build.</div>
+    </div>
+    <div class="opt-card">
+      <div class="opt-label">Option B &nbsp;&middot;&nbsp; DIY</div>
+      <div class="opt-title">Apollo + manual</div>
+      <div class="opt-total">~$80 one-time + ~$20/mo</div>
+      <ul class="opt-list">
+        <li><span>Apollo.io</span><span>$49/mo</span></li>
+        <li><span>NeverBounce verification</span><span>$10</span></li>
+        <li><span>HubSpot Marketing Starter</span><span>$20/mo</span></li>
+        <li><span>Postcard run (optional)</span><span>$250&ndash;400</span></li>
+      </ul>
+      <div style="font-size:11px;color:#888780;margin-top:10px;line-height:1.5;">Cheaper, but DSO filtering and owner identification are manual. Adds ~20&ndash;30 hours of work. Tradeoff: cash vs. time.</div>
+    </div>
+  </div>
+
+  <!-- 9. Success Metrics -->
+  <div class="section-label">09 &nbsp;·&nbsp; Success Metrics</div>
+  <div class="row row-3">
+    <div class="cell-teal">
+      <div class="cell-label">Weekly</div>
+      <div class="cell-value">Emails sent &middot; open rate &middot; reply rate &middot; unsubscribe rate. Target: 30%+ open, 3%+ reply, &lt;0.5% unsub.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">30-day check</div>
+      <div class="cell-value">Discovery calls booked (target 3&ndash;5). If &lt;2, rewrite copy or re-segment. Don&rsquo;t double down on a broken sequence.</div>
+    </div>
+    <div class="cell">
+      <div class="cell-label">60&ndash;90 day decision</div>
+      <div class="cell-value">1&ndash;3 clients closed = working. Scale to 1,500&ndash;2,000 new contacts/cycle. 0 closed = stop cold, pour resources into referrals.</div>
+    </div>
+  </div>
+
+  <!-- 10. Reviewer Questions -->
+  <div class="section-label">10 &nbsp;·&nbsp; Open Questions for Reviewers</div>
+  <div class="row row-1">
+    <div class="cell">
+      <div class="cell-value para" style="color:#555552;font-style:italic;">
+        This plan is being shared with 1&ndash;3 sales-experienced friends for input before launch. The following questions frame the specific areas where outside perspective would be most valuable:
+      </div>
+    </div>
+  </div>
+  <div class="q-row">
+    <strong>Q1 &middot; Funnel assumptions.</strong> Are the conversion rates (25&ndash;35% open, 3&ndash;5% reply, 15&ndash;25% call-to-close) realistic for a $1,500&ndash;$2,500/mo service sold to dental practice owners, or should we plan for lower?
+  </div>
+  <div class="q-row">
+    <strong>Q2 &middot; Sequence length.</strong> Is a 3-touch email sequence (Day 0 / 4 / 9) enough, or should we add a 4th or 5th touch? If more, what format &mdash; email, phone, postcard?
+  </div>
+  <div class="q-row">
+    <strong>Q3 &middot; Opening hook.</strong> What&rsquo;s the right first-line angle for a cold email to a dental practice owner who has never heard of us &mdash; state reference, pain point, benchmark stat, or something else?
+  </div>
+  <div class="q-row">
+    <strong>Q4 &middot; State selection.</strong> Does targeting OH + UT + OK (based on solo-practice density + founder credibility) feel right, or would you concentrate 1,000 contacts in one state instead of splitting 333/333/333?
+  </div>
+  <div class="q-row">
+    <strong>Q5 &middot; Tool choice.</strong> Is Clay ($349 one-month build) worth it over Apollo + manual ($49/mo + 20&ndash;30 hours of founder time)?
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">Reciprocity Accounting LLC &nbsp;&middot;&nbsp; Internal Use Only</div>
+    <div class="footer-right">Books closed by the 10th. Every month. <span class="gold">Guaranteed.</span></div>
+  </div>
+
+</div>
+</body>
+</html>
