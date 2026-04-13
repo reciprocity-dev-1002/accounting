@@ -272,7 +272,7 @@ const sections = [
     "Identify decision maker (owner name, title)",
     "Identify office manager name + email",
     "Identify practice management software (Dentrix, Eaglesoft, other)",
-    "Identify accounting software (QBO or Xero)",
+    "Identify accounting software (QBO)",
     "Engagement agreement sent via Ignition",
     "Ignition agreement signed by client",
     "ACH / payment authorization confirmed",
@@ -327,7 +327,7 @@ const sections = [
     "Related entities (real estate LLC, management company, etc.)",
     "CPA firm name + contact (for year-end coordination)",
     "— ACCOUNTING SYSTEM —",
-    "Accounting software (QBO, Xero, other)",
+    "Accounting software (QBO)",
     "Accounting method: cash or accrual",
     "Read-only access to accounting software",
     "Chart of Accounts export",
@@ -372,19 +372,19 @@ const sections = [
     "Primary supply vendors (top 5)",
     "Lab vendors used"
   ]},
-  { id:"qbo", title:"QBO / Xero Setup", desc:"Get the books ready for the bookkeepers.", steps:[
-    "Connect client QBO/Xero to QBOA firm account",
+  { id:"qbo", title:"QBO Setup", desc:"Get the books ready for the bookkeepers.", steps:[
+    "Connect client QBO to QBOA firm account",
     "Export Chart of Accounts (CSV) → 07 – Financials",
     "Export Trial Balance (current year) → 07 – Financials",
     "Review COA against Reciprocity standard dental COA",
     "Adjust COA as needed — document open items",
-    "Confirm bank feed connected in QBO/Xero",
+    "Confirm bank feed connected in QBO",
     "Confirm all bank credentials documented in 1Password"
   ]},
   { id:"ig", title:"IG Handoff", desc:"Brief the bookkeepers and confirm they have everything.", steps:[
     "Post client intro in Teams – Active Clients channel",
     "Confirm bookkeeper assignment",
-    "Confirm bookkeepers have QBO/Xero access",
+    "Confirm bookkeepers have QBO access",
     "Confirm bookkeepers have bank statement access (03 – Banking)",
     "Confirm bookkeepers have production data (06 – Practice Operations)",
     "Post COA reference doc to Teams",
