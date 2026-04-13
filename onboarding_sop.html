@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Client Onboarding SOP — Reciprocity Accounting</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #F5F2EE; font-family: Georgia, serif; min-height: 100vh; padding: 40px 24px; }
+  .wrap { max-width: 680px; margin: 0 auto; }
+  .header { border-bottom: 1px solid #E0D8CC; padding-bottom: 24px; margin-bottom: 32px; }
+  .eyebrow { font-size: 10px; letter-spacing: 0.2em; color: #C8A96E; text-transform: uppercase; margin-bottom: 8px; font-family: monospace; }
+  h1 { font-size: 26px; font-weight: 400; color: #1A1A1A; margin-bottom: 16px; letter-spacing: 0.05em; }
+  .progress-row { display: flex; align-items: center; gap: 14px; }
+  .progress-bar { flex: 1; height: 2px; background: #E0D8CC; border-radius: 1px; }
+  .progress-fill { height: 100%; background: #C8A96E; border-radius: 1px; transition: width 0.4s ease; }
+  .progress-label { font-size: 11px; color: #888; font-family: monospace; white-space: nowrap; }
+  .nav { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+  .nav-btn { padding: 5px 12px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-family: monospace; cursor: pointer; border: 1px solid #E0D8CC; background: transparent; color: #888; border-radius: 2px; transition: all 0.15s; }
+  .nav-btn.active { border-color: #1A1A1A; background: #1A1A1A; color: #F5F2EE; }
+  .nav-btn.complete { border-color: #C8A96E; background: #FBF7F0; color: #C8A96E; }
+  .card { background: #fff; border: 1px solid #E0D8CC; border-radius: 3px; overflow: hidden; }
+  .card-header { padding: 20px 24px; border-bottom: 1px solid #E0D8CC; background: #FDFCFB; }
+  .card-title { font-size: 14px; font-weight: 400; color: #1A1A1A; }
+  .card-desc { font-size: 11px; color: #888; margin-top: 3px; font-family: monospace; }
+  .step { display: flex; align-items: flex-start; gap: 14px; padding: 12px 24px; cursor: pointer; border-bottom: 1px solid #F5F2EE; transition: background 0.1s; }
+  .step:hover { background: #FDFCFB; }
+  .step.done { background: #FDFCFB; }
+  .step:last-child { border-bottom: none; }
+  .checkbox { width: 18px; height: 18px; border: 1.5px solid #888; border-radius: 2px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .checkbox.checked { border-color: #C8A96E; background: #C8A96E; }
+  .step-text { font-size: 13px; color: #1A1A1A; line-height: 1.5; font-family: Georgia, serif; transition: all 0.15s; }
+  .step-text.done { color: #aaa; text-decoration: line-through; }
+  .footer { margin-top: 16px; font-size: 10px; color: #aaa; font-family: monospace; text-align: right; }
+</style>
+</head>
+<body>
+<div style="max-width:680px;margin:0 auto;padding:20px 24px 0;">
+  <a href="index.html" style="font-family:monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#888;text-decoration:none;">&larr; Back to Hub</a>
+</div>
+<div class="wrap">
+  <div class="header">
+    <div class="eyebrow">Reciprocity Accounting — Internal</div>
+    <h1>Client Onboarding SOP</h1>
+    <div class="progress-row">
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+      <div class="progress-label" id="progress-label">0 / 0 complete</div>
+    </div>
+  </div>
+  <div class="nav" id="nav"></div>
+  <div class="card" id="card"></div>
+  <div class="footer">V1 — MARCH 2026 — RECIPROCITY ACCOUNTING LLC</div>
+</div>
+
+<script>
+const sections = [
+  { id:"pre", title:"Pre-Onboarding", desc:"Before the client signs anything.", steps:[
+    "Identify decision maker (owner name, title)",
+    "Identify office manager name + email",
+    "Identify practice management software (Dentrix, Eaglesoft, other)",
+    "Identify accounting software (QBO or Xero)",
+    "Engagement agreement sent via Ignition",
+    "Ignition agreement signed by client",
+    "ACH / payment authorization confirmed",
+    "Onboarding questionnaire sent via Double"
+  ]},
+  { id:"folder", title:"Folder Setup", desc:"Build the client folder structure in OneDrive.", steps:[
+    "Create client root folder: [Practice Name]",
+    "Create 01 – Agreements",
+    "Create 02 – Debt & Liabilities",
+    "Create 03 – Banking (subfolders: by year → month)",
+    "Create 04 – Payroll",
+    "Create 05 – Tax",
+    "Create 06 – Practice Operations (subfolders: Production Data, Vendor Invoices)",
+    "Create 07 – Financials (subfolders by year → month)",
+    "Create 99 – Archive"
+  ]},
+  { id:"docs", title:"Document Collection", desc:"Get what the bookkeepers need to start.", steps:[
+    "Copy signed Ignition agreement → 01 – Agreements",
+    "Collect W-9 → 01 – Agreements",
+    "Collect entity formation / ownership docs → 01 – Agreements",
+    "Collect loan agreements → 02 – Debt & Liabilities",
+    "Collect amortization schedules → 02 – Debt & Liabilities",
+    "Collect equipment financing docs → 02 – Debt & Liabilities",
+    "Collect ACH authorization / voided check → 03 – Banking",
+    "Confirm bank read-only access granted → note in 03 – Banking",
+    "Collect monthly bank statements → 03 – Banking / [year] / [month]",
+    "Collect monthly credit card statements → 03 – Banking / [year] / [month]",
+    "Collect merchant processor statements (Apex/Cardpoint) → 03 – Banking / [year] / [month]",
+    "Generate Vendor Invoices upload link (OneDrive → People you choose → Can edit)",
+    "Send Vendor Invoices upload link to office manager",
+    "Collect payroll setup docs (Gusto/ADP) → 04 – Payroll",
+    "Collect payroll summary reports → 04 – Payroll",
+    "Collect 941 / 940 filings → 04 – Payroll",
+    "Collect workers comp documentation → 04 – Payroll",
+    "Collect provider compensation models → 04 – Payroll",
+    "Collect prior year tax return → 05 – Tax",
+    "Collect depreciation / fixed asset schedules → 05 – Tax",
+    "Collect production reports (Dentrix/Eaglesoft) → 06 – Practice Operations / Production Data",
+    "Collect insurance AR aging → 06 – Practice Operations / Production Data",
+    "Collect collections data → 06 – Practice Operations / Production Data",
+    "Confirm client request list sent and all items received (see Client Request List section)"
+  ]},
+  { id:"client", title:"Client Request List", desc:"Send this to the client at onboarding. Track responses here.", steps:[
+    "— BUSINESS STRUCTURE —",
+    "Legal entity name (exact as registered)",
+    "Entity type (LLC, S-Corp, etc.)",
+    "Ownership % breakdown",
+    "EIN",
+    "State(s) of operation",
+    "Fiscal year end",
+    "Practice acquisition date",
+    "Related entities (real estate LLC, management company, etc.)",
+    "CPA firm name + contact (for year-end coordination)",
+    "— ACCOUNTING SYSTEM —",
+    "Accounting software (QBO, Xero, other)",
+    "Accounting method: cash or accrual",
+    "Read-only access to accounting software",
+    "Chart of Accounts export",
+    "Trial Balance (current year)",
+    "AR Aging report",
+    "AP Aging report",
+    "Last 12 months P&L and Balance Sheet",
+    "— BANKING & CREDIT CARDS —",
+    "View-only access to all operating bank accounts",
+    "View-only access to all business credit cards",
+    "View-only access to line of credit (if applicable)",
+    "List of all bank accounts (name + last 4)",
+    "List of all credit cards (issuer + last 4)",
+    "Merchant processors used (CareCredit, Stripe, Apex, Cardpoint, etc.)",
+    "Where merchant deposits land",
+    "Last 3 months bank statements (if portal access not available)",
+    "Last 3 months credit card statements (if portal access not available)",
+    "— PRACTICE MANAGEMENT & REVENUE —",
+    "Practice management software (Open Dental, Dentrix, Eaglesoft, etc.)",
+    "Read-only access to practice management software",
+    "Monthly production report (last 12 months)",
+    "Monthly collections report (last 12 months)",
+    "Provider production breakdown",
+    "Adjustments report (last 3 months)",
+    "Current fee schedule export",
+    "Insurance write-off methodology",
+    "— PAYROLL & COMPENSATION —",
+    "Payroll provider + view-only access",
+    "Payroll register (last 3 months)",
+    "Employer tax summary (last 3 months)",
+    "Associate compensation structure (% of production or collections)",
+    "Lab fee treatment (deducted before comp?)",
+    "Owner compensation method (W-2, draws, mix)",
+    "Health insurance treatment",
+    "Retirement plan type (if any)",
+    "— FIXED OBLIGATIONS —",
+    "Lease agreement (or monthly rent + escalation terms)",
+    "All equipment loans",
+    "Practice acquisition loan",
+    "Amortization schedules (if available)",
+    "Major recurring software subscriptions (Weave, Solutionreach, etc.)",
+    "Primary supply vendors (top 5)",
+    "Lab vendors used"
+  ]},
+  { id:"qbo", title:"QBO / Xero Setup", desc:"Get the books ready for the bookkeepers.", steps:[
+    "Connect client QBO/Xero to QBOA firm account",
+    "Export Chart of Accounts (CSV) → 07 – Financials",
+    "Export Trial Balance (current year) → 07 – Financials",
+    "Review COA against Reciprocity standard dental COA",
+    "Adjust COA as needed — document open items",
+    "Confirm bank feed connected in QBO/Xero",
+    "Confirm all bank credentials documented in 1Password"
+  ]},
+  { id:"ig", title:"IG Handoff", desc:"Brief the bookkeepers and confirm they have everything.", steps:[
+    "Post client intro in Teams – Active Clients channel",
+    "Confirm bookkeeper assignment",
+    "Confirm bookkeepers have QBO/Xero access",
+    "Confirm bookkeepers have bank statement access (03 – Banking)",
+    "Confirm bookkeepers have production data (06 – Practice Operations)",
+    "Post COA reference doc to Teams",
+    "Note any open items (insurance write-off method, financing fee rates, etc.)",
+    "Set first close target date (10th of following month)"
+  ]},
+  { id:"close", title:"First Close", desc:"Confirm the first month close is ready to deliver.", steps:[
+    "P&L reviewed and approved",
+    "Balance Sheet reviewed and approved",
+    "Cash Flow reviewed and approved",
+    "General ledger export saved → 07 – Financials / [year] / [month]",
+    "Reconciliation report saved → 07 – Financials / [year] / [month]",
+    "KPI dashboard prepared",
+    "Commentary memo written",
+    "Financials delivered to client via Double / email by the 10th"
+  ]}
+];
+
+// Build step IDs and checked state
+const checked = {};
+sections.forEach(s => s.steps.forEach((_, i) => { checked[s.id+'-'+i] = false; }));
+
+let activeId = "pre";
+
+function totalSteps() { return sections.reduce((a,s)=>a+s.steps.length,0); }
+function totalDone() { return Object.values(checked).filter(Boolean).length; }
+
+function updateProgress() {
+  const pct = Math.round((totalDone()/totalSteps())*100);
+  document.getElementById('progress-fill').style.width = pct+'%';
+  document.getElementById('progress-label').textContent = totalDone()+' / '+totalSteps()+' complete';
+}
+
+function sectionDone(s) { return s.steps.every((_,i)=>checked[s.id+'-'+i]); }
+function sectionCount(s) { return s.steps.filter((_,i)=>checked[s.id+'-'+i]).length; }
+
+function renderNav() {
+  const nav = document.getElementById('nav');
+  nav.innerHTML = '';
+  sections.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'nav-btn' + (s.id===activeId?' active':'') + (sectionDone(s)?' complete':'');
+    btn.textContent = (sectionDone(s)?'✓ ':'')+s.title;
+    btn.onclick = () => { activeId = s.id; render(); };
+    nav.appendChild(btn);
+  });
+}
+
+function renderCard() {
+  const s = sections.find(x=>x.id===activeId);
+  const card = document.getElementById('card');
+  let html = `<div class="card-header"><div class="card-title">${s.title}</div><div class="card-desc">${s.desc}</div></div>`;
+  s.steps.forEach((text, i) => {
+    const key = s.id+'-'+i;
+    const done = checked[key];
+    html += `<div class="step${done?' done':''}" onclick="toggle('${key}')">
+      <div class="checkbox${done?' checked':''}">${done?'<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>':''}</div>
+      <div class="step-text${done?' done':''}">${text}</div>
+    </div>`;
+  });
+  card.innerHTML = html;
+}
+
+function render() { renderNav(); renderCard(); updateProgress(); }
+
+window.toggle = function(key) {
+  checked[key] = !checked[key];
+  render();
+};
+
+render();
+</script>
+</body>
+</html>
