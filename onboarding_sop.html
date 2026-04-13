@@ -4,52 +4,266 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Client Onboarding SOP — Reciprocity Accounting</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="icon" type="image/png" sizes="512x512" href="favicon-512px.png">
 <style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: #F5F2EE; font-family: Georgia, serif; min-height: 100vh; padding: 40px 24px; }
-  .wrap { max-width: 680px; margin: 0 auto; }
-  .header { border-bottom: 1px solid #E0D8CC; padding-bottom: 24px; margin-bottom: 32px; }
-  .eyebrow { font-size: 10px; letter-spacing: 0.2em; color: #C8A96E; text-transform: uppercase; margin-bottom: 8px; font-family: monospace; }
-  h1 { font-size: 26px; font-weight: 400; color: #1A1A1A; margin-bottom: 16px; letter-spacing: 0.05em; }
-  .progress-row { display: flex; align-items: center; gap: 14px; }
-  .progress-bar { flex: 1; height: 2px; background: #E0D8CC; border-radius: 1px; }
-  .progress-fill { height: 100%; background: #C8A96E; border-radius: 1px; transition: width 0.4s ease; }
-  .progress-label { font-size: 11px; color: #888; font-family: monospace; white-space: nowrap; }
-  .nav { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
-  .nav-btn { padding: 5px 12px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-family: monospace; cursor: pointer; border: 1px solid #E0D8CC; background: transparent; color: #888; border-radius: 2px; transition: all 0.15s; }
-  .nav-btn.active { border-color: #1A1A1A; background: #1A1A1A; color: #F5F2EE; }
-  .nav-btn.complete { border-color: #C8A96E; background: #FBF7F0; color: #C8A96E; }
-  .card { background: #fff; border: 1px solid #E0D8CC; border-radius: 3px; overflow: hidden; }
-  .card-header { padding: 20px 24px; border-bottom: 1px solid #E0D8CC; background: #FDFCFB; }
-  .card-title { font-size: 14px; font-weight: 400; color: #1A1A1A; }
-  .card-desc { font-size: 11px; color: #888; margin-top: 3px; font-family: monospace; }
-  .step { display: flex; align-items: flex-start; gap: 14px; padding: 12px 24px; cursor: pointer; border-bottom: 1px solid #F5F2EE; transition: background 0.1s; }
-  .step:hover { background: #FDFCFB; }
-  .step.done { background: #FDFCFB; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f5f3ee;
+    color: #1a1a18;
+    padding: 32px;
+  }
+
+  .page {
+    max-width: 780px;
+    margin: 0 auto;
+    background: #faf9f6;
+    border: 0.5px solid #d3d1c7;
+    border-radius: 8px;
+    padding: 40px;
+  }
+
+  .page-title {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-align: center;
+    text-transform: uppercase;
+    color: #1a1a18;
+    margin-bottom: 6px;
+  }
+
+  .page-subtitle {
+    font-size: 12px;
+    text-align: center;
+    color: #888780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .divider {
+    height: 0.5px;
+    background: #c8a96e;
+    margin-bottom: 24px;
+  }
+
+  /* Progress */
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 22px;
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 2px;
+    background: #d3d1c7;
+    border-radius: 1px;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: #c8a96e;
+    border-radius: 1px;
+    transition: width 0.4s ease;
+  }
+
+  .progress-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #888780;
+    white-space: nowrap;
+  }
+
+  /* Nav */
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .nav-btn {
+    padding: 5px 13px;
+    font-family: 'Inter', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 0.5px solid #c8c6bc;
+    background: #f1efe8;
+    color: #888780;
+    border-radius: 4px;
+    transition: all 0.15s;
+  }
+
+  .nav-btn:hover {
+    border-color: #1a1a18;
+    color: #1a1a18;
+  }
+
+  .nav-btn.active {
+    border-color: #1a1a18;
+    background: #1a1a18;
+    color: #faf9f6;
+  }
+
+  .nav-btn.complete {
+    border-color: #c8a96e;
+    background: #fdf6e8;
+    color: #c8a96e;
+  }
+
+  /* Card */
+  .card {
+    background: #faf9f6;
+    border: 0.5px solid #c8c6bc;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .card-header {
+    padding: 16px 20px;
+    border-bottom: 0.5px solid #d3d1c7;
+    background: #f1efe8;
+  }
+
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1a1a18;
+    letter-spacing: 0.02em;
+  }
+
+  .card-desc {
+    font-size: 11px;
+    color: #888780;
+    margin-top: 3px;
+    letter-spacing: 0.02em;
+  }
+
+  /* Steps */
+  .step {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 11px 20px;
+    cursor: pointer;
+    border-bottom: 0.5px solid #ece9e1;
+    transition: background 0.1s;
+  }
+
+  .step:hover { background: #f5f3ee; }
+  .step.done  { background: #f8f7f3; }
   .step:last-child { border-bottom: none; }
-  .checkbox { width: 18px; height: 18px; border: 1.5px solid #888; border-radius: 2px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
-  .checkbox.checked { border-color: #C8A96E; background: #C8A96E; }
-  .step-text { font-size: 13px; color: #1A1A1A; line-height: 1.5; font-family: Georgia, serif; transition: all 0.15s; }
-  .step-text.done { color: #aaa; text-decoration: line-through; }
-  .footer { margin-top: 16px; font-size: 10px; color: #aaa; font-family: monospace; text-align: right; }
+
+  .checkbox {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #c8c6bc;
+    border-radius: 3px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+  }
+
+  .checkbox.checked {
+    border-color: #c8a96e;
+    background: #c8a96e;
+  }
+
+  .step-text {
+    font-size: 13px;
+    color: #2c2c2a;
+    line-height: 1.5;
+    transition: all 0.15s;
+    font-weight: 400;
+  }
+
+  .step-text.section-header {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #888780;
+    cursor: default;
+    padding-top: 2px;
+  }
+
+  .step-text.done {
+    color: #b0aca4;
+    text-decoration: line-through;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 0.5px solid #d3d1c7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-left {
+    font-size: 10px;
+    color: #888780;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .footer-right {
+    font-size: 10px;
+    color: #1a1a18;
+    letter-spacing: 0.04em;
+    font-style: italic;
+  }
+
+  .footer-right .gold { color: #c8a96e; }
+
+  @media (max-width: 600px) {
+    body { padding: 16px; }
+    .page { padding: 24px 20px; }
+  }
 </style>
 </head>
 <body>
-<div style="max-width:680px;margin:0 auto;padding:20px 24px 0;">
-  <a href="index.html" style="font-family:monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#888;text-decoration:none;">&larr; Back to Hub</a>
+
+<div style="max-width:780px;margin:0 auto;padding:24px 0 0;">
+  <a href="index.html" style="font-family:'Inter',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#888780;text-decoration:none;">&larr; Back to Hub</a>
 </div>
-<div class="wrap">
-  <div class="header">
-    <div class="eyebrow">Reciprocity Accounting — Internal</div>
-    <h1>Client Onboarding SOP</h1>
-    <div class="progress-row">
-      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
-      <div class="progress-label" id="progress-label">0 / 0 complete</div>
-    </div>
+
+<div class="page">
+
+  <div class="page-title">Client Onboarding SOP</div>
+  <div class="page-subtitle">Reciprocity Accounting LLC &nbsp;&middot;&nbsp; Interactive Checklist &nbsp;&middot;&nbsp; V1 2026</div>
+  <div class="divider"></div>
+
+  <div class="progress-row">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-label" id="progress-label">0 / 0 complete</div>
   </div>
+
   <div class="nav" id="nav"></div>
   <div class="card" id="card"></div>
-  <div class="footer">V1 — MARCH 2026 — RECIPROCITY ACCOUNTING LLC</div>
+
+  <div class="footer">
+    <div class="footer-left">Reciprocity Accounting LLC &nbsp;&middot;&nbsp; Internal Use Only</div>
+    <div class="footer-right">Books closed by the 10th. Every month. <span class="gold">Guaranteed.</span></div>
+  </div>
+
 </div>
 
 <script>
@@ -189,13 +403,14 @@ const sections = [
   ]}
 ];
 
-// Build step IDs and checked state
 const checked = {};
 sections.forEach(s => s.steps.forEach((_, i) => { checked[s.id+'-'+i] = false; }));
 
 let activeId = "pre";
 
-function totalSteps() { return sections.reduce((a,s)=>a+s.steps.length,0); }
+function totalSteps() {
+  return sections.reduce((a,s) => a + s.steps.filter(t => !t.startsWith('—')).length, 0);
+}
 function totalDone() { return Object.values(checked).filter(Boolean).length; }
 
 function updateProgress() {
@@ -204,32 +419,42 @@ function updateProgress() {
   document.getElementById('progress-label').textContent = totalDone()+' / '+totalSteps()+' complete';
 }
 
-function sectionDone(s) { return s.steps.every((_,i)=>checked[s.id+'-'+i]); }
-function sectionCount(s) { return s.steps.filter((_,i)=>checked[s.id+'-'+i]).length; }
+function sectionDone(s) {
+  return s.steps.every((t,i) => t.startsWith('—') || checked[s.id+'-'+i]);
+}
 
 function renderNav() {
   const nav = document.getElementById('nav');
   nav.innerHTML = '';
   sections.forEach(s => {
     const btn = document.createElement('button');
-    btn.className = 'nav-btn' + (s.id===activeId?' active':'') + (sectionDone(s)?' complete':'');
-    btn.textContent = (sectionDone(s)?'✓ ':'')+s.title;
+    const done = sectionDone(s);
+    btn.className = 'nav-btn' + (s.id===activeId?' active':'') + (done?' complete':'');
+    btn.textContent = (done ? '✓ ' : '') + s.title;
     btn.onclick = () => { activeId = s.id; render(); };
     nav.appendChild(btn);
   });
 }
 
 function renderCard() {
-  const s = sections.find(x=>x.id===activeId);
+  const s = sections.find(x => x.id===activeId);
   const card = document.getElementById('card');
   let html = `<div class="card-header"><div class="card-title">${s.title}</div><div class="card-desc">${s.desc}</div></div>`;
   s.steps.forEach((text, i) => {
     const key = s.id+'-'+i;
-    const done = checked[key];
-    html += `<div class="step${done?' done':''}" onclick="toggle('${key}')">
-      <div class="checkbox${done?' checked':''}">${done?'<svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>':''}</div>
-      <div class="step-text${done?' done':''}">${text}</div>
-    </div>`;
+    const isHeader = text.startsWith('—');
+    const done = !isHeader && checked[key];
+    if (isHeader) {
+      html += `<div class="step" style="cursor:default;padding-top:14px;padding-bottom:6px;">
+        <div style="width:16px;flex-shrink:0;"></div>
+        <div class="step-text section-header">${text.replace(/—/g,'').trim()}</div>
+      </div>`;
+    } else {
+      html += `<div class="step${done?' done':''}" onclick="toggle('${key}')">
+        <div class="checkbox${done?' checked':''}">${done?'<svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.5L3 5.5L8 1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>':''}</div>
+        <div class="step-text${done?' done':''}">${text}</div>
+      </div>`;
+    }
   });
   card.innerHTML = html;
 }
