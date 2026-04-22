@@ -4,109 +4,105 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Reciprocity Accounting — Blog Content Calendar 2026</title>
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="512x512" href="favicon-512px.png">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400&family=DM+Mono:wght@400&display=swap');
-
   :root {
     --gold: #C8A96E;
-    --ink: #1A1A1A;
+    --black: #0F0F0F;
     --warm-white: #F5F2EE;
     --mid-grey: #888888;
     --dark-grey: #444444;
-    --rule: #E0D8CC;
     --green: #5a9e6f;
-    --bg: #F5F2EE;
+    --bg: #FAFAF8;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'DM Sans', sans-serif; font-weight: 300; background: var(--bg); color: var(--ink); }
+  body { font-family: 'DM Sans', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--black); }
 
   /* HEADER */
   .page-header {
-    background: var(--ink);
-    padding: 48px 56px 40px;
-    border-bottom: 1px solid #2A2A28;
+    background: var(--black);
+    padding: 40px 48px 36px;
+    border-bottom: 3px solid var(--gold);
   }
-  .page-header h1 { color: var(--warm-white); font-size: 26px; font-weight: 200; letter-spacing: 0.06em; text-transform: uppercase; }
-  .page-header p { font-family: 'DM Mono', monospace; color: var(--mid-grey); font-size: 12px; margin-top: 10px; letter-spacing: 0.06em; }
+  .page-header h1 { color: #fff; font-size: 22px; font-weight: 700; letter-spacing: 0.01em; }
+  .page-header p { color: var(--mid-grey); font-size: 13px; margin-top: 6px; }
 
   /* STATS BAR */
   .stats-bar {
-    display: flex; gap: 40px; align-items: center;
-    background: var(--warm-white); border-bottom: 1px solid var(--rule);
-    padding: 18px 56px;
+    display: flex; gap: 32px; align-items: center;
+    background: #fff; border-bottom: 1px solid #E5E2DF;
+    padding: 16px 48px;
   }
   .stat { text-align: center; }
-  .stat-num { font-size: 24px; font-weight: 300; color: var(--ink); line-height: 1; }
-  .stat-num.gold { color: var(--ink); }
+  .stat-num { font-size: 22px; font-weight: 700; color: var(--black); line-height: 1; }
+  .stat-num.gold { color: var(--gold); }
   .stat-num.green { color: var(--green); }
-  .stat-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid-grey); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.1em; }
+  .stat-label { font-size: 11px; color: var(--mid-grey); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.08em; }
   .progress-wrap { flex: 1; }
-  .progress-track { background: var(--rule); border-radius: 2px; height: 4px; overflow: hidden; }
-  .progress-bar { background: var(--gold); height: 4px; border-radius: 2px; transition: width 0.4s; }
+  .progress-track { background: #E5E2DF; border-radius: 4px; height: 6px; overflow: hidden; }
+  .progress-bar { background: var(--gold); height: 6px; border-radius: 4px; transition: width 0.4s; }
 
   /* FILTERS */
   .filters {
-    background: var(--warm-white); border-bottom: 1px solid var(--rule);
-    padding: 14px 56px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+    background: #fff; border-bottom: 1px solid #E5E2DF;
+    padding: 12px 48px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
   }
-  .filter-label { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--mid-grey); text-transform: uppercase; letter-spacing: 0.1em; margin-right: 6px; }
+  .filter-label { font-size: 11px; color: var(--mid-grey); text-transform: uppercase; letter-spacing: 0.08em; margin-right: 4px; }
   .filter-btn {
-    padding: 5px 16px; border-radius: 2px; border: 1px solid var(--rule);
-    background: transparent; font-family: 'DM Sans', sans-serif; font-weight: 300; font-size: 13px; color: var(--dark-grey);
+    padding: 5px 14px; border-radius: 20px; border: 1px solid #D5D2CF;
+    background: transparent; font-size: 12px; color: var(--dark-grey);
     cursor: pointer; transition: all 0.15s;
   }
-  .filter-btn:hover { border-color: var(--ink); color: var(--ink); }
-  .filter-btn.active { background: var(--ink); border-color: var(--ink); color: var(--warm-white); font-weight: 400; }
-  .divider { width: 1px; height: 20px; background: var(--rule); margin: 0 4px; }
+  .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .filter-btn.active { background: var(--gold); border-color: var(--gold); color: #fff; font-weight: 600; }
+  .divider { width: 1px; height: 20px; background: #D5D2CF; margin: 0 4px; }
 
   /* MAIN */
-  main { padding: 40px 56px 72px; max-width: 1280px; margin: 0 auto; }
+  main { padding: 32px 48px 64px; max-width: 1200px; margin: 0 auto; }
 
   /* MONTH SECTION */
-  .month-section { margin-bottom: 56px; }
+  .month-section { margin-bottom: 48px; }
   .month-header { margin-bottom: 16px; }
-  .month-title { font-size: 24px; font-weight: 300; color: var(--ink); letter-spacing: 0.02em; }
-  .month-theme { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 400; color: var(--mid-grey); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px; }
-  .month-desc { font-size: 15px; font-weight: 300; color: var(--mid-grey); margin-top: 6px; line-height: 1.6; }
+  .month-title { font-size: 20px; font-weight: 700; color: var(--black); }
+  .month-theme { font-size: 12px; font-weight: 600; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+  .month-desc { font-size: 13px; color: var(--mid-grey); margin-top: 4px; line-height: 1.5; }
 
   /* TABLE */
-  .cal-table { width: 100%; border-collapse: collapse; background: var(--warm-white); border-radius: 4px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
-  .cal-table thead tr { background: var(--ink); }
-  .cal-table thead th { padding: 12px 16px; font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 400; color: var(--mid-grey); text-transform: uppercase; letter-spacing: 0.12em; text-align: left; }
-  .cal-table tbody tr { border-bottom: 1px solid var(--rule); transition: background 0.1s; }
+  .cal-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .cal-table thead tr { background: var(--black); }
+  .cal-table thead th { padding: 10px 14px; font-size: 11px; color: #fff; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; text-align: left; }
+  .cal-table tbody tr { border-bottom: 1px solid #F0EDE9; transition: background 0.1s; }
   .cal-table tbody tr:last-child { border-bottom: none; }
-  .cal-table tbody tr:hover { background: #EDE9E3; }
-  .cal-table td { padding: 14px 16px; font-size: 15px; font-weight: 300; vertical-align: top; }
-  .week-cell { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--mid-grey); white-space: nowrap; min-width: 80px; }
+  .cal-table tbody tr:hover { background: #F9F7F4; }
+  .cal-table td { padding: 12px 14px; font-size: 13px; vertical-align: top; }
+  .week-cell { font-weight: 700; color: var(--dark-grey); white-space: nowrap; min-width: 72px; }
   .title-cell { min-width: 280px; }
-  .post-title { font-weight: 400; color: var(--ink); line-height: 1.45; }
-  .post-notes { font-size: 13px; font-weight: 300; color: var(--mid-grey); margin-top: 6px; line-height: 1.5; font-style: italic; }
-  .keyword-cell { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 400; color: var(--dark-grey); min-width: 180px; }
+  .post-title { font-weight: 600; color: var(--black); line-height: 1.4; }
+  .post-notes { font-size: 11.5px; color: var(--mid-grey); margin-top: 5px; line-height: 1.45; font-style: italic; }
+  .keyword-cell { color: var(--dark-grey); font-size: 12px; min-width: 180px; }
   .type-pill {
-    display: inline-block; padding: 3px 10px; border-radius: 2px;
-    font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase;
+    display: inline-block; padding: 2px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
   }
-  .type-Cost    { background: rgba(200,169,110,0.12); color: #8a6c30; }
+  .type-Cost    { background: rgba(200,169,110,0.15); color: #8a6c30; }
   .type-What    { background: rgba(123,158,199,0.15); color: #3a5f85; }
   .type-How     { background: rgba(158,123,199,0.15); color: #5e3a85; }
   .type-Problems{ background: rgba(199,123,123,0.15); color: #853a3a; }
   .type-Best    { background: rgba(123,199,160,0.15); color: #3a7a5e; }
-  .type-Pillar  { background: rgba(232,201,122,0.15); color: #7a6010; }
+  .type-Pillar  { background: rgba(232,201,122,0.18); color: #7a6010; }
   .type-Brand   { background: rgba(136,136,136,0.12); color: #555; }
+  .type-Compare { background: rgba(100,180,180,0.15); color: #2a6b6b; }
   .status-pill {
-    display: inline-block; padding: 3px 10px; border-radius: 2px;
-    font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 400; letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap;
+    display: inline-block; padding: 2px 10px; border-radius: 12px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.04em; white-space: nowrap;
   }
   .status-not-started { background: rgba(136,136,136,0.1); color: var(--mid-grey); }
-  .status-in-progress { background: rgba(26,26,26,0.08); color: var(--ink); }
+  .status-in-progress { background: rgba(200,169,110,0.15); color: #8a6c30; }
   .status-published   { background: rgba(90,158,111,0.15); color: #3a7a5e; }
 
   /* STATUS DROPDOWN */
   .status-select {
-    border: none; background: transparent; font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 400;
-    cursor: pointer; padding: 0; color: inherit; letter-spacing: 0.06em; text-transform: uppercase;
+    border: none; background: transparent; font-size: 11px; font-weight: 600;
+    cursor: pointer; padding: 0; color: inherit;
   }
 
   /* HIDDEN */
@@ -114,38 +110,33 @@
 
   /* FOOTER */
   .page-footer {
-    border-top: 1px solid var(--rule);
-    padding: 28px 56px;
-    background: var(--warm-white);
-    font-size: 13px;
-    font-weight: 300;
+    border-top: 2px solid var(--gold);
+    padding: 24px 48px;
+    background: #fff;
+    font-size: 12px;
     color: var(--mid-grey);
-    line-height: 1.7;
+    line-height: 1.6;
   }
-  .page-footer strong { font-weight: 400; color: var(--dark-grey); }
+  .page-footer strong { color: var(--dark-grey); }
 
   @media (max-width: 700px) {
-    .page-header, .stats-bar, .filters, main, .page-footer { padding-left: 20px; padding-right: 20px; }
-    .cal-table td { font-size: 13px; }
+    .page-header, .stats-bar, .filters, main, .page-footer { padding-left: 16px; padding-right: 16px; }
+    .cal-table { font-size: 12px; }
   }
 </style>
 </head>
 <body>
 
-<div style="max-width:1100px;margin:0 auto;padding:24px 40px 0;">
-  <a href="index.html" style="font-family:'DM Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#888780;text-decoration:none;">&larr; Back to Hub</a>
-</div>
-
 <div class="page-header">
   <h1>Reciprocity Accounting — SEO Blog Content Calendar</h1>
-  <p>April – September 2026 &nbsp;|&nbsp; 24 posts &nbsp;|&nbsp; One per week &nbsp;|&nbsp; TAYA framework &nbsp;|&nbsp; Dental-specific focus</p>
+  <p>March – October 2026 &nbsp;|&nbsp; 29 posts &nbsp;|&nbsp; TAYA framework + KPI topic cluster &nbsp;|&nbsp; Dental-specific focus</p>
 </div>
 
 <div class="stats-bar">
-  <div class="stat"><div class="stat-num">24</div><div class="stat-label">Total</div></div>
+  <div class="stat"><div class="stat-num">29</div><div class="stat-label">Total</div></div>
   <div class="stat"><div class="stat-num green" id="stat-pub">0</div><div class="stat-label">Published</div></div>
   <div class="stat"><div class="stat-num gold" id="stat-inp">0</div><div class="stat-label">In Progress</div></div>
-  <div class="stat"><div class="stat-num" id="stat-rem">24</div><div class="stat-label">Remaining</div></div>
+  <div class="stat"><div class="stat-num" id="stat-rem">29</div><div class="stat-label">Remaining</div></div>
   <div class="progress-wrap">
     <div class="progress-track"><div class="progress-bar" id="progress-bar" style="width:0%"></div></div>
   </div>
@@ -154,12 +145,14 @@
 <div class="filters">
   <span class="filter-label">Month</span>
   <button class="filter-btn active" data-filter="month" data-value="All">All</button>
+  <button class="filter-btn" data-filter="month" data-value="March 2026">March</button>
   <button class="filter-btn" data-filter="month" data-value="April 2026">April</button>
   <button class="filter-btn" data-filter="month" data-value="May 2026">May</button>
   <button class="filter-btn" data-filter="month" data-value="June 2026">June</button>
   <button class="filter-btn" data-filter="month" data-value="July 2026">July</button>
   <button class="filter-btn" data-filter="month" data-value="August 2026">August</button>
   <button class="filter-btn" data-filter="month" data-value="September 2026">September</button>
+  <button class="filter-btn" data-filter="month" data-value="October 2026">October</button>
   <div class="divider"></div>
   <span class="filter-label">Status</span>
   <button class="filter-btn active" data-filter="status" data-value="All">All</button>
@@ -177,39 +170,57 @@
 
 <script>
 const MONTHS = [
-  { name: "April 2026",     theme: "Foundation",              desc: "Establish awareness. Answer the most common questions dental owners type into Google before they hire anyone." },
-  { name: "May 2026",       theme: "Why Your Numbers Are Wrong", desc: "Show owners that their current financial picture is incomplete. Insurance timing, cash basis distortions, and what they're actually missing." },
-  { name: "June 2026",      theme: "Making It Right",         desc: "Move from problem awareness to solution. When to switch, chart of accounts, bookkeeper vs. CPA, and what modern bookkeeping involves." },
-  { name: "July 2026",      theme: "Financial Clarity",       desc: "Establish what good looks like. Margins, overhead, P&L reading, and benchmarks for healthy dental practices." },
-  { name: "August 2026",    theme: "Operations & Risk",       desc: "Explain the mechanics and protections. Collection rates, QBO setup, write-offs, embezzlement safeguards." },
-  { name: "September 2026", theme: "Authority & Conversion",  desc: "Establish authority and close. Pillar content, brand post, and why dental-specific expertise matters." },
+  { name: "March 2026",     theme: "Foundation",              desc: "Establish awareness. Answer the most common questions dental owners type into Google before they hire anyone." },
+  { name: "April 2026",     theme: "Foundation",              desc: "Continue building foundational content. Address cash basis distortions and insurance timing problems." },
+  { name: "May 2026",       theme: "Why Your Numbers Are Wrong", desc: "Show owners that their current financial picture is incomplete. KPIs, collections mechanics, and what they're actually missing." },
+  { name: "June 2026",      theme: "Making It Right",         desc: "Move from problem awareness to solution. When to switch, chart of accounts, bookkeeper vs. CPA, and the KPI pillar post." },
+  { name: "July 2026",      theme: "KPI Deep Dives — Cost Metrics", desc: "Individual KPI posts targeting high-search-volume cost benchmarks. Each links back to the pillar." },
+  { name: "August 2026",    theme: "KPI Deep Dives — Operational Metrics", desc: "Hygiene metrics, associate profitability, and the operational KPIs that drive daily decisions." },
+  { name: "September 2026", theme: "KPI Deep Dives — Profitability & Authority", desc: "EBITDA, owner comp, AR aging, and the capstone guide that ties the full content library together." },
+  { name: "October 2026",   theme: "Capstone",                desc: "The comprehensive guide that ties the full content library together." },
 ];
 
 const POSTS = [
-  { id:1,  month:"April 2026",     theme:"Foundation",            week:"Week 1", title:"How Much Does Dental Bookkeeping Cost in 2026?",                                    keyword:"how much does dental bookkeeping cost",         type:"Cost",     status:"in-progress", notes:"Draft complete. Review pass needed: metadata, internal links, Squarespace SEO fields." },
-  { id:2,  month:"April 2026",     theme:"Foundation",            week:"Week 2", title:"Cash vs. Accrual Accounting for Dental Practices: What's the Difference?",         keyword:"cash vs accrual dental practice",               type:"Problems", status:"in-progress", notes:"Draft complete. Review pass needed: metadata, internal links, Squarespace SEO fields." },
-  { id:3,  month:"April 2026",     theme:"Foundation",            week:"Week 3", title:"What Are Dental Production and Collections, and Why Does the Difference Matter?",   keyword:"dental production vs collections",              type:"What",     status:"in-progress", notes:"Draft complete. Review pass needed: metadata, internal links, Squarespace SEO fields." },
-  { id:4,  month:"April 2026",     theme:"Foundation",            week:"Week 4", title:"Why Cash Basis Accounting Misleads Dental Practice Owners",                        keyword:"cash basis dental practice",                    type:"Problems", status:"in-progress", notes:"Draft complete. Review pass needed: metadata, internal links, Squarespace SEO fields." },
-  { id:5,  month:"May 2026",       theme:"Why Your Numbers Are Wrong", week:"Week 1", title:"How Insurance Timing Distorts Your Dental Practice Financials",                   keyword:"insurance timing dental financials",            type:"Problems", status:"in-progress", notes:"Draft complete. Review pass needed: metadata, internal links, Squarespace SEO fields." },
-  { id:6,  month:"May 2026",       theme:"Why Your Numbers Are Wrong", week:"Week 2", title:"How Dental Practice Collections Actually Work",                                 keyword:"dental practice collections",                   type:"What",     status:"in-progress", notes:"Draft complete. Review pass needed: metadata, internal links, Squarespace SEO fields." },
-  { id:7,  month:"May 2026",       theme:"Why Your Numbers Are Wrong", week:"Week 3", title:"Why Every Dental Practice KPI Is Wrong If You're Using Cash Basis Revenue",    keyword:"dental practice KPI",                           type:"Problems", status:"in-progress", notes:"Draft complete. Review pass needed: metadata, internal links, Squarespace SEO fields." },
-  { id:8,  month:"May 2026",       theme:"Why Your Numbers Are Wrong", week:"Week 4", title:"How to Read Your Dental Practice Insurance Aging Report",                      keyword:"dental insurance aging report",                 type:"How",      status:"in-progress", notes:"Draft complete. Review pass needed: metadata, internal links, Squarespace SEO fields." },
-  { id:9,  month:"June 2026",      theme:"Making It Right",       week:"Week 1", title:"Should Your Dental Practice Switch from Cash to Accrual Accounting?",               keyword:"dental practice cash to accrual",               type:"How",      status:"in-progress", notes:"Draft complete. Review pass needed: metadata, internal links, Squarespace SEO fields." },
-  { id:10, month:"June 2026",      theme:"Making It Right",       week:"Week 2", title:"Why Your Dental Practice Needs a Standardized Chart of Accounts",                 keyword:"dental practice chart of accounts",             type:"How",      status:"in-progress", notes:"Draft complete. Review pass needed: metadata, internal links, Squarespace SEO fields." },
-  { id:11, month:"June 2026",      theme:"Making It Right",       week:"Week 3", title:"Dental Bookkeeper vs. Dental CPA: What's the Difference?",                         keyword:"dental bookkeeper vs dental CPA",               type:"Problems", status:"not-started", notes:"Reciprocity is non-CPA. Returns signed by licensed CPA/EA through outsourced partner. Must be accurate and defensible." },
-  { id:12, month:"June 2026",      theme:"Making It Right",       week:"Week 4", title:"What Does a Dental Bookkeeper Actually Do?",                                       keyword:"bookkeeping for dentists",                      type:"What",     status:"not-started", notes:"" },
-  { id:13, month:"July 2026",      theme:"Financial Clarity",     week:"Week 1", title:"What's a Good Profit Margin for a Dental Practice?",                               keyword:"what is a good profit margin for a dental practice", type:"Cost",     status:"not-started", notes:"" },
-  { id:14, month:"July 2026",      theme:"Financial Clarity",     week:"Week 2", title:"Dental Practice Overhead Percentages: What the Numbers Mean",                      keyword:"dental practice overhead percentages",          type:"What",     status:"not-started", notes:"" },
-  { id:15, month:"July 2026",      theme:"Financial Clarity",     week:"Week 3", title:"How to Read Your Dental Practice P&L Statement",                                   keyword:"dental practice P&L statement",                 type:"What",     status:"not-started", notes:"" },
-  { id:16, month:"July 2026",      theme:"Financial Clarity",     week:"Week 4", title:"Dental Practice Financial Benchmarks Every Owner Should Know",                     keyword:"dental practice financial benchmarks",          type:"What",     status:"not-started", notes:"" },
-  { id:17, month:"August 2026",    theme:"Operations & Risk",     week:"Week 1", title:"How to Calculate Your Dental Practice Collection Rate",                            keyword:"dental practice collection rate",               type:"How",      status:"not-started", notes:"" },
-  { id:18, month:"August 2026",    theme:"Operations & Risk",     week:"Week 2", title:"QuickBooks for Dental Practices: Setup, Chart of Accounts, and Common Mistakes",   keyword:"QuickBooks for dental practices",               type:"How",      status:"not-started", notes:"" },
-  { id:19, month:"August 2026",    theme:"Operations & Risk",     week:"Week 3", title:"How Insurance Write-Offs Are Recorded in Dental Practice Accounting",              keyword:"insurance write-offs dental accounting",        type:"How",      status:"not-started", notes:"" },
-  { id:20, month:"August 2026",    theme:"Operations & Risk",     week:"Week 4", title:"Dental Practice Embezzlement: How Proper Bookkeeping Protects You",               keyword:"dental practice embezzlement bookkeeping",      type:"Problems", status:"not-started", notes:"" },
-  { id:21, month:"September 2026", theme:"Authority & Conversion",week:"Week 1", title:"Why Dental Practices Need Dental-Specific Bookkeeping (Not a General Accountant)",keyword:"dental specific bookkeeping",                   type:"Best",     status:"not-started", notes:"" },
-  { id:22, month:"September 2026", theme:"Authority & Conversion",week:"Week 2", title:"What Happens When Your Dental Practice Books Aren't Closed by Month-End",        keyword:"dental books month-end close",                  type:"Problems", status:"not-started", notes:"" },
-  { id:23, month:"September 2026", theme:"Authority & Conversion",week:"Week 3", title:"Dental Practice Accounting: A Complete Guide for Owner-Operators",               keyword:"dental practice accounting guide",              type:"Pillar",   status:"not-started", notes:"2,000+ words. Links to all prior posts. Core pillar." },
-  { id:24, month:"September 2026", theme:"Authority & Conversion",week:"Week 4", title:"How Reciprocity Accounting Works: The 10th Guarantee Explained",                 keyword:"dental accounting firm",                        type:"Brand",    status:"not-started", notes:"Brand post. Explain the guarantee, the process, and what clients actually experience." },
+  // PUBLISHED (4 posts)
+  { id:1,  month:"March 2026",     theme:"Foundation",                          week:"Mar 18", title:"How Much Does Dental Bookkeeping Cost in 2026?",                                    keyword:"how much does dental bookkeeping cost",         type:"Cost",     status:"published", notes:"" },
+  { id:2,  month:"March 2026",     theme:"Foundation",                          week:"Mar 31", title:"Cash vs. Accrual Accounting for Dental Practices: What's the Difference?",           keyword:"cash vs accrual dental practice",               type:"Compare",  status:"published", notes:"" },
+  { id:3,  month:"April 2026",     theme:"Foundation",                          week:"Apr 8",  title:"What Are Dental Production and Collections, and Why Does the Difference Matter?",    keyword:"dental production vs collections",              type:"Compare",  status:"published", notes:"" },
+  { id:4,  month:"April 2026",     theme:"Foundation",                          week:"Apr 15", title:"Why Cash Basis Accounting Misleads Dental Practice Owners",                          keyword:"cash basis dental practice",                    type:"Problems", status:"published", notes:"" },
+
+  // DRAFTS - shifted dates (6 posts)
+  { id:5,  month:"April 2026",     theme:"Foundation",                          week:"Apr 22", title:"How Insurance Timing Distorts Your Dental Practice Financials",                      keyword:"insurance timing dental financials",            type:"Problems", status:"in-progress", notes:"Draft complete. Next to publish." },
+  { id:6,  month:"April 2026",     theme:"Foundation",                          week:"Apr 29", title:"How Dental Practice Collections Actually Work",                                     keyword:"dental practice collections",                   type:"How",      status:"in-progress", notes:"Draft complete." },
+  { id:7,  month:"May 2026",       theme:"Why Your Numbers Are Wrong",          week:"May 6",  title:"Why Every Dental Practice KPI Is Wrong If You're Using Cash Basis Revenue",          keyword:"dental practice KPI",                           type:"Problems", status:"in-progress", notes:"Draft complete." },
+  { id:8,  month:"May 2026",       theme:"Why Your Numbers Are Wrong",          week:"May 13", title:"How to Read Your Dental Practice Insurance Aging Report",                            keyword:"dental insurance aging report",                 type:"How",      status:"in-progress", notes:"Draft complete." },
+  { id:9,  month:"May 2026",       theme:"Why Your Numbers Are Wrong",          week:"May 20", title:"Should Your Dental Practice Switch from Cash to Accrual Accounting?",                keyword:"dental practice cash to accrual",               type:"How",      status:"in-progress", notes:"Draft complete." },
+  { id:10, month:"May 2026",       theme:"Why Your Numbers Are Wrong",          week:"May 27", title:"Why Your Dental Practice Needs a Standardized Chart of Accounts",                    keyword:"dental practice chart of accounts",             type:"How",      status:"in-progress", notes:"Draft complete." },
+
+  // EXISTING CALENDAR - not yet drafted
+  { id:11, month:"June 2026",      theme:"Making It Right",                     week:"Jun 3",  title:"Dental Bookkeeper vs. Dental CPA: What's the Difference?",                          keyword:"dental bookkeeper vs dental CPA",               type:"Compare",  status:"not-started", notes:"Reciprocity is non-CPA. Returns signed by licensed CPA/EA through outsourced partner. Must be accurate and defensible." },
+  { id:12, month:"June 2026",      theme:"Making It Right",                     week:"Jun 10", title:"What Does a Dental Bookkeeper Actually Do?",                                        keyword:"bookkeeping for dentists",                      type:"How",      status:"not-started", notes:"" },
+
+  // KPI PILLAR POST
+  { id:13, month:"June 2026",      theme:"Making It Right",                     week:"Jun 17", title:"The 16 KPIs Every Dental Practice Owner Should Track",                               keyword:"dental practice KPIs",                          type:"How",      status:"not-started", notes:"PILLAR POST — comprehensive overview of all 16 KPIs. Links to every individual KPI spoke post. 2,500–3,000 words." },
+
+  // KPI SPOKE POSTS (16 posts — one per KPI, grouped by theme)
+  { id:14, month:"June 2026",      theme:"Making It Right",                     week:"Jun 24", title:"What Is a Good Collection Ratio for a Dental Practice?",                             keyword:"dental practice collection ratio",               type:"Cost",     status:"not-started", notes:"KPI spoke: Collection Ratio. Benchmark 98–100%. Links back to pillar." },
+  { id:15, month:"July 2026",      theme:"KPI Deep Dives — Cost Metrics",       week:"Jul 1",  title:"Dental Practice Staffing %: What Your Team Should Cost",                             keyword:"dental practice staffing percentage",            type:"Cost",     status:"not-started", notes:"KPI spoke: Staffing %. Benchmark 25–30%. Links back to pillar." },
+  { id:16, month:"July 2026",      theme:"KPI Deep Dives — Cost Metrics",       week:"Jul 8",  title:"Total Overhead % for Dental Practices: What's Normal?",                              keyword:"dental practice overhead percentage",            type:"Cost",     status:"not-started", notes:"KPI spoke: Total Overhead %. Benchmark 55–65%. Links back to pillar." },
+  { id:17, month:"July 2026",      theme:"KPI Deep Dives — Cost Metrics",       week:"Jul 15", title:"Supply Cost % for Dental Practices: Benchmarks and Red Flags",                       keyword:"dental supply cost percentage",                  type:"Cost",     status:"not-started", notes:"KPI spoke: Supply Cost %. Benchmark 5–7%. Links back to pillar." },
+  { id:18, month:"July 2026",      theme:"KPI Deep Dives — Cost Metrics",       week:"Jul 22", title:"Lab Cost % for Dental Practices: What You Should Be Paying",                         keyword:"dental lab cost percentage",                     type:"Cost",     status:"not-started", notes:"KPI spoke: Lab Cost %. Benchmark 5–7%. Links back to pillar." },
+  { id:19, month:"July 2026",      theme:"KPI Deep Dives — Cost Metrics",       week:"Jul 29", title:"Clinical Cost % (Lab + Supplies Combined): The Number That Matters",                 keyword:"dental clinical cost percentage",                type:"How",      status:"not-started", notes:"KPI spoke: Clinical Cost %. Benchmark <11%. Links to Lab + Supply posts." },
+  { id:20, month:"August 2026",    theme:"KPI Deep Dives — Operational Metrics", week:"Aug 5",  title:"Hygiene Production %: Is Your Hygiene Department Pulling Its Weight?",               keyword:"dental hygiene production percentage",           type:"How",      status:"not-started", notes:"KPI spoke: Hygiene Production %. Benchmark 30–40%. Links back to pillar." },
+  { id:21, month:"August 2026",    theme:"KPI Deep Dives — Operational Metrics", week:"Aug 12", title:"Hygiene Labor %: What Hygienist Pay Should Look Like as a % of Production",          keyword:"dental hygiene labor cost",                      type:"Cost",     status:"not-started", notes:"KPI spoke: Hygiene Labor %. Benchmark 8–10%. Links back to pillar." },
+  { id:22, month:"August 2026",    theme:"KPI Deep Dives — Operational Metrics", week:"Aug 19", title:"Hygiene Productivity Ratio: The 3x Rule Every Dental Owner Should Know",             keyword:"dental hygiene productivity ratio",              type:"How",      status:"not-started", notes:"KPI spoke: Hygiene Productivity Ratio. Benchmark 3.0–3.5x. Links back to pillar." },
+  { id:23, month:"August 2026",    theme:"KPI Deep Dives — Operational Metrics", week:"Aug 26", title:"Occupancy % for Dental Practices: How Much Should Rent Cost?",                       keyword:"dental practice rent occupancy percentage",      type:"Cost",     status:"not-started", notes:"KPI spoke: Occupancy %. Benchmark 3.5–6%. Links back to pillar." },
+  { id:24, month:"September 2026", theme:"KPI Deep Dives — Profitability & Authority", week:"Sep 2",  title:"Marketing Spend % for Dental Practices: How Much Is Too Much?",                keyword:"dental practice marketing spend",                type:"Cost",     status:"not-started", notes:"KPI spoke: Marketing Spend %. Benchmark 3–7%. Links back to pillar." },
+  { id:25, month:"September 2026", theme:"KPI Deep Dives — Profitability & Authority", week:"Sep 9",  title:"Associate Cost %: How to Know If Your Associate Is Profitable",                keyword:"dental associate cost percentage",               type:"How",      status:"not-started", notes:"KPI spoke: Associate Cost %. No published benchmark (varies by deal). Links back to pillar." },
+  { id:26, month:"September 2026", theme:"KPI Deep Dives — Profitability & Authority", week:"Sep 16", title:"Adj. EBITDA % for Dental Practices: What It Is and Why It Matters",            keyword:"dental practice EBITDA",                         type:"How",      status:"not-started", notes:"KPI spoke: Adj. EBITDA %. Benchmark 30–40%. Links to Overhead + Owner Comp posts." },
+  { id:27, month:"September 2026", theme:"KPI Deep Dives — Profitability & Authority", week:"Sep 23", title:"Owner Comp % and Owner Discretionary %: Separating Pay from Profit",           keyword:"dental practice owner compensation",             type:"How",      status:"not-started", notes:"KPI spoke: Owner Comp % + Owner Discretionary %. No published benchmark. Links to EBITDA post." },
+  { id:28, month:"September 2026", theme:"KPI Deep Dives — Profitability & Authority", week:"Sep 30", title:"AR >90 Days %: How Old Receivables Signal Collection Problems",                keyword:"dental accounts receivable aging",               type:"Problems", status:"not-started", notes:"KPI spoke: AR >90 Days %. Benchmark <10% of total AR. Links to Collection Ratio post." },
+
+  // CAPSTONE
+  { id:29, month:"October 2026",   theme:"Capstone",                            week:"Oct 7",  title:"Dental Practice Accounting: A Complete Guide for Owner-Operators",                   keyword:"dental practice accounting guide",               type:"Pillar",   status:"not-started", notes:"CAPSTONE — 2,000+ words. Links to all prior posts. Core pillar content." },
 ];
 
 // Load saved statuses from localStorage
@@ -231,8 +242,8 @@ function updateStats() {
   const inp = POSTS.filter(p => p.status === 'in-progress').length;
   document.getElementById('stat-pub').textContent = pub;
   document.getElementById('stat-inp').textContent = inp;
-  document.getElementById('stat-rem').textContent = 24 - pub - inp;
-  document.getElementById('progress-bar').style.width = (pub / 24 * 100) + '%';
+  document.getElementById('stat-rem').textContent = 29 - pub - inp;
+  document.getElementById('progress-bar').style.width = (pub / 29 * 100) + '%';
 }
 
 function applyFilters() {
