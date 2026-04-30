@@ -1,3 +1,19 @@
+> ## DECISION UPDATE — 2026-04-30
+>
+> Significant portions of this doc (originally v2 from April 13) have been superseded. **Read with these overrides in mind:**
+>
+> 1. **Claude Managed Agents → self-hosted Claude API + Agent SDK.** Anthropic launched Managed Agents April 8, 2026 with per-session-hour pricing that doesn't fit our short-lived agent pattern. We self-host the runtime instead. References below to "Claude Managed Agent," "Managed Agents session," "Anthropic Credential Vaults," and the Managed Agents cost line are stale.
+>
+> 2. **Supabase Team + HIPAA add-on → Supabase Pro (no HIPAA add-on).** The sanitizer-first architecture means PHI never reaches Supabase, so the HIPAA add-on is unnecessary. Free tier today, upgrade to Pro ($25/mo) when shadow mode begins. Re-evaluate Team + HIPAA add-on in Q4 alongside the BAA decision.
+>
+> 3. **Anthropic BAA → deferred to Q4 2026.** Same sanitizer reasoning. HIPAA-Ready Enterprise floor is ~$50K/year, not viable in 2026.
+>
+> **Authoritative version of the new decisions:** [`architecture_decisions_2026_04_30.md`](architecture_decisions_2026_04_30.md)
+>
+> The rest of this doc still describes the agent design, schema model, prompt contract, Pod model, and SOC 2 Lite tiering accurately. A full revision of this doc to fully reflect the overrides is on the build queue (target: a Tuesday or Thursday build session in early May 2026).
+
+---
+
 # Reciprocity AI Bookkeeper — Architecture Blueprint
 
 **Status:** Living document — updated as decisions are made and agents are built
