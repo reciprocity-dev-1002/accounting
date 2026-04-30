@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reciprocity AI Bookkeeper — Mission Control</title>
+<style>
+  :root {
+    --navy: #0b2545;
+    --navy-2: #13315c;
+    --teal: #1b998b;
+    --amber: #f4b942;
+    --red: #d7263d;
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --ink: #1a1a2e;
+    --muted: #6b7280;
+    --line: #e5e7eb;
+    --done: #d1fae5;
+    --done-ink: #065f46;
+    --now: #fef3c7;
+    --now-ink: #92400e;
+    --next: #e0e7ff;
+    --next-ink: #3730a3;
+    --future: #f3f4f6;
+    --future-ink: #4b5563;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+    color: white;
+    padding: 28px 40px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  header .row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  header h1 { margin: 0 0 4px; font-size: 26px; font-weight: 700; letter-spacing: -0.2px; }
+  header .tag { font-size: 13px; opacity: 0.85; font-weight: 500; }
+  header .status-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+  .pill { background: rgba(255,255,255,0.12); padding: 6px 14px; border-radius: 999px; font-size: 12px; font-weight: 500; border: 1px solid rgba(255,255,255,0.2); }
+  .pill strong { color: var(--amber); font-weight: 600; }
+
+  main { padding: 32px 40px; max-width: 1400px; margin: 0 auto; }
+  section { background: var(--card); border-radius: 12px; padding: 24px 28px; margin-bottom: 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.04); border: 1px solid var(--line); }
+  section h2 { margin: 0 0 4px; font-size: 18px; font-weight: 700; color: var(--navy); letter-spacing: -0.1px; }
+  section .sub { margin: 0 0 18px; font-size: 13px; color: var(--muted); }
+
+  /* Roadmap strip */
+  .roadmap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  .q {
+    border-radius: 10px; padding: 14px 16px; border: 2px solid transparent;
+    transition: transform 0.15s ease;
+  }
+  .q:hover { transform: translateY(-2px); }
+  .q.now { background: var(--now); border-color: var(--amber); }
+  .q.next { background: var(--next); border-color: #6366f1; }
+  .q.future { background: var(--future); border-color: var(--line); }
+  .q h3 { margin: 0 0 2px; font-size: 14px; font-weight: 700; }
+  .q .qtag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-bottom: 8px; display: block; }
+  .q.now .qtag { color: var(--now-ink); }
+  .q.next .qtag { color: var(--next-ink); }
+  .q.future .qtag { color: var(--future-ink); }
+  .q .dates { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+  .q ul { margin: 0; padding-left: 18px; font-size: 12px; }
+  .q li { margin-bottom: 3px; }
+
+  /* Two-column grid */
+  .grid-2 { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; }
+  @media (max-width: 960px) { .grid-2 { grid-template-columns: 1fr; } }
+
+  /* Queue */
+  .queue-group { margin-bottom: 16px; }
+  .queue-group h4 { margin: 0 0 8px; font-size: 13px; color: var(--navy-2); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+  .queue-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 9px 12px; border-radius: 6px; margin-bottom: 4px;
+    transition: background 0.1s ease;
+  }
+  .queue-item:hover { background: var(--bg); }
+  .queue-item input[type=checkbox] { margin-top: 4px; width: 16px; height: 16px; accent-color: var(--teal); cursor: pointer; flex-shrink: 0; }
+  .queue-item label { font-size: 14px; cursor: pointer; flex: 1; }
+  .queue-item.priority-1 { border-left: 3px solid var(--red); padding-left: 9px; }
+  .queue-item.priority-2 { border-left: 3px solid var(--amber); padding-left: 9px; }
+  .queue-item.deferred { opacity: 0.6; border-left: 3px solid var(--line); padding-left: 9px; }
+  .queue-item.done label { text-decoration: line-through; color: var(--muted); }
+
+  /* Weekly rhythm */
+  .rhythm { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+  .day {
+    background: var(--bg); border-radius: 8px; padding: 12px 10px; text-align: center;
+    border: 1px solid var(--line);
+  }
+  .day .label { font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--navy); letter-spacing: 0.5px; }
+  .day .hours { font-size: 24px; font-weight: 800; color: var(--teal); margin: 4px 0 2px; }
+  .day .block { font-size: 12px; color: var(--muted); line-height: 1.3; }
+  .rhythm-total { text-align: center; margin-top: 14px; font-size: 14px; color: var(--navy-2); font-weight: 600; }
+  .rhythm-rule { font-size: 12px; color: var(--muted); margin-top: 8px; font-style: italic; text-align: center; }
+
+  /* Architecture diagram */
+  .arch-wrap { overflow-x: auto; }
+  .arch { min-width: 900px; padding: 12px 0; }
+  .arch-layer { display: grid; gap: 10px; padding: 10px; border-radius: 8px; margin-bottom: 6px; }
+  .arch-layer.sources { grid-template-columns: repeat(4, 1fr); background: #eef2ff; }
+  .arch-layer.triggers { grid-template-columns: 1fr; background: #fef9c3; }
+  .arch-layer.agents { grid-template-columns: repeat(4, 1fr); background: #e0f2fe; }
+  .arch-layer.mcp { grid-template-columns: repeat(3, 1fr); background: #f5f3ff; }
+  .arch-layer.core { grid-template-columns: repeat(3, 1fr); background: #dcfce7; }
+  .arch-layer.humans { grid-template-columns: 1fr; background: #ffedd5; }
+  .arch-box {
+    background: white; border-radius: 6px; padding: 8px 10px; font-size: 12px;
+    border: 1px solid var(--line); text-align: center;
+  }
+  .arch-box strong { display: block; color: var(--navy); font-size: 12px; margin-bottom: 2px; }
+  .arch-box em { font-style: normal; color: var(--muted); font-size: 11px; }
+  .arch-label { font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--navy); letter-spacing: 0.5px; padding: 0 10px; }
+  .arch-arrow { text-align: center; color: var(--muted); font-size: 18px; margin: 2px 0; }
+
+  /* Health */
+  .health { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .health-item { padding: 10px 12px; background: var(--bg); border-radius: 8px; border: 1px solid var(--line); }
+  .health-item .h-label { font-size: 11px; text-transform: uppercase; font-weight: 700; color: var(--muted); letter-spacing: 0.5px; }
+  .health-item .h-value { font-size: 14px; margin-top: 4px; font-weight: 500; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .dot.green { background: var(--teal); }
+  .dot.yellow { background: var(--amber); }
+  .dot.red { background: var(--red); }
+  .dot.gray { background: var(--muted); }
+
+  /* Footer links */
+  .footer-links { display: flex; gap: 14px; flex-wrap: wrap; padding: 16px 0 8px; border-top: 1px solid var(--line); margin-top: 8px; }
+  .footer-links a {
+    color: var(--navy); text-decoration: none; font-size: 13px; font-weight: 500;
+    padding: 6px 12px; border-radius: 6px; background: var(--bg); border: 1px solid var(--line);
+  }
+  .footer-links a:hover { background: var(--navy); color: white; }
+
+  .reset-btn {
+    float: right; background: transparent; border: 1px solid var(--line); color: var(--muted);
+    font-size: 11px; padding: 4px 10px; border-radius: 4px; cursor: pointer;
+  }
+  .reset-btn:hover { background: var(--bg); color: var(--navy); }
+
+  footer {
+    text-align: center; color: var(--muted); font-size: 12px; padding: 20px 40px 30px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="row">
+    <div>
+      <h1>🎯 Reciprocity AI Bookkeeper — Mission Control</h1>
+      <div class="tag">Year 1 Build · 9 hrs/week · April 2026 → April 2027</div>
+    </div>
+    <div class="status-pills">
+      <span class="pill">Week of <strong id="week-of">Apr 27, 2026</strong></span>
+      <span class="pill">Phase <strong>0 — Foundation</strong></span>
+      <span class="pill">Clients live <strong>0 / 1</strong></span>
+      <span class="pill">Test sandbox <strong>Greg's own books</strong></span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ROADMAP -->
+  <section>
+    <h2>Year 1 Roadmap</h2>
+    <p class="sub">Four quarters from foundation to 5-10 clients auto-posting. Click a quarter for the "done =" definition.</p>
+    <div class="roadmap">
+      <div class="q now" title="Q1 Foundation">
+        <span class="qtag">● Now</span>
+        <h3>Q1 — Foundation</h3>
+        <div class="dates">Apr – Jun 2026</div>
+        <ul>
+          <li>Supabase + HIPAA add-on live</li>
+          <li>PHI sanitizer (Tier 1 control)</li>
+          <li>QBO + Double MCP v1</li>
+          <li>Shadow mode on Greg's own books first</li>
+        </ul>
+      </div>
+      <div class="q next" title="Q2 Go-live">
+        <span class="qtag">↗ Next</span>
+        <h3>Q2 — Go-live</h3>
+        <div class="dates">Jul – Sep 2026</div>
+        <ul>
+          <li>Smile4Me auto-posting</li>
+          <li>Expenses + Payroll agents</li>
+          <li>First agent-run close</li>
+          <li>IG shifts to QA role</li>
+        </ul>
+      </div>
+      <div class="q future">
+        <span class="qtag">⊙ Then</span>
+        <h3>Q3 — Client #2</h3>
+        <div class="dates">Oct – Dec 2026</div>
+        <ul>
+          <li>Onboard in 4 hrs Greg time</li>
+          <li>Refactor hardcoded bits</li>
+          <li>Agent 8 (Memory) live</li>
+          <li>100+ corrections logged</li>
+        </ul>
+      </div>
+      <div class="q future">
+        <span class="qtag">⊙ Then</span>
+        <h3>Q4 — Scale</h3>
+        <div class="dates">Jan – Apr 2027</div>
+        <ul>
+          <li>5-10 clients auto-posting</li>
+          <li>Sr accountant OR IG Pod</li>
+          <li>Tier 2 controls lit</li>
+          <li>SOC 2 Type II decision</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- HEALTH -->
+  <section>
+    <h2>Health Check <span style="font-weight:500; color:var(--muted); font-size:13px;">— updated every Friday</span></h2>
+    <div class="health">
+      <div class="health-item">
+        <div class="h-label">On pace for Q1?</div>
+        <div class="h-value"><span class="dot yellow"></span>Planning, build starting</div>
+      </div>
+      <div class="health-item">
+        <div class="h-label">9 hrs/week hit?</div>
+        <div class="h-value"><span class="dot yellow"></span>Week 1 of rhythm</div>
+      </div>
+      <div class="health-item">
+        <div class="h-label">Blockers &gt; 1 week?</div>
+        <div class="h-value"><span class="dot green"></span>None</div>
+      </div>
+      <div class="health-item">
+        <div class="h-label">Last shadow QA</div>
+        <div class="h-value"><span class="dot gray"></span>N/A (not live)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUEUE + RHYTHM -->
+  <div class="grid-2">
+
+    <section>
+      <button class="reset-btn" onclick="resetQueue()">Reset checks</button>
+      <h2>This Week's Active Build Queue</h2>
+      <p class="sub">Checkmarks save only in this tab. Update the markdown + push Friday.</p>
+
+      <div class="queue-group">
+        <h4>🔴 Priority 1 — This Week</h4>
+        <div class="queue-item priority-1"><input type="checkbox" id="q1"><label for="q1">Stand up Supabase project: Team tier + HIPAA add-on quote</label></div>
+        <div class="queue-item priority-1"><input type="checkbox" id="q2"><label for="q2">Create repo folder structure: <code>/schema</code>, <code>/prompts</code>, <code>/mcp-servers</code>, <code>/docs</code>, <code>/compliance</code></label></div>
+        <div class="queue-item priority-1"><input type="checkbox" id="qSAN"><label for="qSAN">Scaffold PHI sanitizer plan (defer build to Phase 1, mid-May, but lock the spec now)</label></div>
+      </div>
+
+      <div class="queue-group">
+        <h4>🟡 Priority 2 — If Time</h4>
+        <div class="queue-item priority-2"><input type="checkbox" id="q3"><label for="q3">Pull Double <code>HookType</code> enum from Swagger, update arch doc §4.7</label></div>
+        <div class="queue-item priority-2"><input type="checkbox" id="q4"><label for="q4">Draft initial Supabase schema SQL (clients, agent_actions, source_documents, je_history, corrections, incidents)</label></div>
+        <div class="queue-item priority-2"><input type="checkbox" id="q5"><label for="q5">Email Double CSM: confirm one-OAuth-per-practice vs firm-level</label></div>
+        <div class="queue-item priority-2"><input type="checkbox" id="qBAA2"><label for="qBAA2">Open BAA conversation with Anthropic sales: lock terms, no commitment, re-evaluate Q4 2026</label></div>
+      </div>
+
+      <div class="queue-group">
+        <h4>⚪ Parked (pick up when ready)</h4>
+        <div class="queue-item deferred"><input type="checkbox" id="q6" disabled><label for="q6">Master COA audit vs Smile4Me QBO — before client #2, not blocking now</label></div>
+        <div class="queue-item deferred"><input type="checkbox" id="q7" disabled><label for="q7">QBO MCP server build — Phase 1, mid-May</label></div>
+        <div class="queue-item deferred"><input type="checkbox" id="q8" disabled><label for="q8">PHI sanitizer implementation — mid-May</label></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Weekly Rhythm — 9 hr Template</h2>
+      <p class="sub">Protect these hours. Calendar them as "Reciprocity Build — DO NOT SCHEDULE."</p>
+      <div class="rhythm">
+        <div class="day"><div class="label">Mon</div><div class="hours">1h</div><div class="block">Plan — pick 1-2 queue items</div></div>
+        <div class="day"><div class="label">Tue</div><div class="hours">2h</div><div class="block">Build w/ Claude — drive to done</div></div>
+        <div class="day"><div class="label">Wed</div><div class="hours">1h</div><div class="block">Domain braindump</div></div>
+        <div class="day"><div class="label">Thu</div><div class="hours">2h</div><div class="block">Build w/ Claude — next item</div></div>
+        <div class="day"><div class="label">Fri</div><div class="hours">2h</div><div class="block">QA + update this doc</div></div>
+        <div class="day"><div class="label">Rolling</div><div class="hours">1h</div><div class="block">Double / Supabase / IG relationships</div></div>
+      </div>
+      <div class="rhythm-total">Total: <strong>9 hours / week</strong> · ~20-25% of Greg's time</div>
+      <div class="rhythm-rule">Do not write code yourself. Claude writes. You review + decide.</div>
+    </section>
+
+  </div>
+
+  <!-- ARCHITECTURE -->
+  <section>
+    <h2>System Architecture — At a Glance</h2>
+    <p class="sub">Simplified view. See <a href="https://github.com/reciprocity-dev-1002/accounting/blob/main/docs/ai_agent_architecture.md">ai_agent_architecture.md</a> for the full spec.</p>
+    <div class="arch-wrap"><div class="arch">
+
+      <div class="arch-label">Data sources</div>
+      <div class="arch-layer sources">
+        <div class="arch-box"><strong>Open Dental</strong><em>Production, collections (PHI)</em></div>
+        <div class="arch-box"><strong>QuickBooks Online</strong><em>Books of record</em></div>
+        <div class="arch-box"><strong>Double</strong><em>Close checklist + review</em></div>
+        <div class="arch-box"><strong>Bank / Payroll / Receipts</strong><em>Plaid, Gusto, Dext</em></div>
+      </div>
+
+      <div class="arch-arrow">▼</div>
+      <div class="arch-label">Triggers</div>
+      <div class="arch-layer triggers">
+        <div class="arch-box"><strong>Power Automate</strong><em>Schedules + webhooks → fires Claude Managed Agents</em></div>
+      </div>
+
+      <div class="arch-arrow">▼</div>
+      <div class="arch-label">Agents (Claude API, self-hosted via Agent SDK)</div>
+      <div class="arch-layer agents">
+        <div class="arch-box"><strong>Production</strong><em>Daily production JE</em></div>
+        <div class="arch-box"><strong>Collections</strong><em>3-bucket logic</em></div>
+        <div class="arch-box"><strong>Expenses + Payroll</strong><em>Receipts + biweekly</em></div>
+        <div class="arch-box"><strong>Close Coordinator + Memory</strong><em>13-step close + learns from corrections</em></div>
+      </div>
+
+      <div class="arch-arrow">▼</div>
+      <div class="arch-label">MCP servers</div>
+      <div class="arch-layer mcp">
+        <div class="arch-box"><strong>QBO MCP</strong><em>Custom thin wrapper</em></div>
+        <div class="arch-box"><strong>Double MCP</strong><em>12 tools, webhooks</em></div>
+        <div class="arch-box"><strong>Audit MCP</strong><em>Append-only log</em></div>
+      </div>
+
+      <div class="arch-arrow">▼</div>
+      <div class="arch-label">Core stores</div>
+      <div class="arch-layer core">
+        <div class="arch-box"><strong>Supabase</strong><em>Postgres + RLS + pgvector, HIPAA add-on</em></div>
+        <div class="arch-box"><strong>1Password + Anthropic Vault</strong><em>Dual custody credentials</em></div>
+        <div class="arch-box"><strong>GitHub</strong><em>Prompts, schema, source of truth</em></div>
+      </div>
+
+      <div class="arch-arrow">▼</div>
+      <div class="arch-label">Human review (Pod model)</div>
+      <div class="arch-layer humans">
+        <div class="arch-box"><strong>Greg (CPA sign-off) · Drashti (bookkeeper) · Jehal (reviewer, 20 hr/mo)</strong><em>1 Pod serves ~25 clients · Shadow mode → 95% auto-post threshold</em></div>
+      </div>
+
+    </div></div>
+  </section>
+
+  <!-- FOOTER LINKS -->
+  <section style="background: transparent; box-shadow: none; border: none; padding: 0;">
+    <h2 style="padding: 0 4px;">Follow along</h2>
+    <p class="sub" style="padding: 0 4px;">Bookmark this page. Open the source docs below for full detail.</p>
+    <div class="footer-links">
+      <a href="https://github.com/reciprocity-dev-1002/accounting/blob/main/docs/year1_build_plan.md" target="_blank">📄 Year 1 Build Plan (GitHub)</a>
+      <a href="https://github.com/reciprocity-dev-1002/accounting/blob/main/docs/ai_agent_architecture.md" target="_blank">📐 Architecture Doc (GitHub)</a>
+      <a href="https://github.com/reciprocity-dev-1002/accounting" target="_blank">📁 Repo</a>
+      <a href="year1_build_plan.md">📝 Local build plan (edit this Friday)</a>
+      <a href="ai_agent_architecture.md">📝 Local architecture doc</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  Reciprocity Accounting · Mission Control · Rendered <span id="today"></span> · Edit the underlying markdown and push to GitHub each Friday.
+</footer>
+
+<script>
+  // Simple localStorage-free state: session-scoped only
+  const STATE = {};
+  document.querySelectorAll('.queue-item input[type=checkbox]:not([disabled])').forEach(cb => {
+    cb.addEventListener('change', () => {
+      const li = cb.closest('.queue-item');
+      if (cb.checked) li.classList.add('done'); else li.classList.remove('done');
+      STATE[cb.id] = cb.checked;
+    });
+  });
+  function resetQueue() {
+    document.querySelectorAll('.queue-item input[type=checkbox]:not([disabled])').forEach(cb => {
+      cb.checked = false;
+      cb.closest('.queue-item').classList.remove('done');
+    });
+  }
+  // Today stamp
+  const d = new Date();
+  document.getElementById('today').textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+</script>
+
+</body>
+</html>
